@@ -86,3 +86,4 @@ export default function CustomizedTables() {
     </div>
   );
 }
+    export default manageBonus
