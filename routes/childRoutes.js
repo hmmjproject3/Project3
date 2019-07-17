@@ -12,6 +12,16 @@ module.exports = app => {
       .catch(e => console.log(e))
   })
 
+  // Get one Child
+  app.get('/children/:id', (req, res) => {
+    Child.findById(req.params.id)
+      .populate('chores')
+      .then(child => {
+        res.json(child)
+      })
+      .catch(e => console.log(e))
+  })
+
   // POST a child
   app.post('/children', (req, res) => {
     Child.create(req.body)
