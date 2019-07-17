@@ -1,4 +1,6 @@
 const express = require('express')
+const dotenv = require('dotenv');
+dotenv.config();
 const { join } = require('path')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
@@ -21,7 +23,6 @@ app.use(require('express-session')({
 
 app.use(passport.initialize())
 app.use(passport.session())
-
 passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())

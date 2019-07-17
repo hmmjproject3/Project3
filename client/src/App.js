@@ -1,5 +1,8 @@
 import React, {useEffect} from 'react'
 import Chores from './utils/Chores.js'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+
 
 const App = _ => {
 
@@ -15,16 +18,18 @@ const App = _ => {
 
   //   }
 
-  //   Chores.deleteChore("5d2ea3c469bc173e608fa060")
+  //   Chores.getAllChildren()
   //     .then(({ data }) => {
   //       console.log(data)
   //     }).catch(e => console.log(e))
   // }, [])
 
   return (
-    <div>
-
-    </div>
+    <Router>
+      <div>
+        <Route exact path='/Dashboard' render={_ => <Dashboard />} />
+      </div>
+    </Router>
   )
 }
 
