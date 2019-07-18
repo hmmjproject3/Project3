@@ -1,4 +1,6 @@
 const express = require('express')
+const dotenv = require('dotenv');
+dotenv.config();
 const { join } = require('path')
 const passport = require('passport')
 const { Strategy } = require('passport-local')
@@ -21,7 +23,6 @@ app.use(require('express-session')({
 
 app.use(passport.initialize())
 app.use(passport.session())
-
 passport.use(new Strategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
@@ -35,6 +36,6 @@ passport.use(new JWTStrategy({
 
 require('./routes')(app)
 
-require('mongoose').connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true })
+require('mongoose').connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
   .then(_ => app.listen(process.env.PORT || 3001))
   .catch(e => console.log(e))
