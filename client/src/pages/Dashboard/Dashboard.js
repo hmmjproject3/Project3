@@ -5,6 +5,8 @@ import ProgressChart from '../../components/ProgressChart'
 import SquadGoals from '../../components/SqualGoals/SquadGoals';
 import BonusChores from '../../components/BonusChores/BonusChores';
 
+
+
 const Dashboard = _ => {
     return (
         <>
