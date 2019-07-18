@@ -7,12 +7,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import SquadGoals from '../../components/SqualGoals/SquadGoals';
 import BonusChores from '../../components/BonusChores/BonusChores';
 
+
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: '#153B69',
         padding: theme.spacing(0, 0),
     },
   }))
+=======
+
 
 const Dashboard = _ => {
     const classes = useStyles()
