@@ -2,11 +2,15 @@ import React, {useEffect} from 'react'
 import Chores from './utils/Chores.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
+import ChoresContext from './utils/ChoresContext'
 
 
 const App = _ => {
 
-  // useEffect(_ => {
+  
+
+
+  useEffect(_ => {
   //   const testChild = {
   //     name: "Eduardo"
   //   }
@@ -18,11 +22,13 @@ const App = _ => {
 
   //   }
 
-  //   Chores.getAllChildren()
-  //     .then(({ data }) => {
-  //       console.log(data)
-  //     }).catch(e => console.log(e))
-  // }, [])
+  // Chores.addChore(testChore)
+
+    Chores.getAllChildren()
+      .then(({ data }) => {
+        console.log(data)
+      }).catch(e => console.log(e))
+  }, [])
 
   return (
     <Router>
