@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import Chores from './utils/Chores.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
+import Chores from './pages/Chores'
 
 
 const App = _ => {
