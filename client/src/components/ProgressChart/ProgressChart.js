@@ -1,28 +1,16 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
+import C3Chart from 'react-c3js'
+import 'c3/c3.css'
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: '#153B69',
-        padding: theme.spacing(0, 0),
-    },
-  }))
+const data = {
+  columns: [
+    ['data1', 30, 200, 100, 400, 150, 250],
+    ['data2', 50, 20, 10, 40, 15, 25]
+  ]
+};
+ 
+const mountNode = document.getElementById('react-c3js')
+ 
+ReactDOM.render(<C3Chart data={data} />, mountNode)
 
-const ProgressChart = _ => {
-  const classes = useStyles()
-
-  return (
-    <div>
-        <Paper className={classes.root}>
-            <Grid item id='progressHead' xs={12} style={{height: '50px', color: 'white', textAlign: 'left'}}>
-                <h3 style={{padding: '10px', paddingTop: '13px'}}>Progress Chart</h3>
-                </Grid>
-            <Grid item id='progressBody' xs={12} style={{height: '200px', backgroundColor: 'white'}} ></Grid>
-        </Paper>
-    </div>
-  )
-}
-
-export default ProgressChart
+// https://stackoverflow.com/questions/51362924/c3-chart-not-rendering-in-react-project
