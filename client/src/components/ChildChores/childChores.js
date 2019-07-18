@@ -1,5 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
+import AddBox from '@material-ui/icons/AddBox';
 
 
 export default function MaterialTableDemo() {
@@ -25,6 +26,8 @@ export default function MaterialTableDemo() {
   });
 
   return (
+  
+
     <MaterialTable
       title="Editable Example"
       columns={state.columns}
