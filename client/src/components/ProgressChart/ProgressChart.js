@@ -1,16 +1,58 @@
 import React from 'react'
-import C3Chart from 'react-c3js'
-import 'c3/c3.css'
+import { HorizontalBar } from 'react-chartjs-2'
 
-const data = {
-  columns: [
-    ['data1', 30, 200, 100, 400, 150, 250],
-    ['data2', 50, 20, 10, 40, 15, 25]
-  ]
-};
- 
-const mountNode = document.getElementById('react-c3js')
- 
-ReactDOM.render(<C3Chart data={data} />, mountNode)
+const ProgressChart = _ => {
+  const data = {
+    labels: [],
+    datasets: [
+      {
+        label: 'Marianna',
+        backgroundColor: '#968AF2',
+        borderColor: '#968AF2',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [650]
+      },
+      {
+        label: 'Jennifer',
+        backgroundColor: '#60B0F5',
+        borderColor: '#60B0F5',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [500]
+      },
+      {
+        label: 'Hamza',
+        backgroundColor: '#FFE200',
+        borderColor: '#FFE200',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [275]
+      },
+      {
+        label: 'Matthew',
+        backgroundColor: '#FF9300',
+        borderColor: '#FF9300',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [350]
+      }
+    ]
+  };
 
-// https://stackoverflow.com/questions/51362924/c3-chart-not-rendering-in-react-project
+  return (
+    <div style={{ position: 'relative' }}>
+      <HorizontalBar
+        data={data}
+        width={90}
+        height={200}
+        options={{ maintainAspectRatio: false }} />
+    </div>
+  )
+}
+
+export default ProgressChart
