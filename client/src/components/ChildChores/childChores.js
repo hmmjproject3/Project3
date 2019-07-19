@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ChoresContext from '../../utils/ChoresContext'
 import MaterialTable from 'material-table';
+import AddBox from '@material-ui/icons/AddBox';
 
 
 export default function MaterialTableDemo() {
@@ -29,10 +30,47 @@ export default function MaterialTableDemo() {
 
 
   return (
-    <>
-    <input ref={choreName}></input>
-    <input ref={chorePoints}></input>
-    <button onClick = {addChore}>HELLLLLOOOOOO</button>
-    </>
-  )
+  //   <>
+  //   <input ref={choreName}></input>
+  //   <input ref={chorePoints}></input>
+  //   <button onClick = {addChore}>HELLLLLOOOOOO</button>
+  //   </>
+  // )
+  
+
+    <MaterialTable
+      title="Editable Example"
+      columns={state.columns}
+      data={state.data}
+      editable={{
+        onRowAdd: newData =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              const data = [...state.data];
+              data.push(newData);
+              setState({ ...state, data });
+            }, 600);
+          }),
+        onRowUpdate: (newData, oldData) =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              const data = [...state.data];
+              data[data.indexOf(oldData)] = newData;
+              setState({ ...state, data });
+            }, 600);
+          }),
+        onRowDelete: oldData =>
+          new Promise(resolve => {
+            setTimeout(() => {
+              resolve();
+              const data = [...state.data];
+              data.splice(data.indexOf(oldData), 1);
+              setState({ ...state, data });
+            }, 600);
+          }),
+      }}
+    />
+  );
 }
