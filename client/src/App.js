@@ -6,6 +6,7 @@ import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
+import SignUpPage from './pages/SignUp'
 
 
 const App = _ => {
@@ -92,12 +93,16 @@ const App = _ => {
         } />
         <Route exact path='/chores' render={_ =>
           <Chorespage />
+      
         } />
         <Route exact path='/rewards' render={_ =>
           <Rewards />
         } />
         <Route exact path='/hamza' render={_ =>
           <HamzaPage />
+        } />
+        <Route exact path='/signUp' render={_ =>
+          <SignUpPage />
         } />
       </Router>
     </>
