@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ChoresContext from '../../utils/ChoresContext'
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 
@@ -25,7 +26,17 @@ export default function MaterialTableDemo() {
     ],
   });
 
+  const {addChore, choreName, chorePoints} = useContext(ChoresContext)
+
+
   return (
+
+//     <>
+//     <input ref={choreName}></input>
+//     <input ref={chorePoints}></input>
+//     <button onClick = {addChore}>HELLLLLOOOOOO</button>
+//     </>
+//   )
   
 
     <MaterialTable
@@ -63,4 +74,5 @@ export default function MaterialTableDemo() {
       }}
     />
   );
+
 }
