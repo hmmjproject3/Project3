@@ -6,7 +6,6 @@ import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
-import Chorespage from './pages/Chores'
 
 
 const App = _ => {

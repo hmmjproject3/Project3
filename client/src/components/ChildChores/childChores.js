@@ -5,28 +5,28 @@ import AddBox from '@material-ui/icons/AddBox';
 
 
 export default function MaterialTableDemo() {
-  // const [state, setState] = React.useState({
-  //   columns: [
-  //     { title: 'Name', field: 'name' },
-  //     { title: 'Surname', field: 'surname' },
-  //     {
-  //       title: 'Birth Place',
-  //       field: 'birthCity',
-  //       lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-  //     },
-  //   ],
-  //   data: [
-  //     { name: 'Mehmet', surname: 'Baran', birthCity: 63 },
-  //     {
-  //       name: 'Zerya Betül',
-  //       surname: 'Baran',
-  //       birthYear: 2017,
-  //       birthCity: 34,
-  //     },
-  //   ],
-  // });
+  const [state, setState] = React.useState({
+    columns: [
+      { title: 'Name', field: 'name' },
+      { title: 'Surname', field: 'surname' },
+      {
+        title: 'Birth Place',
+        field: 'birthCity',
+        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+      },
+    ],
+    data: [
+      { name: 'Mehmet', surname: 'Baran', birthCity: 63 },
+      {
+        name: 'Zerya Betül',
+        surname: 'Baran',
+        birthYear: 2017,
+        birthCity: 34,
+      },
+    ],
+  });
 
-  const {addChore, choreName, chorePoints} = useContext(ChoresContext)
+  // const {addChore, choreName, chorePoints} = useContext(ChoresContext)
 
 
   return (
