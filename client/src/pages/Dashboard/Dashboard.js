@@ -3,7 +3,7 @@ import './Dashboard.css'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
-// import ProgressChart from '../../components/ProgressChart'
+import ProgressChart from '../../components/ProgressChart'
 import SquadGoals from '../../components/SqualGoals/SquadGoals';
 import BonusChores from '../../components/BonusChores/BonusChores';
 
@@ -27,7 +27,7 @@ const Dashboard = _ => {
                             <h3 style={{ padding: '10px', paddingTop: '13px' }}>Progress Chart</h3>
                         </Grid>
                         <Grid item id='progressBody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} >
-                            {/* <ProgressChart /> */}
+                            <ProgressChart />
                         </Grid>
                     </Paper>
                 </Grid>
