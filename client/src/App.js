@@ -5,8 +5,13 @@ import Chorespage from './pages/Chores'
 import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
+<<<<<<< HEAD
+import SignUp from './pages/SignUp'
+
+=======
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
+>>>>>>> ddcfc7be8c5f96ab8299a8c84043ca790f4d0fd0
 
 
 const App = _ => {
@@ -88,22 +93,23 @@ const App = _ => {
     // </ChoresContext.Provider>
     <>
       <Router>
-        <Route exact path='/' render={_ =>
-          <Dashboard />
-        } />
-        <Route exact path='/chores' render={_ =>
-          <Chorespage />
-      
-        } />
-        <Route exact path='/rewards' render={_ =>
-          <Rewards />
-        } />
-        <Route exact path='/hamza' render={_ =>
-          <HamzaPage />
-        } />
-        <Route exact path='/signUp' render={_ =>
-          <SignUpPage />
-        } />
+          <Route exact path='/' render={_ =>
+            <Dashboard/>
+          } />
+          <Route exact path='/chores' render={_ =>
+            <Chorespage/>
+          } />
+           <Route exact path='/rewards' render={_ =>
+            <Rewards/>
+          } />
+          <Route exact path='/hamza' render={_ =>
+            <HamzaPage/>
+          } />
+           <Route exact path='/signup' render={_ =>
+            <SignUp/>
+          } />
+          
+          
       </Router>
     </>
   )
