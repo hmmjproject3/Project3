@@ -8,29 +8,28 @@ import Left from '../../assets/left.png';
 import Right from '../../assets/right.png';
 
 
-
-
 const useStyles = makeStyles({
-      mainCon: {
-      backgroundColor: "#E4ECF2",
-      boxShadow: "none",
-      paddingTop: 20,
-      paddingBottom: 20,
-      paddingLeft: 50,
-      paddingRight: 50,
-      height: 768,
-      
-    },
-      date: {
-        textAlign: "center",
-      }
-  });
+  mainCon: {
+  backgroundColor: "#E4ECF2",
+  boxShadow: "none",
+  paddingTop: 20,
+  paddingBottom: 20,
+  paddingLeft: 50,
+  paddingRight: 50,
+  height: 768,
   
-  export default function Chores() {
-    const classes = useStyles();
-  
+},
+  date: {
+    textAlign: "center",
+  }
+});
+
+export default function Reward() {
+const classes = useStyles();
+
     return (
-      <div>
+        <div className={classes.mainCon}>
+        <MenuBar />
         
        <h3>This is the gift page</h3>
     

@@ -1,19 +1,31 @@
 import React, {Component} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-
+import MenuBar from '../../components/MenuBar'
 
 
 const useStyles = makeStyles({
-  });
+  mainCon: {
+  backgroundColor: "#E4ECF2",
+  boxShadow: "none",
+  paddingTop: 20,
+  paddingBottom: 20,
+  paddingLeft: 50,
+  paddingRight: 50,
+  height: 768,
   
-  export default function Chores() {
-    const classes = useStyles();
+},
+  date: {
+    textAlign: "center",
+  }
+});
+
+export default function HamzaPage() {
+const classes = useStyles();
   
     return (
-      <div>
-
-    <h2>This is the personal page</h2>
-  
+      <div className={classes.mainCon}>
+        <MenuBar />
+        <h2>This is the personal page</h2> 
       </div>
     );
   }
