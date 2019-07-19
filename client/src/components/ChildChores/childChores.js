@@ -30,12 +30,14 @@ export default function MaterialTableDemo() {
 
 
   return (
+
   //   <>
   //   <input ref={choreName}></input>
   //   <input ref={chorePoints}></input>
   //   <button onClick = {addChore}>HELLLLLOOOOOO</button>
   //   </>
   // )
+
   
 
     <MaterialTable
@@ -73,4 +75,5 @@ export default function MaterialTableDemo() {
       }}
     />
   );
+
 }
