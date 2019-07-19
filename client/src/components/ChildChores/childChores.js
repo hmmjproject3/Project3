@@ -26,17 +26,18 @@ export default function MaterialTableDemo() {
     ],
   });
 
-  const {addChore, choreName, chorePoints} = useContext(ChoresContext)
+  // const {addChore, choreName, chorePoints} = useContext(ChoresContext)
 
 
   return (
 
-//     <>
-//     <input ref={choreName}></input>
-//     <input ref={chorePoints}></input>
-//     <button onClick = {addChore}>HELLLLLOOOOOO</button>
-//     </>
-//   )
+  //   <>
+  //   <input ref={choreName}></input>
+  //   <input ref={chorePoints}></input>
+  //   <button onClick = {addChore}>HELLLLLOOOOOO</button>
+  //   </>
+  // )
+
   
 
     <MaterialTable
