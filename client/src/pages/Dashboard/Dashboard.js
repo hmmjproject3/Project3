@@ -6,43 +6,48 @@ import { makeStyles } from '@material-ui/core/styles'
 import ProgressChart from '../../components/ProgressChart'
 import SquadGoals from '../../components/SqualGoals/SquadGoals';
 import BonusChores from '../../components/BonusChores/BonusChores';
-import { makeStyles } from '@material-ui/core/styles'
 import MenuBar from '../../components/MenuBar'
 
 
-<<<<<<< HEAD
-const useStyles = makeStyles({
-  mainCon: {
-  backgroundColor: "#E4ECF2",
-  boxShadow: "none",
-  paddingTop: 20,
-  paddingBottom: 20,
-  paddingLeft: 50,
-  paddingRight: 50,
-  height: 768,
-  
-},
-  date: {
-    textAlign: "center",
-  }
-});
+// const useStyles = makeStyles({
+//     mainCon: {
+//         backgroundColor: "#E4ECF2",
+//         boxShadow: "none",
+//         paddingTop: 20,
+//         paddingBottom: 20,
+//         paddingLeft: 50,
+//         paddingRight: 50,
+//         height: 768,
 
-export default function Dashboard() {
-const classes = useStyles();
+//     },
+//     date: {
+//         textAlign: "center",
+//     }
+// });
 
-    return (
-        <div className={classes.mainCon}>
-        <MenuBar />
-            <Grid container id='dashContainer' spacing={3} style={{textAlign: 'center', width: 'auto', margin: '50px'}}>
-                <Grid item id='progressChart' xs={12} style={{marginBottom: '10px'}}>
-                    <ProgressChart />
-=======
+// export default function Dashboard() {
+//     const classes = useStyles();
+
+//     return (
+//         <div className={classes.mainCon}>
+//             <MenuBar />
+//             <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', margin: '50px' }}>
+//                 <Grid item id='progressChart' xs={12} style={{ marginBottom: '10px' }}>
+//                     <ProgressChart />
+//                 </Grid>
+//             </Grid>
+//         </div>
+//     )
+// }
+
+
+
 const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: '#153B69',
         padding: theme.spacing(0, 0),
     },
-  }))
+}))
 
 const Dashboard = _ => {
     const classes = useStyles()
@@ -59,7 +64,6 @@ const Dashboard = _ => {
                             <ProgressChart />
                         </Grid>
                     </Paper>
->>>>>>> ddcfc7be8c5f96ab8299a8c84043ca790f4d0fd0
                 </Grid>
                 <Grid item id='squadGoals' xs={12} md={6}>
                     <SquadGoals />
@@ -68,6 +72,8 @@ const Dashboard = _ => {
                     <BonusChores />
                 </Grid>
             </Grid>
-        </div>
+        </>
     )
 }
+
+export default Dashboard
