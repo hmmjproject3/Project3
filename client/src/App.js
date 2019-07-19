@@ -5,6 +5,7 @@ import Chorespage from './pages/Chores'
 import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
+import SignUp from './pages/SignUp'
 
 
 
@@ -42,6 +43,9 @@ const App = _ => {
           } />
           <Route exact path='/hamza' render={_ =>
             <HamzaPage/>
+          } />
+           <Route exact path='/signup' render={_ =>
+            <SignUp/>
           } />
           
           

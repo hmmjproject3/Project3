@@ -31,14 +31,19 @@ const useStyles = makeStyles({
     backgroundColor: "#153B69",
     color: "#E4ECF2",
     marginRight: 10,
+    height: 48,
+    width: 48,
   },
   iconLeft: {
     marginLeft: 10,
+    maxHeight: 48,
+    maxWidth: 48,
+    display: "inline",
+    backgroundColor: "#E4ECF2",
+  },
+  avatar: {
     height: 48,
     width: 48,
-    display: "inline",
-    backgroundColor: "none",
-
   },
   appBar: {
     backgroundColor: "#E4ECF2",
@@ -59,24 +64,22 @@ export default function SimpleAppBar() {
 
         <Grid className={classes.left} item xs={8}>
 
-        <Avatar className={classes.iconLeft}>
-         <img alt="Avatar" src={Quinton} />
+         <Link className={classes.link} to='/hamza'>
+         <Avatar className={classes.iconLeft}>
+         <img className={classes.avatar} alt="Avatar" src={Hamza} />
          </Avatar>
+        </Link>
 
          <Avatar className={classes.iconLeft}>
-         <img alt="Avatar" src={Hamza} />
-         </Avatar>
-
-         <Avatar className={classes.iconLeft}>
-         <img alt="Avatar" src={Matthew} />
+         <img className={classes.avatar} alt="Avatar" src={Matthew} />
          </Avatar> 
 
          <Avatar className={classes.iconLeft}>
-         <img alt="Avatar" src={Jennifer} />
+         <img className={classes.avatar} alt="Avatar" src={Jennifer} />
          </Avatar>
 
          <Avatar className={classes.iconLeft}>
-         <img alt="Avatar" src={Marianna} />
+         <img className={classes.avatar} alt="Avatar" src={Marianna} />
          </Avatar>
 
          </Grid>
