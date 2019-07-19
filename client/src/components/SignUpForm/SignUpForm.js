@@ -1,15 +1,24 @@
-<<<<<<< HEAD
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import ChoresContext from '../../utils/ChoresContext'
+
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Logo from '../../assets/logo.png'
+// import Logo from '../../assets/logo.png'
 import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
 
 function TabContainer({ children, dir }) {
   return (
@@ -24,23 +33,55 @@ TabContainer.propTypes = {
   dir: PropTypes.string.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: 500,
-    margin: 'auto',
-    color:  "#153B69",
 
+
+
+const useStyles = makeStyles(theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
+
+      width: 500,
+      margin: 'auto',
+      color:  "#153B69",
+    },
+    
   },
   logoBox: {
     textAlign: 'auto',
-}
+},
+  paper: {
+    marginTop: theme.spacing(1),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    minHeight: "50vh"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  avatarLogin: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  container: {
+    marginTop: theme.spacing(30)
+  }
 }));
 
-export default function FullWidthTabs() {
+const SignUpForm = _ => {
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -50,13 +91,11 @@ export default function FullWidthTabs() {
     setValue(index);
   }
 
-  return (
-    <div className={classes.main}>
+  const {handleInputChange, name, userName, password, email, registerUser} = useContext(ChoresContext)
 
-    <div className={classes.logoBox}>
-    <img className={classes.logo} src={Logo} />
-    </div>
-    <div className={classes.root}>
+  return (
+    <Container component="main" maxWidth="xs" className={classes.container}>
+      <CssBaseline />
       <AppBar position="static" color="default">
         <Tabs
           value={value}
@@ -70,104 +109,161 @@ export default function FullWidthTabs() {
           <Tab label="Sign In" />
         </Tabs>
       </AppBar>
-      <SwipeableViews
+            <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabContainer dir={theme.direction}>
+      <div className={classes.paper}>
+ 
 
-        <Typography>Name</Typography>
-        <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-        />
-        
-        <Typography>Email</Typography>
-        <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-        />
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="name"
+                name="Name"
+                variant="outlined"
+                required
+                fullWidth
+                id="name"
+                value={name}
+                onChange={handleInputChange}
+                label="Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="userName"
+                name="userName"
+                variant="outlined"
+                required
+                fullWidth
+                id="userName"
+                value={userName}
+                onChange={handleInputChange}
+                label="User Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                value={email}
+                onChange={handleInputChange}
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={password}
+                onChange={handleInputChange}
+                autoComplete="current-password"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            onClick={registerUser}
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            {/* <Grid item>
+              <Link href="/logIn" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid> */}
+          </Grid>
+        </form>
 
-        <Typography>Username</Typography>
-        <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-        />
 
-        <Typography>Password</Typography>
-        <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-        />
-        
-       <Button variant="contained" className={classes.button}>
-        Register
-       </Button>
-        
-        </TabContainer>
+      </div>
+      </TabContainer>
 
-        <TabContainer dir={theme.direction}>
-        
-        <Typography>Username</Typography>
-        <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-        />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatarLogin}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Log in
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Log In
+          </Button>
+          <Grid container>
+            {/* <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid> */}
+            {/* <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid> */}
+          </Grid>
+        </form>
+      </div>
 
-        <Typography>Password</Typography>
-        <Input
-        placeholder="Placeholder"
-        className={classes.input}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-        />
 
-       <Button variant="contained" className={classes.button}>
-        Sign In
-       </Button>
-
-        </TabContainer>
-
-
-
-        
-      </SwipeableViews>
-    </div>
-    </div>
+</SwipeableViews>
+    </Container>
   );
-}
-=======
-import React from 'react'
-
-
-
-
-const SignUpForm = _ => {
-
-
-  return (
-    <div>
-      <h1>Sign Up!</h1>
-    </div>
-  )
 }
 
 export default SignUpForm
->>>>>>> ddcfc7be8c5f96ab8299a8c84043ca790f4d0fd0

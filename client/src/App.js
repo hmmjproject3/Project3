@@ -5,13 +5,9 @@ import Chorespage from './pages/Chores'
 import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
-<<<<<<< HEAD
-import SignUp from './pages/SignUp'
-
-=======
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
->>>>>>> ddcfc7be8c5f96ab8299a8c84043ca790f4d0fd0
+import LogInPage from './pages/LogIn'
 
 
 const App = _ => {
@@ -27,8 +23,13 @@ const App = _ => {
     dueDate: new Date(),
   })
 
-  const [userState, setUsertate] = useState({
-    user: '',
+  const [userState, setUserState] = useState({
+    name: '',
+    userName: '',
+    email: '',
+    password: '',
+    _userName: '',
+    _userPassword: '',
     isLoggedIn: false
   })
 
@@ -39,9 +40,37 @@ const App = _ => {
   choreState.childName = useRef()
 
   //registration useRef functions
-  userState.userName = useRef()
-  userState.Email = useRef()
-  userState.Password = useRef()
+  // userState.name = useRef()
+  // userState.userName = useRef()
+  // userState.userEmail = useRef()
+  // userState.userPassword = useRef()
+
+  userState.handleInputChange = event => {
+    setUserState({ ...userState, [event.target.id]: event.target.value })
+  }
+
+  userState.registerUser = event => {
+    event.preventDefault()
+
+    const user = {
+      name: userState.name,
+      username: userState.userName,
+      email: userState.email,
+      password: userState.password
+    }
+
+    Chores.addUser(user)
+      .then(({ data }) => {
+        console.log(data)
+        if (data.isLoggedIn) {
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('userName', data.user)
+          localStorage.setItem('id', data._id)
+          setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
+        }
+      })
+      .catch(e => console.error(e))
+  }
 
   //login useRef functions
   userState._userName = useRef()
@@ -93,23 +122,32 @@ const App = _ => {
     // </ChoresContext.Provider>
     <>
       <Router>
-          <Route exact path='/' render={_ =>
-            <Dashboard/>
+
+        <Route exact path='/' render={_ =>
+          <Dashboard />
+        } />
+        <Route exact path='/chores' render={_ =>
+          <Chorespage />
+
+        } />
+        <Route exact path='/rewards' render={_ =>
+          <Rewards />
+        } />
+        <Route exact path='/hamza' render={_ =>
+          <HamzaPage />
+        } />
+
+        <ChoresContext.Provider value={userState}>
+
+          <Route exact path='/signUp' render={_ =>
+            <SignUpPage />
           } />
-          <Route exact path='/chores' render={_ =>
-            <Chorespage/>
+          <Route exact path='/logIn' render={_ =>
+            <LogInPage />
           } />
-           <Route exact path='/rewards' render={_ =>
-            <Rewards/>
-          } />
-          <Route exact path='/hamza' render={_ =>
-            <HamzaPage/>
-          } />
-           <Route exact path='/signup' render={_ =>
-            <SignUp/>
-          } />
-          
-          
+
+        </ChoresContext.Provider>
+
       </Router>
     </>
   )
