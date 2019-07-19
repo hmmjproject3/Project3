@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import { makeStyles } from '@material-ui/core/styles'
 import Background from '../../assets/background.png'
 import SignUpForm from '../../components/SignUpForm'
@@ -30,3 +31,22 @@ const classes = useStyles();
         </div>
     )
 }
+=======
+import SignUpForm from '../../components/SignUpForm'
+
+
+
+
+
+const SignUp = _ => {
+
+
+    return (
+        <>
+          <SignUpForm/>
+        </>
+    )
+}
+
+export default SignUp
+>>>>>>> ddcfc7be8c5f96ab8299a8c84043ca790f4d0fd0

@@ -1,26 +1,56 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: '#153B69',
-        padding: theme.spacing(0, 0),
-    },
-  }))
+import { HorizontalBar } from 'react-chartjs-2'
 
 const ProgressChart = _ => {
-  const classes = useStyles()
+  const data = {
+    labels: [],
+    datasets: [
+      {
+        label: 'Marianna',
+        backgroundColor: '#968AF2',
+        borderColor: '#968AF2',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [650]
+      },
+      {
+        label: 'Jennifer',
+        backgroundColor: '#60B0F5',
+        borderColor: '#60B0F5',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [500]
+      },
+      {
+        label: 'Hamza',
+        backgroundColor: '#FFE200',
+        borderColor: '#FFE200',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [275]
+      },
+      {
+        label: 'Matthew',
+        backgroundColor: '#FF9300',
+        borderColor: '#FF9300',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [350]
+      }
+    ]
+  };
 
   return (
-    <div>
-        <Paper className={classes.root}>
-            <Grid item id='progressHead' xs={12} style={{height: '50px', color: 'white', textAlign: 'left'}}>
-                <h3 style={{padding: '10px', paddingTop: '13px'}}>Progress Chart</h3>
-                </Grid>
-            <Grid item id='progressBody' xs={12} style={{height: '200px', backgroundColor: 'white'}} ></Grid>
-        </Paper>
+    <div style={{ position: 'relative' }}>
+      <HorizontalBar
+        data={data}
+        width={90}
+        height={200}
+        options={{ maintainAspectRatio: false }} />
     </div>
   )
 }

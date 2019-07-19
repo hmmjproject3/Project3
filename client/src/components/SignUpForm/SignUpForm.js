@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -152,3 +153,21 @@ export default function FullWidthTabs() {
     </div>
   );
 }
+=======
+import React from 'react'
+
+
+
+
+const SignUpForm = _ => {
+
+
+  return (
+    <div>
+      <h1>Sign Up!</h1>
+    </div>
+  )
+}
+
+export default SignUpForm
+>>>>>>> ddcfc7be8c5f96ab8299a8c84043ca790f4d0fd0
