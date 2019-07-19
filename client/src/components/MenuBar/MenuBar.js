@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Settings from '@material-ui/icons/Settings';
 import LocalAtm from '@material-ui/icons/LocalAtm';
+import Home from '@material-ui/icons/Home';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
@@ -11,6 +12,7 @@ import Jennifer from '../../assets/jennifer.png';
 import Matthew from '../../assets/matthew.png';
 import Marianna from '../../assets/marianna.png';
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom' 
 
 const useStyles = makeStyles({
   root: {
@@ -82,19 +84,33 @@ export default function SimpleAppBar() {
 
         <Grid className={classes.right} item xs={4}>
 
+        <Link className={classes.link} to='/'>
+        <IconButton className={classes.iconsright}>
+          <Home />
+        </IconButton>
+        </Link>
 
+
+        <Link className={classes.link} to='/chores'>
         <IconButton className={classes.iconsright}>
           <LocalLaundryService />
         </IconButton>
+        </Link>
 
+        <Link className={classes.link} to='/rewards'>
         <IconButton className={classes.iconsright}>
-          <LocalAtm />
+        <LocalAtm />
         </IconButton>
+        </Link>
 
+   
+
+        <Link className={classes.link} to='/'>
         <IconButton className={classes.iconsright}>
-          <Settings />
+        <Settings />
+        </IconButton> 
+        </Link>
 
-        </IconButton>
 
         </Grid>
         </Grid>

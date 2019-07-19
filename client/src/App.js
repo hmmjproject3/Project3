@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Chores from './utils/Chores.js'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Chorespage from './pages/Chores'
+import HamzaPage from './pages/HamzaPage'
+import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
 import Chorespage from './pages/Chores'
@@ -74,14 +77,34 @@ const App = _ => {
   }, [])
 
   return (
+
     // <Router>
     //   <div>
     //     <Route exact path='/Dashboard' render={_ => <Dashboard />} />
     //   </div>
     // </Router>
-    <ChoresContext.Provider value={choreState}>
-      <Chorespage/>
-    </ChoresContext.Provider>
+//     <ChoresContext.Provider value={choreState}>
+//       <Chorespage/>
+//     </ChoresContext.Provider>
+
+      <>
+      <Router>
+          <Route exact path='/' render={_ =>
+            <Dashboard/>
+          } />
+          <Route exact path='/chores' render={_ =>
+            <Chorespage/>
+          } />
+           <Route exact path='/rewards' render={_ =>
+            <Rewards/>
+          } />
+          <Route exact path='/hamza' render={_ =>
+            <HamzaPage/>
+          } />
+          
+          
+      </Router>
+    </>
   )
 }
 
