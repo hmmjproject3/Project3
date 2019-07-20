@@ -3,7 +3,7 @@ import axios from 'axios'
 const Chores = {
   getAllChildren: _ => axios.get('/children'),
   getOneChild: id => axios.get(`/children/${id}`),
-  addChild: child => axios.post('/children', child),
+  addManyChildren: children => axios.post('/children', children),
   getAllChores: _ => axios.get('/chores'),
   getOneChore: id => axios.get(`/chores/${id}`),
   addChore: chore => axios.post('/chores', chore),
