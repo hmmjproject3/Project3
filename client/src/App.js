@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Chores from './utils/Chores.js'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import Chorespage from './pages/Chores'
 import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
@@ -72,6 +72,7 @@ const App = _ => {
           localStorage.setItem('user', data.user)
           // localStorage.setItem('id', data._id)
           setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
+          console.log(userState.isLoggedIn)
         }
       })
       .catch(e => console.error(e))
