@@ -62,11 +62,12 @@ const ChildrenForm = _ => {
   const { childArr, addChildren } = useContext(ChoresContext)
 
 
-  const [inputs, setInputs] = useState([{ name: null }]);
+  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0 }]);
 
   const handleChange = (i, event) => {
     const names = [...inputs]
     names[i].name = event.target.value;
+    names[i].totalPoints = 0
     setInputs(names)
   }
 
@@ -81,11 +82,6 @@ const ChildrenForm = _ => {
     const names = [...inputs];
     names.splice(names.length - 1, 1);
     setInputs(names);
-  }
-
-  const handleSubmit = _ => {
-    addChildren(inputs)
-    console.log(inputs)
   }
 
 
@@ -132,7 +128,7 @@ const ChildrenForm = _ => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={handleSubmit}
+            onClick={_ => addChildren(inputs)}
           >
             Submit
           </Button>

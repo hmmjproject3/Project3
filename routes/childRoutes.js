@@ -23,9 +23,16 @@ module.exports = app => {
   })
 
   // POST a child
+  // app.post('/children', (req, res) => {
+  //   Child.create(req.body)
+  //     .then(_ => res.sendStatus(200))
+  //     .catch(e => console.log(e))
+  // })
+
+  //POST an array of children
   app.post('/children', (req, res) => {
-    Child.create(req.body)
-      .then(_ => res.sendStatus(200))
+    Child.insertMany(req.body.childArr)
+      .then(_ => console.log(req.body))
       .catch(e => console.log(e))
   })
 }

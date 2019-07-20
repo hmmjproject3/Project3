@@ -9,7 +9,7 @@ import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
 import LogInPage from './pages/LogIn'
 import ChildrenFormPage from './pages/ChildrenFormPage'
-import { object } from 'prop-types';
+// import { object } from 'prop-types';
 
 
 const App = _ => {
@@ -36,7 +36,7 @@ const App = _ => {
     isLoggedIn: false
   })
 
-  const [childrenState, setChildrenState] = useState({value: null})
+  const [childrenState, setChildrenState] = useState({ value: null })
 
   // choreState.choreName = useRef()
   // choreState.chorePoints = useRef()
@@ -97,7 +97,7 @@ const App = _ => {
         }
       })
       .catch(e => console.error(e))
-    }
+  }
 
 
   //login useRef functions
@@ -118,10 +118,13 @@ const App = _ => {
   }
 
   choreState.addChildren = (arr) => {
-    let childArr = JSON.parse(JSON.stringify(arr))
-    setChoreState({...choreState, childArr})
-    console.log(choreState)
-    
+    Chores.addManyChildren({
+      childArr: arr
+    })
+      .then(_=>{
+        setChoreState({ ...choreState, childArr: arr })
+      })
+
   }
 
 
@@ -147,7 +150,9 @@ const App = _ => {
     //   .then(({ data }) => {
     //     console.log(data)
     //   }).catch(e => console.log(e))
-    console.log(choreState)
+    console.log(choreState.childArr)
+
+
   }, [choreState.childArr])
 
   return (
@@ -174,19 +179,16 @@ const App = _ => {
           <Route exact path='/signUp' render={_ =>
             <SignUpPage />
           } />
-          <Route exact path='/logIn' render={_ =>
-            <LogInPage />
-          } />
 
         </ChoresContext.Provider>
 
 
-      <ChoresContext.Provider value={choreState}>
-        <Route exact path='/childrenForm' render={_ =>
+        <ChoresContext.Provider value={choreState}>
+          <Route exact path='/childrenForm' render={_ =>
             <ChildrenFormPage />
           } />
 
-      </ChoresContext.Provider>
+        </ChoresContext.Provider>
 
       </Router>
     </>

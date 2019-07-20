@@ -29,8 +29,6 @@ const ChoresContext = createContext({
   task: '',
   points: 0,
   isCompleted: false,
-  startDate: new Date(),
-  dueDate: new Date(),
 
   //Functions that will hit the routes
   addChildren: _ => { },
