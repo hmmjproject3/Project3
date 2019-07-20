@@ -3,34 +3,38 @@ import './Dashboard.css'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
-import ProgressChart from '../../components/ProgressChart'
-import SquadGoals from '../../components/SqualGoals/SquadGoals';
-import BonusChores from '../../components/BonusChores/BonusChores';
 import MenuBar from '../../components/MenuBar'
+import ProgressChart from '../../components/ProgressChart'
+import SquadGoals from '../../components/SqualGoals/SquadGoals'
+import BonusChores from '../../components/BonusChores/BonusChores'
 
 
-// const useStyles = makeStyles({
-//     mainCon: {
-//         backgroundColor: "#E4ECF2",
-//         boxShadow: "none",
-//         paddingTop: 20,
-//         paddingBottom: 20,
-//         paddingLeft: 50,
-//         paddingRight: 50,
-//         height: 768,
+const useStyles = makeStyles(theme => ({
+    mainCon: {
+        backgroundColor: "#E4ECF2",
+        boxShadow: "none",
+        paddingTop: 20,
+        paddingBottom: 20,
+        paddingLeft: 50,
+        paddingRight: 50,
+        height: 768,
 
-//     },
-//     date: {
-//         textAlign: "center",
-//     }
-// });
+    },
+    date: {
+        textAlign: "center",
+    },
+    root: {
+        backgroundColor: '#153B69',
+        padding: theme.spacing(0, 0),
+    },
+}))
 
 // export default function Dashboard() {
 //     const classes = useStyles();
 
 //     return (
 //         <div className={classes.mainCon}>
-//             <MenuBar />
+//             {/* <MenuBar /> */}
 //             <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', margin: '50px' }}>
 //                 <Grid item id='progressChart' xs={12} style={{ marginBottom: '10px' }}>
 //                     <ProgressChart />
@@ -40,35 +44,34 @@ import MenuBar from '../../components/MenuBar'
 //     )
 // }
 
-
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundColor: '#153B69',
-        padding: theme.spacing(0, 0),
-    },
-}))
+// const useStyles = makeStyles(theme => ({
+//     root: {
+//         backgroundColor: '#153B69',
+//         padding: theme.spacing(0, 0),
+//     },
+// }))
 
 const Dashboard = _ => {
     const classes = useStyles()
 
     return (
         <>
-            <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', margin: '50px' }}>
-                <Grid item id='progressChart' xs={12} style={{ marginBottom: '10px' }}>
+            <MenuBar />
+                <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', marginTop: '40px', marginLeft: '50px', marginRight: '50px', marginBottom: '20px' }}>
+                <Grid item id='progressChartContainer' xs={12} style={{ marginBottom: '10px' }}>
                     <Paper className={classes.root}>
-                        <Grid item id='progressHead' xs={12} style={{ height: '50px', color: 'white', textAlign: 'left' }}>
-                            <h3 style={{ padding: '10px', paddingTop: '13px' }}>Progress Chart</h3>
+                        <Grid item id='progressHead' xs={12} style={{ height: '50px', color: 'white', fontSize: '25px', textAlign: 'left' }}>
+                            <p style={{ margin: '0px', padding: '10px' }}>Progress Chart</p>
                         </Grid>
                         <Grid item id='progressBody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} >
                             <ProgressChart />
                         </Grid>
                     </Paper>
                 </Grid>
-                <Grid item id='squadGoals' xs={12} md={6}>
+                <Grid item id='squadGoalsContainer' xs={12} md={6}>
                     <SquadGoals />
                 </Grid>
-                <Grid item id='bonusChores' xs={12} md={6}>
+                <Grid item id='bonusChoresContainer' xs={12} md={6}>
                     <BonusChores />
                 </Grid>
             </Grid>

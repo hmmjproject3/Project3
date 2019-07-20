@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
 import LogInPage from './pages/LogIn'
+import ChartContext from './utils/ChartContext'
 import ChildrenFormPage from './pages/ChildrenFormPage'
 // import { object } from 'prop-types';
 
@@ -36,13 +37,11 @@ const App = _ => {
     isLoggedIn: false
   })
 
-  const [childrenState, setChildrenState] = useState({ value: null })
-
-  // choreState.choreName = useRef()
-  // choreState.chorePoints = useRef()
-  // choreState.choreStartTime = useRef()
-  // choreState.choreDueTime = useRef()
-  // choreState.childName = useRef()
+  choreState.choreName = useRef()
+  choreState.chorePoints = useRef()
+  choreState.choreStartTime = useRef()
+  choreState.choreDueTime = useRef()
+  choreState.childName = useRef()
 
   //registration useRef functions
   // userState.name = useRef()
@@ -160,10 +159,14 @@ const App = _ => {
 
     <>
       <Router>
+        <ChartContext.Provider value={choreState}>
 
         <Route exact path='/' render={_ =>
           <Dashboard />
         } />
+
+        </ChartContext.Provider>
+
         <Route exact path='/chores' render={_ =>
           <Chorespage />
 
