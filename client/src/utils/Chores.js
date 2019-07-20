@@ -9,7 +9,8 @@ const Chores = {
   addChore: chore => axios.post('/chores', chore),
   updateChore: (id, chore) => axios.put(`/chores/${id}`, chore),
   deleteChore: id => axios.delete(`/chores/${id}`),
-  addUser: user => axios.post('/register', user)
+  addUser: user => axios.post('/register', user),
+  loginUser: user => axios.post('/login', user)
 }
 
 export default Chores

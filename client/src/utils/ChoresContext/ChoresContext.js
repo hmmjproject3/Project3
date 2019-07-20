@@ -33,7 +33,7 @@ const ChoresContext = createContext({
   dueDate: new Date(),
 
   //Functions that will hit the routes
-  addChild: _ => { },
+  addChildren: _ => { },
   getOneChild: _ => { },
   getAllChildren: _ => { },
   addChore: _ => { },
@@ -54,6 +54,8 @@ const ChoresContext = createContext({
   _userName: '',
   _userPassword: '',
   isLoggedIn: false,
+
+  numOfChildren: 1
 })
 
 export default ChoresContext
