@@ -33,8 +33,8 @@ const SquadGoals = _ => {
   return (
     <div>
       <Paper style={{marginTop: '10px'}} className={classes.root}>
-            <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', textAlign: 'left'}}>
-                <p style={{margin: '0px', padding: '10px', paddingTop: '13px'}}>Squad Goals</p>
+            <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', fontSize: '25px', textAlign: 'left'}}>
+                <p style={{margin: '0px', padding: '10px'}}>Squad Goals</p>
                 </Grid>
             <Grid item id='bonusChoresBody' xs={12} style={{height: '250px', backgroundColor: 'white'}}>
             <Table className={classes.table}>
