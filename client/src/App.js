@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
 import LogInPage from './pages/LogIn'
+import ChildrenFormPage from './pages/ChildrenFormPage'
+import { object } from 'prop-types';
 
 
 const App = _ => {
@@ -21,6 +23,7 @@ const App = _ => {
     isCompleted: false,
     startDate: new Date(),
     dueDate: new Date(),
+    numOfChildren: 1
   })
 
   const [userState, setUserState] = useState({
@@ -33,11 +36,13 @@ const App = _ => {
     isLoggedIn: false
   })
 
-  choreState.choreName = useRef()
-  choreState.chorePoints = useRef()
-  choreState.choreStartTime = useRef()
-  choreState.choreDueTime = useRef()
-  choreState.childName = useRef()
+  const [childrenState, setChildrenState] = useState({value: null})
+
+  // choreState.choreName = useRef()
+  // choreState.chorePoints = useRef()
+  // choreState.choreStartTime = useRef()
+  // choreState.choreDueTime = useRef()
+  // choreState.childName = useRef()
 
   //registration useRef functions
   // userState.name = useRef()
@@ -64,17 +69,40 @@ const App = _ => {
         console.log(data)
         if (data.isLoggedIn) {
           localStorage.setItem('token', data.token)
-          localStorage.setItem('userName', data.user)
-          localStorage.setItem('id', data._id)
+          localStorage.setItem('user', data.user)
+          // localStorage.setItem('id', data._id)
           setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
         }
       })
       .catch(e => console.error(e))
   }
 
+  userState.loginUser = event => {
+    event.preventDefault()
+
+    const loginUser = {
+      username: userState._userName,
+      password: userState._userPassword
+    }
+
+    Chores.loginUser(loginUser)
+      .then(({ data }) => {
+        console.log(data)
+        if (data.isLoggedIn) {
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user', data.user)
+          setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
+        } else {
+          alert('Invalid username or password')
+        }
+      })
+      .catch(e => console.error(e))
+    }
+
+
   //login useRef functions
-  userState._userName = useRef()
-  userState._userPassword = useRef()
+  // userState._userName = useRef()
+  // userState._userPassword = useRef()
 
   choreState.addChore = event => {
     event.preventDefault()
@@ -86,8 +114,19 @@ const App = _ => {
     }
 
     console.log(chore)
-    // Chores.addChore(chore)
+
   }
+
+  choreState.addChildren = (arr) => {
+    let childArr = JSON.parse(JSON.stringify(arr))
+    setChoreState({...choreState, childArr})
+    console.log(choreState)
+    
+  }
+
+
+
+
 
 
   useEffect(_ => {
@@ -104,22 +143,15 @@ const App = _ => {
 
     // Chores.addChore(testChore)
 
-    Chores.getAllChildren()
-      .then(({ data }) => {
-        console.log(data)
-      }).catch(e => console.log(e))
-  }, [])
+    // Chores.getAllChildren()
+    //   .then(({ data }) => {
+    //     console.log(data)
+    //   }).catch(e => console.log(e))
+    console.log(choreState)
+  }, [choreState.childArr])
 
   return (
 
-    // <Router>
-    //   <div>
-    //     <Route exact path='/Dashboard' render={_ => <Dashboard />} />
-    //   </div>
-    // </Router>
-    // <ChoresContext.Provider value={choreState}>
-    //   <Chorespage/>
-    // </ChoresContext.Provider>
     <>
       <Router>
 
@@ -147,6 +179,14 @@ const App = _ => {
           } />
 
         </ChoresContext.Provider>
+
+
+      <ChoresContext.Provider value={choreState}>
+        <Route exact path='/childrenForm' render={_ =>
+            <ChildrenFormPage />
+          } />
+
+      </ChoresContext.Provider>
 
       </Router>
     </>

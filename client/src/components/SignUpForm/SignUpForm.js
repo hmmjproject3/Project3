@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -91,7 +91,7 @@ const SignUpForm = _ => {
     setValue(index);
   }
 
-  const {handleInputChange, name, userName, password, email, registerUser} = useContext(ChoresContext)
+  const {handleInputChange, name, userName, password, email, registerUser, _userName, _userPassword, loginUser} = useContext(ChoresContext)
 
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
@@ -218,11 +218,13 @@ const SignUpForm = _ => {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
+            id="_userName"
+            label="User Name"
+            name="userName"
             autoComplete="email"
             autoFocus
+            value={_userName}
+            onChange={handleInputChange}
           />
           <TextField
             variant="outlined"
@@ -232,8 +234,10 @@ const SignUpForm = _ => {
             name="password"
             label="Password"
             type="password"
-            id="password"
+            id="_userPassword"
             autoComplete="current-password"
+            value={_userPassword}
+            onChange={handleInputChange}
           />
           
           <Button
@@ -242,6 +246,7 @@ const SignUpForm = _ => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={loginUser}
           >
             Log In
           </Button>
