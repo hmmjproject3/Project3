@@ -2,6 +2,11 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,11 +21,29 @@ const BonusChores = _ => {
 
   return (
     <div>
-        <Paper className={classes.root}>
+        <Paper style={{marginTop: '10px'}} className={classes.root}>
             <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', textAlign: 'left'}}>
-                <h3 style={{padding: '10px', paddingTop: '13px'}}>Bonus Chores</h3>
+                <p style={{margin: '0px', padding: '10px', paddingTop: '13px'}}>Bonus Chores</p>
                 </Grid>
-            <Grid item id='bonusChoresBody' xs={12} style={{height: '200px', backgroundColor: 'white'}} ></Grid>
+            <Grid item id='bonusChoresBody' xs={12} style={{height: '250px', backgroundColor: 'white'}}>
+            <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>Name</TableCell>
+              <TableCell style={{color: '#153B69', width: '20px'}} align="left">Cheddar</TableCell>
+            </TableRow>
+            </TableHead>
+            <TableBody>
+          {/* {rows.map(row => ( */}
+            <TableRow key='row.name'>
+              <TableCell component="th" scope="row">
+                marianna
+              </TableCell>
+              <TableCell align="left" style={{color: '#FF9300'}}>390</TableCell>
+            </TableRow>
+            </TableBody>
+          </Table>
+            </Grid>
         </Paper>
     </div>
   )

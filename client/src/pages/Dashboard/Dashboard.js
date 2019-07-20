@@ -57,11 +57,11 @@ const Dashboard = _ => {
     return (
         <>
             <MenuBar />
-                        <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', margin: '50px' }}>
+                <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', marginTop: '40px', marginLeft: '50px', marginRight: '50px', marginBottom: '20px' }}>
                 <Grid item id='progressChartContainer' xs={12} style={{ marginBottom: '10px' }}>
                     <Paper className={classes.root}>
                         <Grid item id='progressHead' xs={12} style={{ height: '50px', color: 'white', textAlign: 'left' }}>
-                            <h3 style={{ padding: '10px', paddingTop: '13px' }}>Progress Chart</h3>
+                            <p style={{ margin: '0px', padding: '10px', paddingTop: '13px' }}>Progress Chart</p>
                         </Grid>
                         <Grid item id='progressBody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} >
                             <ProgressChart />
