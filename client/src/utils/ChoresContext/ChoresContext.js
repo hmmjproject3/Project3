@@ -2,6 +2,9 @@ import { createContext } from 'react'
 
 const ChoresContext = createContext({
 
+  //mock data
+  squad: [],
+
   //useRef functions
   choreName: _ => { },
   chorePoints: _ => { },
