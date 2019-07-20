@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab'
+import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Table from '@material-ui/core/Table'
@@ -8,6 +9,9 @@ import TableCell from '@material-ui/core/TableCell'
 import TableBody from '@material-ui/core/TableBody'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
+import Icon from '@material-ui/core/Icon'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,6 +46,9 @@ const BonusChores = _ => {
                                 <TableCell component="th" scope="row">marianna</TableCell>
                                 <TableCell align="left" style={{ color: '#FF9300' }}>390</TableCell>
                                 <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold' }}>Button1</TableCell>
+                                <Fab color="primary" aria-label="Add" className={classes.fab}><AddIcon /></Fab>
+                                <Fab color="secondary" aria-label="Edit" className={classes.fab}><Icon>edit_icon</Icon></Fab>
+                                <Fab disabled aria-label="Delete" className={classes.fab}><DeleteIcon /></Fab>
                             </TableRow>
                             <TableRow key='row.name'>
                                 <TableCell component="th" scope="row" style={{ color: '#153B69' }}>marianna</TableCell>
@@ -59,12 +66,21 @@ const BonusChores = _ => {
                                 <TableCell align="left">Bad & Bougie</TableCell>
                             </TableRow>
                         </TableBody>
-                    </Table> : <div>dhuehduehdueduehduehude</div>}
+                    </Table> : <div>
+                        <form>
+                            Job Name: <input type="text" id="jobName"></input>
+                                    <br></br>
+                            Cheddar Reward: <input type="text" id="cheddarReward"></input>
+                                    <br></br>
+                            Start Date: <input type="text" id="startDate"></input>
+                            <br></br>
+                        </form>
+                    </div>}
                 </Grid>
                 <Button
                     variant="outlined"
                     size="large"
-                    color="primary"
+                    color="warning"
                     className={classes.margin}
                     onClick={() => toggleAddView(!addView)}>
                     Create
