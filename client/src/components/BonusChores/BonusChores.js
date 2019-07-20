@@ -37,9 +37,9 @@ const BonusChores = _ => {
           {/* {rows.map(row => ( */}
             <TableRow key='row.name'>
               <TableCell component="th" scope="row">
-                marianna
+                Wash Car
               </TableCell>
-              <TableCell align="left" style={{color: '#FF9300'}}>390</TableCell>
+              <TableCell align="left" style={{color: '#FF9300'}}>500</TableCell>
             </TableRow>
             </TableBody>
           </Table>
