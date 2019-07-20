@@ -6,10 +6,11 @@ module.exports = (Schema, model) => {
     points: {
       type: Number
     },
+    isCompleted: Boolean,
     child: {
       type: Schema.Types.ObjectId,
       ref: 'Child'
-    }
+    },
   })
 
   return model('Chore', Chore)
