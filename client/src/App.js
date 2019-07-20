@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
 import LogInPage from './pages/LogIn'
-
+import ChartContext from './utils/ChartContext'
 
 const App = _ => {
   const [choreState, setChoreState] = useState({
@@ -31,6 +31,11 @@ const App = _ => {
     _userName: '',
     _userPassword: '',
     isLoggedIn: false
+  })
+
+  const [chartState, setChartState] = useState({
+    label: '',
+    data: 0
   })
 
   choreState.choreName = useRef()
@@ -122,10 +127,14 @@ const App = _ => {
     // </ChoresContext.Provider>
     <>
       <Router>
+        <ChartContext.Provider value={choreState}>
 
         <Route exact path='/' render={_ =>
           <Dashboard />
         } />
+
+        </ChartContext.Provider>
+
         <Route exact path='/chores' render={_ =>
           <Chorespage />
 
