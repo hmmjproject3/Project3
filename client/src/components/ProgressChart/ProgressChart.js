@@ -1,56 +1,47 @@
-import React from 'react'
+import React, { useEffect, Children } from 'react'
 import { HorizontalBar } from 'react-chartjs-2'
+import ChartContext from '../../utils/ChartContext'
+import Chores from '../../utils/Chores'
 
 const ProgressChart = _ => {
+
   const data = {
-    labels: [],
+    labels: ['Hamza', 'Matthew', 'Jennifer', 'Marianna'],
     datasets: [
       {
-        label: 'Marianna',
-        backgroundColor: '#968AF2',
-        borderColor: '#968AF2',
+        // label: `This Week's Totals`,
+        backgroundColor: ['#FFBA00', '#60B0F5', '#FF9300', '#968AF2'],
+        borderColor: ['#FFBA00', '#60B0F5', '#FF9300', '#968AF2'],
         borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [650]
-      },
-      {
-        label: 'Jennifer',
-        backgroundColor: '#60B0F5',
-        borderColor: '#60B0F5',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [500]
-      },
-      {
-        label: 'Hamza',
-        backgroundColor: '#FFE200',
-        borderColor: '#FFE200',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [275]
-      },
-      {
-        label: 'Matthew',
-        backgroundColor: '#FF9300',
-        borderColor: '#FF9300',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [350]
+        // hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        // hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [390, 280, 250, 350]
       }
     ]
-  };
+  }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div id='progressChart' style={{ position: 'relative', width: 'auto' }}>
       <HorizontalBar
         data={data}
-        width={90}
+        width={80}
         height={200}
-        options={{ maintainAspectRatio: false }} />
+        options={{
+          legend: false,
+          maintainAspectRatio: false,
+          scales: {
+            yAxes: [{
+              barPercentage: 0.5,
+              barThickness: 8,
+              maxBarThickness: 8,
+              minBarLength: 2,
+              gridLines: {
+                offsetGridLines: false
+              }
+            }]
+          }
+        }}
+      />
     </div>
   )
 }
