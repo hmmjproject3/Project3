@@ -13,6 +13,16 @@ import ChildrenFormPage from './pages/ChildrenFormPage'
 
 
 const App = _ => {
+
+  
+
+
+
+
+
+
+
+
   const [choreState, setChoreState] = useState({
     chore: {},
     choresArr: [],
@@ -25,6 +35,14 @@ const App = _ => {
     dueDate: new Date(),
     numOfChildren: 1
   })
+
+
+  choreState.selectChild = (child)=>{
+    setChoreState({...choreState, child})
+  }
+
+
+
 
   const [userState, setUserState] = useState({
     name: '',
@@ -146,14 +164,13 @@ const App = _ => {
 
     // Chores.addChore(testChore)
 
-    // Chores.getAllChildren()
-    //   .then(({ data }) => {
-    //     console.log(data)
-    //   }).catch(e => console.log(e))
-    console.log(choreState.childArr)
-
-
-  }, [choreState.childArr])
+    Chores.getAllChildren()
+      .then(({ data }) => {
+        console.log(data)
+        setChoreState({...choreState, childArr: data})
+      }).catch(e => console.log(e))
+  
+  }, [])
 
   return (
 
@@ -163,10 +180,15 @@ const App = _ => {
         <Route exact path='/' render={_ =>
           <Dashboard />
         } />
+
+        <ChoresContext.Provider value={choreState}>
         <Route exact path='/chores' render={_ =>
           <Chorespage />
 
         } />
+
+        </ChoresContext.Provider>
+
         <Route exact path='/rewards' render={_ =>
           <Rewards />
         } />

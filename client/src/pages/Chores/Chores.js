@@ -44,7 +44,7 @@ const useStyles = makeStyles({
         <ChildChores />
         </Grid>
         <Grid item xs={6}>
-        <ChildChores />
+          
         </Grid>
         </Grid>
     
