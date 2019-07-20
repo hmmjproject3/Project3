@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Left from '../../assets/left.png';
 import Right from '../../assets/right.png';
+import AddBonusChores from '../../components/AddBonusChores'
 
 
 
@@ -44,7 +45,7 @@ const useStyles = makeStyles({
         <ChildChores />
         </Grid>
         <Grid item xs={6}>
-          
+        <AddBonusChores />
         </Grid>
         </Grid>
     
