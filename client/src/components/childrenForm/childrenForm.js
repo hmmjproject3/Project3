@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react' 
-import './childrenForm.css'
+import React, { useContext, useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -16,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
   // unfocused text field - label text
   cssLabel: {
-    color : 'white'
+    color: 'white'
   },
 
   // unfocused text field - input text
@@ -66,27 +65,21 @@ const ChildrenForm = _ => {
 
   return (
 
-    <Container style={{marginTop: '60px', marginLeft: '300px', marginRight: '300px', backgroundColor: '#153B69', width: 'auto', maxWidth: '100%', textAlign: 'center'}} component="main" maxWidth="xs">
+    <Container style={{ marginTop: '60px', marginLeft: '200px', marginRight: '200px', backgroundColor: '#153B69', width: 'auto', maxWidth: '100%', textAlign: 'center' }} component="main" maxWidth="xs">
       <CssBaseline />
-      <Typography style={{fontFamily: 'roboto', fontSize: '25px', fontWeight: 'bold', color: 'white'}}>TELL US ABOUT YOUR SQUAD
+      <Typography style={{ fontFamily: 'roboto', fontSize: '25px', fontWeight: 'bold', color: 'white' }}>TELL US ABOUT YOUR SQUAD
       </Typography>
-      <Typography style={{marginTop: '30px', marginBottom: '25px', textAlign: 'center', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '18px'}} variant="h6" gutterBottom>
+      <Typography style={{ marginTop: '30px', marginBottom: '25px', textAlign: 'center', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '18px' }} variant="h6" gutterBottom>
         Add Children
         <br></br>
       </Typography>
-      <Fab style={{color: 'white', backgroundColor: '#FFBA00', marginRight: '5px'}} aria-label="Add" onClick={() => handleAdd()}>
-        <AddIcon />
-      </Fab>
-      <Fab style={{color: 'white', backgroundColor: '#ff0000', marginLeft: '5px'}} aria-label="Delete" onClick={() => handleRemove()}>
-        <ClearIcon />
-      </Fab>
-      
+
       {inputs.map((input, idx) =>
         (
-          <Grid container style={{marginTop: '25px'}} spacing={3} key={`${input}-${idx}`}>
-            <Grid item xs={12} sm={12}>
-              <TextField 
-                classes={{label: 'label'}}
+          <Grid container style={{ marginTop: '25px' }} spacing={3} key={`${input}-${idx}`}>
+            <Grid item xs={9} sm={9}>
+              <TextField
+                classes={{ label: 'label' }}
                 required
                 id={`${idx}`}
                 label={`Child ${idx + 1} Name:`}
@@ -108,19 +101,28 @@ const ChildrenForm = _ => {
                 }}
               />
             </Grid>
+            <Grid item xs={3} sm={3} style={{paddingTop: '15px'}}>
+              <Fab style={{ height: '30px', width: '30px', color: '#FFBA00', backgroundColor: '#153B69', marginRight: '5px' }} aria-label="Add" onClick={() => handleAdd()}>
+                <AddIcon />
+              </Fab>
+              <Fab style={{ height: '30px', width: '30px', color: '#ff0000', backgroundColor: '#153B69', marginLeft: '5px' }} aria-label="Delete" onClick={() => handleRemove()}>
+                <ClearIcon />
+              </Fab>
+
+            </Grid>
           </Grid>
         )
       )}
 
       <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            style={{marginTop: '50px', marginBottom: '50px', width: '300px', backgroundColor: '#968AF2', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '20px'}}
-            className={classes.submit}
-            onClick={_ => addChildren(inputs)}
-          >
-            Submit
+        type="button"
+        fullWidth
+        variant="contained"
+        style={{ marginTop: '50px', marginBottom: '50px', width: '300px', backgroundColor: '#968AF2', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '20px' }}
+        className={classes.submit}
+        onClick={_ => addChildren(inputs)}
+      >
+        Submit
           </Button>
     </Container>
   );
