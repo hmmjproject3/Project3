@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
   },
 
+  // text field - bottom border line
   cssUnderline: {
     borderBottom: '1px solid white'
   },
