@@ -1,68 +1,47 @@
-import React, { useContext, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import ClearIcon from '@material-ui/icons/Clear';
-import Fab from '@material-ui/core/Fab';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Button from '@material-ui/core/Button';
-
-
-
+import React, { useContext, useState } from 'react' 
+import './childrenForm.css'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles'
+import AddIcon from '@material-ui/icons/Add'
+import ClearIcon from '@material-ui/icons/Clear'
+import Fab from '@material-ui/core/Fab'
+import Container from '@material-ui/core/Container'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Button from '@material-ui/core/Button'
 import ChoresContext from '../../utils/ChoresContext'
 
-
 const useStyles = makeStyles(theme => ({
-  appBar: {
-    position: 'relative',
-  },
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
-  },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-}));
 
+  // unfocused text field - label text
+  cssLabel: {
+    color : 'white'
+  },
+
+  // unfocused text field - input text
+  cssInput: {
+    color: 'white',
+  },
+
+  cssUnderline: {
+    borderBottom: '1px solid white'
+  },
+
+  // focused text field - label and input text
+  cssFocused: {
+    color: 'white !important',
+  },
+
+
+}))
 
 
 const ChildrenForm = _ => {
 
-  const classes = useStyles();
-
-
+  const classes = useStyles()
   const { childArr, addChildren } = useContext(ChoresContext)
-
-
-  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0 }]);
+  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0 }])
 
   const handleChange = (i, event) => {
     const names = [...inputs]
@@ -73,52 +52,62 @@ const ChildrenForm = _ => {
 
   const handleAdd = _ => {
     const names = [...inputs];
-    names.push({ name: null });
+    names.push({ name: null })
     setInputs(names);
     console.log(inputs)
   }
 
   const handleRemove = () => {
     const names = [...inputs];
-    names.splice(names.length - 1, 1);
-    setInputs(names);
+    names.splice(names.length - 1, 1)
+    setInputs(names)
   }
-
 
   return (
 
-
-
-    <Container component="main" maxWidth="xs">
+    <Container style={{marginTop: '60px', marginLeft: '300px', marginRight: '300px', backgroundColor: '#153B69', width: 'auto', maxWidth: '100%', textAlign: 'center'}} component="main" maxWidth="xs">
       <CssBaseline />
-
-      <Typography variant="h6" gutterBottom>
-        Enter Children Name
+      <Typography style={{fontFamily: 'roboto', fontSize: '25px', fontWeight: 'bold', color: 'white'}}>TELL US ABOUT YOUR SQUAD
       </Typography>
-      <Fab color="primary" aria-label="Add" onClick={() => handleAdd()}>
+      <Typography style={{marginTop: '30px', marginBottom: '25px', textAlign: 'center', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '18px'}} variant="h6" gutterBottom>
+        Add Children
+        <br></br>
+      </Typography>
+      <Fab style={{color: 'white', backgroundColor: '#FFBA00', marginRight: '5px'}} aria-label="Add" onClick={() => handleAdd()}>
         <AddIcon />
       </Fab>
-      <Fab color="secondary" aria-label="Delete" onClick={() => handleRemove()}>
+      <Fab style={{color: 'white', backgroundColor: '#ff0000', marginLeft: '5px'}} aria-label="Delete" onClick={() => handleRemove()}>
         <ClearIcon />
       </Fab>
+      
       {inputs.map((input, idx) =>
         (
-
-
-          <Grid container spacing={3} key={`${input}-${idx}`}>
+          <Grid container style={{marginTop: '25px'}} spacing={3} key={`${input}-${idx}`}>
             <Grid item xs={12} sm={12}>
-              <TextField
-                
+              <TextField 
+                classes={{label: 'label'}}
                 required
                 id={`${idx}`}
-                label={`Child ${idx + 1}`}
+                label={`Child ${idx + 1} Name:`}
                 fullWidth
                 value={input.name || ''}
                 onChange={e => handleChange(idx, e)}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                    focused: classes.cssFocused,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    root: classes.cssInput,
+                    focused: classes.cssFocused,
+                    underline: classes.cssUnderline,
+                  },
+                }}
               />
             </Grid>
           </Grid>
-
         )
       )}
 
@@ -126,7 +115,7 @@ const ChildrenForm = _ => {
             type="button"
             fullWidth
             variant="contained"
-            color="primary"
+            style={{marginTop: '50px', marginBottom: '50px', width: '300px', backgroundColor: '#968AF2', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '20px'}}
             className={classes.submit}
             onClick={_ => addChildren(inputs)}
           >
