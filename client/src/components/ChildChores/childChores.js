@@ -21,7 +21,7 @@ const ChildChores = _ => {
   return (
     <div>
         <Paper className={classes.root}>
-            <Grid xs={12} style={{height: '50px', color: 'white', textAlign: 'left'}}>
+            <Grid style={{height: '50px', color: 'white', textAlign: 'left'}}>
                 <h3 style={{padding: '10px', paddingTop: '13px'}}>{child.name}   <Selection /></h3>
                <>
                   {

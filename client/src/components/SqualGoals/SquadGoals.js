@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import 'typeface-roboto'
 import Paper from '@material-ui/core/Paper'
@@ -8,6 +8,8 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import ChoresContext from '../../utils/ChoresContext'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +33,12 @@ const useStyles = makeStyles(theme => ({
 const SquadGoals = _ => {
   const classes = useStyles()
 
+  const { childArr } = useContext(ChoresContext)
+  
+  let childArrToSort = JSON.parse(JSON.stringify(childArr))
+
+  const ranking=[]
+
   return (
     <div>
       <Paper style={{marginTop: '10px'}} className={classes.root}>
@@ -48,13 +56,33 @@ const SquadGoals = _ => {
             </TableHead>
             <TableBody>
           {/* {rows.map(row => ( */}
-            <TableRow key='row.name'>
+            {
+
+          childArrToSort.sort((a,b) => b.totalPoints-a.totalPoints).map((child,i) => {
+            
+            switch  (i) {
+              case 0:
+                ranking.push('Bad & Bougie')
+                break
+              case 1:
+                ranking.push('On Fleek')
+                break
+              case 2: ranking.push('Mood')
+                break
+              default:
+                ranking.push('BRUH')
+                break
+            }
+
+          return(  <TableRow key={child.name} id ={child._id}>
               <TableCell component="th" scope="row">
-                marianna
+                {child.name}
               </TableCell>
-              <TableCell align="left" style={{color: '#FF9300'}}>390</TableCell>
-              <TableCell align="left" style={{color: '#60B0F5', fontWeight: 'bold'}}>Bad & Bougie</TableCell>
+              <TableCell align="left" style={{color: '#FF9300'}}>{child.totalPoints}</TableCell>
+              <TableCell align="left" style={{color: '#60B0F5', fontWeight: 'bold'}}>{ranking[i]}</TableCell>
             </TableRow>
+            )})
+}
             </TableBody>
           </Table>
             </Grid>

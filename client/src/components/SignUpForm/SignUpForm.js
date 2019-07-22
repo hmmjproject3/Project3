@@ -3,14 +3,15 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Link from '@material-ui/core/Link';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import ChoresContext from '../../utils/ChoresContext'
+import { Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -18,7 +19,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 // import Logo from '../../assets/logo.png'
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 
 function TabContainer({ children, dir }) {
   return (
@@ -43,13 +44,13 @@ const useStyles = makeStyles(theme => ({
 
       width: 500,
       margin: 'auto',
-      color:  "#153B69",
+      color: "#153B69",
     },
-    
+
   },
   logoBox: {
     textAlign: 'auto',
-},
+  },
   paper: {
     marginTop: theme.spacing(1),
     display: 'flex',
@@ -91,7 +92,7 @@ const SignUpForm = _ => {
     setValue(index);
   }
 
-  const {handleInputChange, name, userName, password, email, registerUser, _userName, _userPassword, loginUser} = useContext(ChoresContext)
+  const { handleInputChange, name, userName, password, email, registerUser, _userName, _userPassword, loginUser, isLoggedIn } = useContext(ChoresContext)
 
   return (
     <Container component="main" maxWidth="xs" className={classes.container}>
@@ -109,164 +110,182 @@ const SignUpForm = _ => {
           <Tab label="Sign In" />
         </Tabs>
       </AppBar>
-            <SwipeableViews
+      <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabContainer dir={theme.direction}>
-      <div className={classes.paper}>
- 
+          <div className={classes.paper}>
 
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
+
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign up
         </Typography>
-        <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="name"
-                name="Name"
-                variant="outlined"
-                required
-                fullWidth
-                id="name"
-                value={name}
-                onChange={handleInputChange}
-                label="Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="userName"
-                name="userName"
-                variant="outlined"
-                required
-                fullWidth
-                id="userName"
-                value={userName}
-                onChange={handleInputChange}
-                label="User Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                value={email}
-                onChange={handleInputChange}
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                value={password}
-                onChange={handleInputChange}
-                autoComplete="current-password"
-              />
-            </Grid>
-          </Grid>
-          <Button
-            onClick={registerUser}
-            type="button"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="name"
+                    name="Name"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="name"
+                    value={name}
+                    onChange={handleInputChange}
+                    label="Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="userName"
+                    name="userName"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="userName"
+                    value={userName}
+                    onChange={handleInputChange}
+                    label="User Name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="email"
+                    value={email}
+                    onChange={handleInputChange}
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={handleInputChange}
+                    autoComplete="current-password"
+                  />
+                </Grid>
+              </Grid>
+              {
+                
+                <Link to = "/">
+                <Button
+                  onClick={registerUser}
+                  type="button"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign Up
           </Button>
-          <Grid container justify="flex-end">
-            {/* <Grid item>
+                  </Link> 
+          
+
+              }
+              <Grid container justify="flex-end">
+                {/* <Grid item>
               <Link href="/logIn" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid> */}
-          </Grid>
-        </form>
+              </Grid>
+            </form>
 
 
-      </div>
-      </TabContainer>
+          </div>
+        </TabContainer>
 
-      <div className={classes.paper}>
-        <Avatar className={classes.avatarLogin}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Log in
+        <div className={classes.paper}>
+          <Avatar className={classes.avatarLogin}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Log in
         </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="_userName"
-            label="User Name"
-            name="userName"
-            autoComplete="email"
-            autoFocus
-            value={_userName}
-            onChange={handleInputChange}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="_userPassword"
-            autoComplete="current-password"
-            value={_userPassword}
-            onChange={handleInputChange}
-          />
-          
-          <Button
-            type="button"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={loginUser}
-          >
-            Log In
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="_userName"
+              label="User Name"
+              name="userName"
+              autoComplete="email"
+              autoFocus
+              value={_userName}
+              onChange={handleInputChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="_userPassword"
+              autoComplete="current-password"
+              value={_userPassword}
+              onChange={handleInputChange}
+            />
+
+            <Button
+              
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={loginUser}
+            >
+              {/* {
+                isLoggedIn ? ( */}
+              {/* <Link to='/childrenForm'> */}
+              Log In
+              {/* </Link> */}
+              {/* ) : */}
+
+              {/* <Link to='/welcome'> */}
+              {/* Log In */}
+              {/* </Link>
+              } */}
           </Button>
-          <Grid container>
-            {/* <Grid item xs>
+            <Grid container>
+              {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid> */}
-            {/* <Grid item>
+              {/* <Grid item>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid> */}
-          </Grid>
-        </form>
-      </div>
+            </Grid>
+          </form>
+        </div>
 
 
-</SwipeableViews>
+      </SwipeableViews>
     </Container>
   );
 }
