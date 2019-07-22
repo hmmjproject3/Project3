@@ -35,4 +35,12 @@ module.exports = app => {
       .then(_ => console.log(req.body))
       .catch(e => console.log(e))
   })
+
+    //PUT a chore
+
+    app.put('/children/:id', (req, res) => {
+      Child.findByIdAndUpdate(req.params.id, req.body)
+        .then(_ => res.sendStatus(200))
+        .catch(e => console.log(e))
+    })
 }

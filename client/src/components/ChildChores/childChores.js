@@ -1,79 +1,51 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import Selection from '../Selection'
 import ChoresContext from '../../utils/ChoresContext'
-import MaterialTable from 'material-table';
-import AddBox from '@material-ui/icons/AddBox';
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        backgroundColor: '#153B69',
+        padding: theme.spacing(0, 0),
+        width: 'auto'
+    },
+  }))
 
-export default function MaterialTableDemo() {
-  const [state, setState] = React.useState({
-    columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
-    ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
-  });
+const ChildChores = _ => {
 
-  // const {addChore, choreName, chorePoints} = useContext(ChoresContext)
-
+  const { childArr, selectChild, child } = useContext(ChoresContext)
+  const classes = useStyles()
 
   return (
+    <div>
+        <Paper className={classes.root}>
+            <Grid style={{height: '50px', color: 'white', textAlign: 'left'}}>
+                <h3 style={{padding: '10px', paddingTop: '13px'}}>{child.name}   <Selection /></h3>
+               <>
+                  {
+                    child.chores ? 
+                    child.chores.map(chore => {
+                      console.log(chore)
+                      return (
+                      <>
+                      <h1>{chore.task}</h1>
+                      <h1>{chore.points}</h1>
+                      </>
+                    )
+                  }) : null
+                  }
 
-  //   <>
-  //   <input ref={choreName}></input>
-  //   <input ref={chorePoints}></input>
-  //   <button onClick = {addChore}>HELLLLLOOOOOO</button>
-  //   </>
-  // )
-
-  
-
-    <MaterialTable
-      title="Editable Example"
-      columns={state.columns}
-      data={state.data}
-      editable={{
-        onRowAdd: newData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              const data = [...state.data];
-              data.push(newData);
-              setState({ ...state, data });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              const data = [...state.data];
-              data[data.indexOf(oldData)] = newData;
-              setState({ ...state, data });
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              const data = [...state.data];
-              data.splice(data.indexOf(oldData), 1);
-              setState({ ...state, data });
-            }, 600);
-          }),
-      }}
-    />
-  );
-
+               </>
+                </Grid>
+            <Grid xs={12} style={{height: '200px', backgroundColor: 'white'}} ></Grid>
+        </Paper>
+    </div>
+  )
 }
+
+export default ChildChores
+
+
+

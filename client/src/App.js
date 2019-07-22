@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Chores from './utils/Chores.js'
-import { BrowserRouter as Router, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Chorespage from './pages/Chores'
 import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
@@ -14,6 +14,7 @@ import ChildrenFormPage from './pages/ChildrenFormPage'
 
 
 const App = _ => {
+  //Chore State and its functions
   const [choreState, setChoreState] = useState({
     chore: {},
     choresArr: [],
@@ -27,6 +28,46 @@ const App = _ => {
     numOfChildren: 1
   })
 
+choreState.testMe = _ => {
+  console.log('test')
+}
+
+  choreState.addChore = event => {
+    event.preventDefault()
+
+    const chore = {
+      task: choreState.choreName.current.value,
+      points: choreState.chorePoints.current.value,
+      child: "5d2ea38e69bc173e608fa05f"
+    }
+
+    console.log(chore)
+
+  }
+
+  choreState.addChildren = (arr) => {
+    Chores.addManyChildren({
+      childArr: arr
+    })
+      .then(_ => {
+        setChoreState({ ...choreState, childArr: arr })
+      })
+
+  }
+
+
+  choreState.selectChild = (child) => {
+    setChoreState({ ...choreState, child })
+  }
+
+  choreState.choreName = useRef()
+  choreState.chorePoints = useRef()
+  choreState.choreStartTime = useRef()
+  choreState.choreDueTime = useRef()
+  choreState.childName = useRef()
+
+
+  //User State and its functions
   const [userState, setUserState] = useState({
     name: '',
     userName: '',
@@ -36,18 +77,6 @@ const App = _ => {
     _userPassword: '',
     isLoggedIn: false
   })
-
-  choreState.choreName = useRef()
-  choreState.chorePoints = useRef()
-  choreState.choreStartTime = useRef()
-  choreState.choreDueTime = useRef()
-  choreState.childName = useRef()
-
-  //registration useRef functions
-  // userState.name = useRef()
-  // userState.userName = useRef()
-  // userState.userEmail = useRef()
-  // userState.userPassword = useRef()
 
   userState.handleInputChange = event => {
     setUserState({ ...userState, [event.target.id]: event.target.value })
@@ -92,6 +121,7 @@ const App = _ => {
           localStorage.setItem('token', data.token)
           localStorage.setItem('user', data.user)
           setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
+          window.location.href = choreState.childArr > 0 ? '/' : '/childrenForm'
         } else {
           alert('Invalid username or password')
         }
@@ -99,38 +129,7 @@ const App = _ => {
       .catch(e => console.error(e))
   }
 
-
-  //login useRef functions
-  // userState._userName = useRef()
-  // userState._userPassword = useRef()
-
-  choreState.addChore = event => {
-    event.preventDefault()
-
-    const chore = {
-      task: choreState.choreName.current.value,
-      points: choreState.chorePoints.current.value,
-      child: "5d2ea38e69bc173e608fa05f"
-    }
-
-    console.log(chore)
-
-  }
-
-  choreState.addChildren = (arr) => {
-    Chores.addManyChildren({
-      childArr: arr
-    })
-      .then(_=>{
-        setChoreState({ ...choreState, childArr: arr })
-      })
-
-  }
-
-
-
-
-
+  //USE EFFECT
 
   useEffect(_ => {
     //   const testChild = {
@@ -146,31 +145,34 @@ const App = _ => {
 
     // Chores.addChore(testChore)
 
-    // Chores.getAllChildren()
-    //   .then(({ data }) => {
-    //     console.log(data)
-    //   }).catch(e => console.log(e))
-    console.log(choreState.childArr)
+    Chores.getAllChildren()
+      .then(({ data }) => {
+        console.log(data)
+        setChoreState({ ...choreState, childArr: data })
+      }).catch(e => console.log(e))
 
-
-  }, [choreState.childArr])
+  }, [])
 
   return (
 
     <>
       <Router>
-        <ChartContext.Provider value={choreState}>
+        <ChoresContext.Provider value={choreState}>
 
-        <Route exact path='/' render={_ =>
-          <Dashboard />
-        } />
+          <Route exact path='/' render={_ =>
+            <Dashboard />
+          } />
 
-        </ChartContext.Provider>
+        </ChoresContext.Provider>
 
-        <Route exact path='/chores' render={_ =>
-          <Chorespage />
+        <ChoresContext.Provider value={choreState}>
+          <Route exact path='/chores' render={_ =>
+            <Chorespage />
 
-        } />
+          } />
+
+        </ChoresContext.Provider>
+
         <Route exact path='/rewards' render={_ =>
           <Rewards />
         } />
@@ -180,7 +182,7 @@ const App = _ => {
 
         <ChoresContext.Provider value={userState}>
 
-          <Route exact path='/signUp' render={_ =>
+          <Route exact path='/welcome' render={_ =>
             <SignUpPage />
           } />
 

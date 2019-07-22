@@ -1,12 +1,14 @@
-import React, { useEffect, Children } from 'react'
+import React, { useEffect, Children, useContext } from 'react'
 import { HorizontalBar } from 'react-chartjs-2'
-import ChartContext from '../../utils/ChartContext'
-import Chores from '../../utils/Chores'
+import ChoresContext from '../../utils/ChoresContext'
+import { Button } from '@material-ui/core';
 
 const ProgressChart = _ => {
 
+  const { childArr } = useContext(ChoresContext)
+
   const data = {
-    labels: ['Hamza', 'Matthew', 'Jennifer', 'Marianna'],
+    labels: childArr.map(child => child.name),
     datasets: [
       {
         // label: `This Week's Totals`,
@@ -15,12 +17,13 @@ const ProgressChart = _ => {
         borderWidth: 1,
         // hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         // hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [390, 280, 250, 350]
+        data: childArr.map(child => child.totalPoints)
       }
     ]
   }
 
   return (
+    <>
     <div id='progressChart' style={{ position: 'relative', width: 'auto' }}>
       <HorizontalBar
         data={data}
@@ -34,15 +37,20 @@ const ProgressChart = _ => {
               barPercentage: 0.5,
               barThickness: 8,
               maxBarThickness: 8,
-              minBarLength: 2,
+              minBarLength: 100,
               gridLines: {
                 offsetGridLines: false
-              }
-            }]
+              },
+              stacked: true
+            }],
+            xAxes: [{
+              stacked: true
+            }],      
           }
         }}
       />
     </div>
+    </>
   )
 }
 

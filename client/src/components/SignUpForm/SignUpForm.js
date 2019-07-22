@@ -184,8 +184,8 @@ const SignUpForm = _ => {
                 </Grid>
               </Grid>
               {
-                isLoggedIn ? (
-                  <Link to = "/childrenForm">
+                
+                <Link to = "/">
                 <Button
                   onClick={registerUser}
                   type="button"
@@ -196,17 +196,8 @@ const SignUpForm = _ => {
                 >
                   Sign Up
           </Button>
+                  </Link> 
           
-          </Link> ) : (<Button
-                  onClick={registerUser}
-                  type="button"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Sign Up
-          </Button>)
 
               }
               <Grid container justify="flex-end">
@@ -258,6 +249,7 @@ const SignUpForm = _ => {
             />
 
             <Button
+              
               type="button"
               fullWidth
               variant="contained"
@@ -265,7 +257,17 @@ const SignUpForm = _ => {
               className={classes.submit}
               onClick={loginUser}
             >
+              {/* {
+                isLoggedIn ? ( */}
+              {/* <Link to='/childrenForm'> */}
               Log In
+              {/* </Link> */}
+              {/* ) : */}
+
+              {/* <Link to='/welcome'> */}
+              {/* Log In */}
+              {/* </Link>
+              } */}
           </Button>
             <Grid container>
               {/* <Grid item xs>
