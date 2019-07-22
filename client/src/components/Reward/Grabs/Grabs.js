@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import AddIcon from '@material-ui/icons/Add'
 import Fab from '@material-ui/core/Fab'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +40,7 @@ const UpForGrabs = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Up For Grabs</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
@@ -85,6 +86,7 @@ const UpForGrabs = _ => {
               </TableRow>
             </TableBody>
           </Table>
+          <Button style={{ paddingLeft: '50px', paddingRight: '50px', color: 'white', backgroundColor: '#FFBA00', marginTop: '15px', width: 'auto'}}>Create New</Button>
         </Grid>
       </Paper>
     </div>

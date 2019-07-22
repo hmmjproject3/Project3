@@ -33,12 +33,12 @@ const classes = useStyles();
         <div className={classes.mainCon}>
         <MenuBar />
         <Grid container id='rewardsContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', marginTop: '40px', marginLeft: '50px', marginRight: '50px', marginBottom: '20px' }}>
-                <Grid item id='usersOverviewContainer' xs={12} style={{ marginBottom: '10px' }}>
+                <Grid item id='usersOverviewContainer' xs={12} style={{ marginBottom: '0px' }}>
                     <Paper className={classes.root}>
                         <Grid item id='usersOverviewHead' xs={12} style={{ backgroundColor: '#153B69', height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
                             <p style={{ margin: '0px', padding: '10px' }}>Users Overview</p>
                         </Grid>
-                        <Grid item id='usersOverviewBody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} >
+                        <Grid item id='usersOverviewBody' xs={12} style={{ height: '175px', backgroundColor: 'white' }} >
                         </Grid>
                     </Paper>
                 </Grid>
