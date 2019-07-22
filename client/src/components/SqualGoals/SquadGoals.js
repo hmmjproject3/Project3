@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import 'typeface-roboto'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Table from '@material-ui/core/Table'
@@ -49,7 +50,7 @@ const SquadGoals = _ => {
   return (
     <div>
       <Paper style={{marginTop: '10px'}} className={classes.root}>
-            <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', fontSize: '25px', textAlign: 'left'}}>
+            <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left'}}>
                 <p style={{margin: '0px', padding: '10px'}}>Squad Goals</p>
                 </Grid>
             <Grid item id='bonusChoresBody' xs={12} style={{height: '250px', backgroundColor: 'white'}}>

@@ -3,6 +3,7 @@ import './Dashboard.css'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
+import 'typeface-roboto'
 import MenuBar from '../../components/MenuBar'
 import ProgressChart from '../../components/ProgressChart'
 import SquadGoals from '../../components/SqualGoals/SquadGoals'
@@ -60,7 +61,7 @@ const Dashboard = _ => {
                 <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', marginTop: '40px', marginLeft: '50px', marginRight: '50px', marginBottom: '20px' }}>
                 <Grid item id='progressChartContainer' xs={12} style={{ marginBottom: '10px' }}>
                     <Paper className={classes.root}>
-                        <Grid item id='progressHead' xs={12} style={{ height: '50px', color: 'white', fontSize: '25px', textAlign: 'left' }}>
+                        <Grid item id='progressHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
                             <p style={{ margin: '0px', padding: '10px' }}>Progress Chart</p>
                         </Grid>
                         <Grid item id='progressBody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} >
