@@ -1,9 +1,10 @@
 const { Child, Chore } = require('../models')
+const passport = require('passport')
 
 
 module.exports = app => {
   // GET all Chores
-  app.get('/chores', (req, res) => {
+  app.get('/chores', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.find({})
       // .populate('child')
       //deep populate ensures that a reference document with references has its references updated whenever an update or delete route is passed
@@ -19,7 +20,7 @@ module.exports = app => {
   })
 
   // Get one Chore
-  app.get('/chores/:id', (req, res) => {
+  app.get('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.findById(req.params.id)
       .populate({
         path: 'child',
@@ -32,7 +33,7 @@ module.exports = app => {
   })
 
   // POST a chore
-  app.post('/chores', (req, res) => {
+  app.post('/chores', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.create(req.body)
       .then(({ _id, child }) => {
         Child.updateOne({ _id: child }, { $push: { chores: _id } })
@@ -44,14 +45,14 @@ module.exports = app => {
 
   //PUT a chore
 
-  app.put('/chores/:id', (req, res) => {
+  app.put('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.findByIdAndUpdate(req.params.id, req.body)
       .then(_ => res.sendStatus(200))
       .catch(e => console.log(e))
   })
 
   //DELETE a chore
-  app.delete('/chores/:id', (req, res) => {
+  app.delete('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.findByIdAndDelete(req.params.id)
       .then(_ => res.sendStatus(200))
       .catch(e => console.log(e))
