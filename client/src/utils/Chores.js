@@ -4,6 +4,7 @@ const Chores = {
   getAllChildren: _ => axios.get('/children'),
   getOneChild: id => axios.get(`/children/${id}`),
   addManyChildren: children => axios.post('/children', children),
+  updateChild: (id, child) => axios.put(`/children/${id}`, child),
   getAllChores: _ => axios.get('/chores'),
   getOneChore: id => axios.get(`/chores/${id}`),
   addChore: chore => axios.post('/chores', chore),
