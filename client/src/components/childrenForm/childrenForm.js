@@ -54,12 +54,11 @@ const ChildrenForm = _ => {
     const names = [...inputs];
     names.push({ name: null })
     setInputs(names);
-    console.log(inputs)
   }
 
-  const handleRemove = () => {
+  const handleRemove = (i) => {
     const names = [...inputs];
-    names.splice(names.length - 1, 1)
+    names.splice(i, 1)
     setInputs(names)
   }
 
@@ -101,11 +100,9 @@ const ChildrenForm = _ => {
                 }}
               />
             </Grid>
-            <Grid item xs={3} sm={3} style={{paddingTop: '15px'}}>
-              <Fab style={{ height: '30px', width: '30px', color: '#FFBA00', backgroundColor: '#153B69', marginRight: '5px' }} aria-label="Add" onClick={() => handleAdd()}>
-                <AddIcon />
-              </Fab>
-              <Fab style={{ height: '30px', width: '30px', color: '#ff0000', backgroundColor: '#153B69', marginLeft: '5px' }} aria-label="Delete" onClick={() => handleRemove()}>
+
+            <Grid item xs={3} sm={3} style={{ paddingTop: '15px' }}>
+              <Fab style={{ height: '30px', width: '30px', color: '#ff0000', backgroundColor: '#153B69', marginLeft: '5px' }} aria-label="Delete" onClick={() => handleRemove(idx)}>
                 <ClearIcon />
               </Fab>
 
@@ -114,6 +111,9 @@ const ChildrenForm = _ => {
         )
       )}
 
+      <Fab style={{ height: '30px', width: '30px', color: '#FFBA00', backgroundColor: '#153B69', marginRight: '5px' }} aria-label="Add" onClick={() => handleAdd()}>
+        <AddIcon />
+      </Fab>
       <Button
         type="button"
         fullWidth
