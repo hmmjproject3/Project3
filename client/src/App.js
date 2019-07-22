@@ -46,12 +46,19 @@ choreState.testMe = _ => {
   }
 
   choreState.addChildren = (arr) => {
-    Chores.addManyChildren({
-      childArr: arr
-    })
+    if (arr.length){
+      Chores.addManyChildren({
+        childArr: arr
+      })
       .then(_ => {
         setChoreState({ ...choreState, childArr: arr })
       })
+      window.location.href = '/chores'
+      // console.log(arr.length)
+    }else {
+      // console.log(arr.length)
+      alert('Please add children to continue')
+    }
 
   }
 
