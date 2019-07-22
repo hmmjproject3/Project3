@@ -28,9 +28,9 @@ const App = _ => {
     numOfChildren: 1
   })
 
-choreState.testMe = _ => {
-  console.log('test')
-}
+  choreState.testMe = _ => {
+    console.log('test')
+  }
 
   choreState.addChore = event => {
     event.preventDefault()
@@ -46,16 +46,16 @@ choreState.testMe = _ => {
   }
 
   choreState.addChildren = (arr) => {
-    if (arr.length){
+    if (arr.length) {
       Chores.addManyChildren({
         childArr: arr
       })
-      .then(_ => {
-        setChoreState({ ...choreState, childArr: arr })
-      })
+        .then(_ => {
+          setChoreState({ ...choreState, childArr: arr })
+        })
       window.location.href = '/chores'
       // console.log(arr.length)
-    }else {
+    } else {
       // console.log(arr.length)
       alert('Please add children to continue')
     }
@@ -128,7 +128,7 @@ choreState.testMe = _ => {
           localStorage.setItem('token', data.token)
           localStorage.setItem('user', data.user)
           setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
-          window.location.href = choreState.childArr > 0 ? '/' : '/childrenForm'
+          window.location.href = '/'
         } else {
           alert('Invalid username or password')
         }
@@ -137,20 +137,22 @@ choreState.testMe = _ => {
   }
 
   //USE EFFECT
-
+  //When navigating to the login/signup page if we fail to verify, we should try using this in the future
+  //https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
+  //I don't think what I have right now is idea but it works!
   useEffect(_ => {
-    //   const testChild = {
-    //     name: "Eduardo"
-    //   }
 
-    //   const testChore = {
-    //     task: "cook food for baby brother",
-    //     points: 500,
-    //     child: "5d2ea38e69bc173e608fa05f"
-
-    //   }
-
-    // Chores.addChore(testChore)
+    // Chores.verifyUser()
+    //   .then(_ => {
+    //     if (window.location.pathname === '/welcome') {
+    //       window.location.href = '/'
+    //     }
+    //   }).catch(e => {
+    //     if (window.location.pathname !== '/welcome') {
+    //       window.location.href = '/welcome'
+    //     }
+    //     console.log(e)
+    //   })
 
     Chores.getAllChildren()
       .then(({ data }) => {

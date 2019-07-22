@@ -1,9 +1,10 @@
 const { Child, Chore } = require('../models')
+const passport = require('passport')
 
 
 module.exports = app => {
   // GET all Children
-  app.get('/children', (req, res) => {
+  app.get('/children', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.find({})
       .populate('chores')
       .then(children => {
@@ -13,7 +14,7 @@ module.exports = app => {
   })
 
   // Get one Child
-  app.get('/children/:id', (req, res) => {
+  app.get('/children/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.findById(req.params.id)
       .populate('chores')
       .then(child => {
@@ -30,7 +31,7 @@ module.exports = app => {
   // })
 
   //POST an array of children
-  app.post('/children', (req, res) => {
+  app.post('/children', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.insertMany(req.body.childArr)
       .then(_ => console.log(req.body))
       .catch(e => console.log(e))
@@ -38,7 +39,7 @@ module.exports = app => {
 
     //PUT a chore
 
-    app.put('/children/:id', (req, res) => {
+    app.put('/children/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
       Child.findByIdAndUpdate(req.params.id, req.body)
         .then(_ => res.sendStatus(200))
         .catch(e => console.log(e))

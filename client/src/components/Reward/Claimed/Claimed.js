@@ -44,7 +44,7 @@ const Claimed = _ => {
     <div>
       <Paper style={{ marginTop: '10px' }} className={classes.root}>
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
-          <p style={{ margin: '0px', padding: '10px' }}>Claimed Rewards</p>
+          <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
         <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
           <Table className={classes.table}>
