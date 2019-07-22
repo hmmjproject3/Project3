@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Left from '../../assets/left.png'
 import Right from '../../assets/right.png'
+import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
 
@@ -39,6 +40,7 @@ const classes = useStyles();
                             <p style={{ margin: '0px', padding: '10px' }}>Users Overview</p>
                         </Grid>
                         <Grid item id='usersOverviewBody' xs={12} style={{ height: '175px', backgroundColor: 'white' }} >
+                          <FamilyOverview />
                         </Grid>
                     </Paper>
                 </Grid>
