@@ -13,6 +13,7 @@ import Hamza from '../../../assets/hamza.png'
 import Jennifer from '../../../assets/jennifer.png'
 import Matthew from '../../../assets/matthew.png'
 import Marianna from '../../../assets/marianna.png'
+import Button from '@material-ui/core/Button'
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +46,7 @@ const Claimed = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Claimed Rewards</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
@@ -91,6 +92,7 @@ const Claimed = _ => {
               </TableRow>
             </TableBody>
           </Table>
+          <Button style={{ fontFamily: 'roboto', fontWeight: 'bold', paddingLeft: '50px', paddingRight: '50px', color: 'white', backgroundColor: '#FFBA00', marginTop: '15px', width: 'auto'}}>Claim Reward</Button>
         </Grid>
       </Paper>
     </div>
