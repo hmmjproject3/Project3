@@ -34,18 +34,10 @@ const SquadGoals = _ => {
   const classes = useStyles()
 
   const { childArr } = useContext(ChoresContext)
+  
+  let childArrToSort = JSON.parse(JSON.stringify(childArr))
 
-  console.log(childArr.sort((a,b) => b.totalPoints-a.totalPoints))
   const ranking=[]
-
-//   const ranking = childArr.map(child => {
-//     const container = {};
-
-//     container[item.name] = item.likes;
-//     container.age = item.name.length * 10;
-
-//     return container;
-// })
 
   return (
     <div>
@@ -66,7 +58,7 @@ const SquadGoals = _ => {
           {/* {rows.map(row => ( */}
             {
 
-          childArr.sort((a,b) => b.totalPoints-a.totalPoints).map((child,i) => {
+          childArrToSort.sort((a,b) => b.totalPoints-a.totalPoints).map((child,i) => {
             
             switch  (i) {
               case 0:
@@ -81,7 +73,6 @@ const SquadGoals = _ => {
                 ranking.push('BRUH')
                 break
             }
-            console.log(ranking)
 
           return(  <TableRow key={child.name} id ={child._id}>
               <TableCell component="th" scope="row">

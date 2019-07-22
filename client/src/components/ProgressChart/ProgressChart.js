@@ -7,8 +7,11 @@ const ProgressChart = _ => {
 
   const { childArr } = useContext(ChoresContext)
 
+  let childArrToGraph = JSON.parse(JSON.stringify(childArr))
+
+
   const data = {
-    labels: childArr.map(child => child.name),
+    labels: childArrToGraph.map(child => child.name),
     datasets: [
       {
         // label: `This Week's Totals`,
@@ -17,7 +20,7 @@ const ProgressChart = _ => {
         borderWidth: 1,
         // hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         // hoverBorderColor: 'rgba(255,99,132,1)',
-        data: childArr.map(child => child.totalPoints)
+        data: childArrToGraph.map(child => child.totalPoints)
       }
     ]
   }
