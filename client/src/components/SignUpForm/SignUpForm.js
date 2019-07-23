@@ -65,20 +65,30 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
   },
 
+  tabs: {
+    // color: '#FFE200'
+  },
+
+  header: {
+    color: '#FFE200'
+  },
+
   // unfocused text field label
-  // cssLabel: {
-  //   color : '#153B69'
-  // },
+  cssLabel: {
+    color : 'white'
+  },
 
   // unfocused text field outline
   notchedOutline: {
-    borderWidth: '1px',
+    border: '1 px',
+    borderColor: 'white'
   },
 
   // focused text field outline
   cssOutlinedInput: {
     '&$cssFocused $notchedOutline': {
-      borderColor: `#153B69 !important`,
+      borderColor: `#FFBA00 !important`,
+      border: '2px solid'
     }
   },
 
@@ -96,7 +106,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: 100,
     marginBottom: 100,
     width: 'auto',
-    backgroundColor: 'white'
+    backgroundColor: '#153B69',
+    // borderColor: '#FFBA00',
+    // border: '3px double'
   }
 }));
 
@@ -120,10 +132,10 @@ const SignUpForm = _ => {
       <CssBaseline />
       <AppBar position="static" color="default">
         <Tabs
+          className={classes.tabs}
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
-          textColor="primary"
           centered
 
         >
@@ -143,7 +155,7 @@ const SignUpForm = _ => {
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography className={classes.header} component="h1" variant="h5">
               Sign up
         </Typography>
             <form className={classes.form} noValidate>
@@ -299,7 +311,7 @@ const SignUpForm = _ => {
           <Avatar className={classes.avatarLogin}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography className={classes.header} component="h1" variant="h5">
             Log in
         </Typography>
           <form className={classes.form} noValidate>
