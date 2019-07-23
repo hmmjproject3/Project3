@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Chores from './utils/Chores.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from './pages/Home'
 import Chorespage from './pages/Chores'
 import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
@@ -164,9 +165,14 @@ choreState.testMe = _ => {
 
     <>
       <Router>
+
+      <Route exact path='/' render={_ =>
+            <Home />
+          } />
+
         <ChoresContext.Provider value={choreState}>
 
-          <Route exact path='/' render={_ =>
+          <Route exact path='/Dashboard' render={_ =>
             <Dashboard />
           } />
 
@@ -189,7 +195,7 @@ choreState.testMe = _ => {
 
         <ChoresContext.Provider value={userState}>
 
-          <Route exact path='/welcome' render={_ =>
+          <Route exact path='/SignIn' render={_ =>
             <SignUpPage />
           } />
 

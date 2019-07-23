@@ -1,23 +1,23 @@
-import React, { useContext } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useContext } from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+// import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 import ChoresContext from '../../utils/ChoresContext'
 import { Link } from 'react-router-dom'
 
-import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import PropTypes from 'prop-types'
+import SwipeableViews from 'react-swipeable-views'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 // import Logo from '../../assets/logo.png'
 // import Input from '@material-ui/core/Input';
 
@@ -75,7 +75,10 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2),
   },
   container: {
-    marginTop: theme.spacing(30)
+    marginTop: 100,
+    marginBottom: 100,
+    width: 'auto',
+    backgroundColor: 'white'
   }
 }));
 
@@ -191,7 +194,12 @@ const SignUpForm = _ => {
                   type="button"
                   fullWidth
                   variant="contained"
-                  color="primary"
+                  style={{ 
+                    backgroundColor: '#968AF2',
+                    color: 'white',
+                    fontWeight: 'bold',
+                    textDecoration: 'none'
+                  }}
                   className={classes.submit}
                 >
                   Sign Up
@@ -253,9 +261,14 @@ const SignUpForm = _ => {
               type="button"
               fullWidth
               variant="contained"
-              color="primary"
               className={classes.submit}
               onClick={loginUser}
+              style={{ 
+                backgroundColor: '#968AF2',
+                color: 'white',
+                fontWeight: 'bold',
+                textDecoration: 'none'
+              }}
             >
               {/* {
                 isLoggedIn ? ( */}

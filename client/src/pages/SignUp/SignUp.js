@@ -1,6 +1,6 @@
 import React from 'react'
+import './SignUp.css'
 import { makeStyles } from '@material-ui/core/styles'
-import Background from '../../assets/background.png'
 import SignUpForm from '../../components/SignUpForm'
 
 
@@ -25,14 +25,11 @@ import SignUpForm from '../../components/SignUpForm'
 
 
 const SignUp = _ => {
-  // const classes = useStyles();
 
   return (
-    <>
-      {/* <div className={classes.mainCon}> */}
+    <div className='overlay'>
         <SignUpForm />
-      {/* </div> */}
-    </>
+    </div>
   )
 }
 
