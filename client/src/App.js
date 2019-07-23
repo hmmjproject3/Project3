@@ -26,8 +26,29 @@ const App = _ => {
     isCompleted: false,
     startDate: new Date(),
     dueDate: new Date(),
-    numOfChildren: 1
+    numOfChildren: 1,
+    cheddarReward: null,
+    choreName: ''
   })
+
+
+  choreState.handleInputChange = event => {
+    console.log(event.target.value)
+    setChoreState({ ...choreState, [event.target.id]: event.target.value })
+    console.log(choreState.choreName, choreState.cheddarReward)
+  }
+
+  choreState.addChore = event => {
+    event.preventDefault()
+    const chore = {
+      name: choreState.choreName,
+      points: parseInt(choreState.cheddarReward)
+    }
+
+    setChoreState({...choreState, choreName: '', cheddarReward: null})
+    console.log(chore)
+    // Chores.addChore(chore)
+  }
 
   choreState.testMe = _ => {
     console.log('test')
@@ -68,11 +89,11 @@ const App = _ => {
     setChoreState({ ...choreState, child })
   }
 
-  choreState.choreName = useRef()
-  choreState.chorePoints = useRef()
-  choreState.choreStartTime = useRef()
-  choreState.choreDueTime = useRef()
-  choreState.childName = useRef()
+  // choreState.choreName = useRef()
+  // choreState.chorePoints = useRef()
+  // choreState.choreStartTime = useRef()
+  // choreState.choreDueTime = useRef()
+  // choreState.childName = useRef()
 
 
   //User State and its functions
