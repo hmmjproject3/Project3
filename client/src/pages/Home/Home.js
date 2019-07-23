@@ -30,17 +30,17 @@ const Home = _ => {
                     marginLeft: '250px',
                     marginRight: '250px',
                     marginTop: '200px',
-                    height: '400px',
+                    height: '350px',
                     width: 'auto',
-                    backgroundColor: 'rgba(7,33,65,0.96'
+                    backgroundColor: 'rgba(7,33,65,0.96)'
                 }}>
                 <Grid item xs={12}
                     style={{
-                        marginTop: '60px',
+                        marginTop: '70px',
                         color: 'white',
                         fontSize: '60px'
                     }}>
-                    #ADULTING
+                    <img alt='adulting logo' src='logo.png' />
                 </Grid>
                 <Grid item xs={12}
                     style={{
