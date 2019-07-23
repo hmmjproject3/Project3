@@ -13,29 +13,61 @@ const Chores = {
   updateChild: (id, child) => axios.put(`/children/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }, child),
+
+
+
+
+  
   getAllChores: _ => axios.get('/chores', {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
   getOneChore: id => axios.get(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-  addChore: chore => axios.post('/chores', {
+  addChore: chore => axios.post('/chores', chore, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, chore),
+  }),
   updateChore: (id, chore) => axios.put(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }, chore),
   deleteChore: id => axios.delete(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-  
+
+
+
+
+
   addUser: user => axios.post('/register', user),
 
   loginUser: user => axios.post('/login', user),
 
   verifyUser: _ => axios.post('/verify', {}, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  })
+  }),
+
+
+
+
+
+  getAllRewards: _ => axios.get('/rewards', {
+    headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
+  }),
+  getOneReward: id => axios.get(`/rewards/${id}`, {
+    headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
+  }),
+  addReward: reward => axios.post('/rewards', {
+    headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
+  }, reward),
+  updateReward: (id, reward) => axios.put(`/rewards/${id}`, {
+    headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
+  }, reward),
+  deleteReward: id => axios.delete(`/rewards/${id}`, {
+    headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
+  }),
+
+
+
 }
 
 export default Chores

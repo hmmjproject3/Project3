@@ -1,7 +1,7 @@
-import React, { useEffect, Children, useContext } from 'react'
+import React, { useContext } from 'react'
 import { HorizontalBar } from 'react-chartjs-2'
 import ChoresContext from '../../utils/ChoresContext'
-import { Button } from '@material-ui/core';
+// import { Button } from '@material-ui/core';
 
 const ProgressChart = _ => {
 

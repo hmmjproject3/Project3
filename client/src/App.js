@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Chores from './utils/Chores.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './pages/Home'
@@ -8,10 +8,7 @@ import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
-import LogInPage from './pages/LogIn'
-import ChartContext from './utils/ChartContext'
 import ChildrenFormPage from './pages/ChildrenFormPage'
-// import { object } from 'prop-types';
 
 
 const App = _ => {
@@ -21,51 +18,38 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
-    task: '',
-    points: 0,
-    isCompleted: false,
-    startDate: new Date(),
-    dueDate: new Date(),
+    reward: {},
+    rewardsArr: [],
     numOfChildren: 1,
-    cheddarReward: null,
-    choreName: ''
+    choreName: '',
+    cheddarReward: null
   })
 
-
   choreState.handleInputChange = event => {
-    console.log(event.target.value)
     setChoreState({ ...choreState, [event.target.id]: event.target.value })
-    console.log(choreState.choreName, choreState.cheddarReward)
   }
 
   choreState.addChore = event => {
     event.preventDefault()
     const chore = {
       name: choreState.choreName,
-      points: parseInt(choreState.cheddarReward)
+      points: parseInt(choreState.cheddarReward),
+      child: choreState.child._id
     }
 
-    setChoreState({...choreState, choreName: '', cheddarReward: null})
-    console.log(chore)
-    // Chores.addChore(chore)
+    Chores.addChore(chore)
+      .then(_ => {
+        Chores.getAllChildren()
+          .then(({ data }) => {
+
+            const childUpdate = data.filter(child=>child._id===chore.child)[0]
+            // console.log(childUpdate)
+            setChoreState({ ...choreState, choreName: '', cheddarReward: null, childArr: data, child: childUpdate })
+            // console.log(choreState.childArr)
+          }).catch(e => console.log(e))
+      })
   }
 
-  choreState.testMe = _ => {
-    console.log('test')
-  }
-
-  choreState.addChore = event => {
-    event.preventDefault()
-
-    const chore = {
-      task: choreState.choreName.current.value,
-      points: choreState.chorePoints.current.value,
-      child: "5d2ea38e69bc173e608fa05f"
-    }
-
-    console.log(chore)
-
-  }
 
   choreState.addChildren = (arr) => {
     if (arr.length) {
@@ -75,25 +59,16 @@ const App = _ => {
         .then(_ => {
           setChoreState({ ...choreState, childArr: arr })
         })
-      window.location.href = '/chores'
-      // console.log(arr.length)
+      // window.location.href = '/chores'
     } else {
-      // console.log(arr.length)
       alert('Please add children to continue')
     }
-
   }
 
 
   choreState.selectChild = (child) => {
     setChoreState({ ...choreState, child })
   }
-
-  // choreState.choreName = useRef()
-  // choreState.chorePoints = useRef()
-  // choreState.choreStartTime = useRef()
-  // choreState.choreDueTime = useRef()
-  // choreState.childName = useRef()
 
 
   //User State and its functions
@@ -158,6 +133,8 @@ const App = _ => {
       .catch(e => console.error(e))
   }
 
+
+
   //USE EFFECT
   //When navigating to the login/signup page if we fail to verify, we should try using this in the future
   //https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
@@ -189,9 +166,9 @@ const App = _ => {
     <>
       <Router>
 
-      <Route exact path='/' render={_ =>
-            <Home />
-          } />
+        <Route exact path='/' render={_ =>
+          <Home />
+        } />
 
         <ChoresContext.Provider value={choreState}>
 

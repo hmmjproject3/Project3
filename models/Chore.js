@@ -1,12 +1,14 @@
 module.exports = (Schema, model) => {
   const Chore = new Schema({
-    task: {
+    name: {
       type: String
     },
     points: {
       type: Number
     },
-    isCompleted: Boolean,
+    isCompleted: {
+      type: Boolean
+    },
     child: {
       type: Schema.Types.ObjectId,
       ref: 'Child'

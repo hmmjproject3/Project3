@@ -49,8 +49,10 @@ export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   function handleClick(event) {
+
     console.log(childArr)
     setAnchorEl(event.currentTarget);
+  
   }
 
   function handleClose() {
@@ -78,9 +80,9 @@ export default function CustomizedMenus() {
       >
           {
 
-            childArr.map((child,i)=> (
-              <StyledMenuItem onClick = {_ => {selectChild(child)}}>
-              <ListItemText primary={child.name} id={child._id}/>
+            childArr.map(child => (
+              <StyledMenuItem onClick = {_ => selectChild(child)}>
+              <ListItemText primary={child.name} id={child._id} onClick={handleClose}/>
               </StyledMenuItem>
               ))
 
