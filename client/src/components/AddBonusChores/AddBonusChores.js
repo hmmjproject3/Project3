@@ -76,7 +76,7 @@ const BonusChores = _ => {
                                     <Fab disabled aria-label="Delete" className={classes.fab}><DeleteIcon /></Fab>
                                 </TableRow>
                             }
-                            <TableRow key='row.name'>
+                            {/* <TableRow key='row.name'>
                                 <TableCell component="th" scope="row" style={{ color: '#153B69' }}>marianna</TableCell>
                                 <TableCell align="left">390</TableCell>
                                 <TableCell align="left">button</TableCell>
@@ -90,7 +90,7 @@ const BonusChores = _ => {
                                 <TableCell component="th" scope="row">marianna</TableCell>
                                 <TableCell align="left">390</TableCell>
                                 <TableCell align="left">Bad & Bougie</TableCell>
-                            </TableRow>
+                            </TableRow> */}
                         </TableBody>
                     </Table> : <div>
                             <form>
