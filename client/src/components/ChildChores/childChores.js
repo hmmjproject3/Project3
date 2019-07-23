@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
-    width: 'auto'
+    width: 'auto',
   },
   table: {
     width: '100%',
@@ -36,133 +36,145 @@ const ChildChores = _ => {
 
 
 
-  const { childArr, selectChild, child, handleInputChange, addChore } = useContext(ChoresContext)
+  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward } = useContext(ChoresContext)
   const classes = useStyles()
 
 
   const [addView, toggleAddView] = useState(false)
   const [editing, updateEdits] = useState({
-      id: false
+    id: false
   })
 
   function toggleEdit(id) {
-      updateEdits({
-          ...editing,
-          [id]: !editing[id]
-      })
+    updateEdits({
+      ...editing,
+      [id]: !editing[id]
+    })
   }
 
   const toggleThenAddChore = event => {
     toggleAddView(!addView)
 
     if (addView) {
-    addChore(event)
+      addChore(event)
+    }
   }
-}
 
 
 
 
   return (
-   
+
     <div>
-    <Paper style={{marginTop: '10px'}} className={classes.root}>
-    <Grid container spacing={3} style={{height: '60px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left'}}>
-              <Grid item xs={6}>
-              <p style={{color: 'white', padding: 0, marginTop: 0, marginLeft: 12, fontFamily: 'roboto', fontSize: '25px', }}>
+      <Paper style={{ marginTop: '10px' }} className={classes.root} >
+        <Grid container spacing={3} style={{ height: '60px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
+          <Grid item xs={6}>
+            <p style={{ color: 'white', padding: 0, marginTop: 0, marginLeft: 12, fontFamily: 'roboto', fontSize: '25px', }}>
               {child.name}
-              </p>
-              </Grid>
-
-              <Grid item xs={6}  style={{height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'right', margin: 0}}>
-              <Selection />
-              </Grid>
-     </Grid>
-
-
-{ !addView ? (
-
-
-     <Grid item id='bonusChoresBody' xs={12} style={{height: '250px', backgroundColor: 'white'}}>
-            <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell style={{color: '#153B69'}} align="left">Chores Title</TableCell>
-              <TableCell style={{color: '#153B69'}} align="left">Cheddar</TableCell>
-              <TableCell style={{color: '#153B69'}} align="left">Progress</TableCell>
-              <TableCell style={{color: '#153B69'}} align="left"></TableCell>
-              <TableCell style={{color: '#153B69'}} align="left"></TableCell>
-
-
-            </TableRow>
-            </TableHead>
-            <TableBody>
-
-     <>
-   
-                  {
-                    child.chores ? 
-                    child.chores.map(chore => {
-                      console.log(chore)
-                      return (
-                      <>
-                      <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>{chore.task}
-                      </TableCell>
-                      <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>{chore.points}</TableCell>
-                      <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>
-                      <IconButton>
-                      <ArrowDropDown/>
-                      </IconButton>
-                      </TableCell>
-
-                      <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>
-                      <IconButton>
-                      <Delete/>
-                      </IconButton>
-                      </TableCell>
-
-                      <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>
-                      <IconButton>
-                      <Edit/>
-                      </IconButton>
-                      </TableCell>
-
-
-
-                      {/* <h1 style={{ color: 'black', textAlign: 'left'}}>{chore.task}</h1>
-                      <h1 style={{ color: 'black', textAlign: 'left'}}>{chore.points}</h1> */}
-                      </>
-                    )
-                  }) : null
-
-                  
-                  }
-
-
-       
-
-               </>
-               </TableBody>
-          </Table>
-
-
-
+            </p>
           </Grid>
 
+          <Grid item xs={6} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'right', margin: 0 }}>
+            <Selection />
+          </Grid>
+        </Grid>
 
-) : <AddKidChores/>
 
-}
+        {
 
-<Button variant="contained" className={classes.button}
-onClick={() => toggleAddView(!addView)}
->
-        Create New Chore
+          !addView ? (
+
+
+            <Grid item id='bonusChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white', overflowY: "auto" }}>
+              <Table className={classes.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell style={{ color: '#153B69' }} align="left">Chores Title</TableCell>
+                    <TableCell style={{ color: '#153B69' }} align="left">Cheddar</TableCell>
+                    <TableCell style={{ color: '#153B69' }} align="left">Progress</TableCell>
+                    <TableCell style={{ color: '#153B69' }} align="left"></TableCell>
+                    <TableCell style={{ color: '#153B69' }} align="left"></TableCell>
+
+
+                  </TableRow>
+                </TableHead>
+                <TableBody style={{ maxHeight: '100%', overflow: 'hidden' }}>
+
+                  <>
+
+                    {
+
+                      child.chores ?
+
+                        !editing["id"] ?
+                          child.chores.map(chore => {
+
+                            return (
+
+                              <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
+                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
+                                </TableCell>
+                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}</TableCell>
+                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                                  <IconButton>
+                                    <ArrowDropDown />
+                                  </IconButton>
+                                </TableCell>
+
+                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                                  <IconButton>
+                                    <Delete />
+                                  </IconButton>
+                                </TableCell>
+
+                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                                  <IconButton>
+                                    <Edit />
+                                  </IconButton>
+                                </TableCell>
+                              </TableRow>
+
+
+                            )
+                          }) : 
+
+                          ///ENTER UPDATE CHORES FORM ROWS HERE
+                          child.chores.map(chore => {
+                            return (
+                              <h3>Hellloooo</h3>
+                            )
+                          })
+
+
+                        : null
+
+                    }
+
+
+                  </>
+                </TableBody>
+              </Table>
+
+
+
+            </Grid>
+
+
+          ) : <AddKidChores />
+
+
+        }
+
+
+        <Button variant="contained" className={classes.button}
+          onClick={toggleThenAddChore}
+        >
+          Create New Chore
       </Button>
 
 
-    </Paper>
-  </div> 
+      </Paper>
+    </div>
 
   )
 }
