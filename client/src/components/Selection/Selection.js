@@ -5,6 +5,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChoresContext from '../../utils/ChoresContext'
+import IconButton from '@material-ui/core/IconButton';
+import ArrowDropDown from '@material-ui/icons/ExpandMore';
 
 
 const StyledMenu = withStyles({
@@ -56,16 +58,17 @@ export default function CustomizedMenus() {
   }
 
   return (
-    <div>
-      <Button
+    <>
+
+      <IconButton
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
+        color="#ffffff"
         onClick={handleClick}
       >
-        Open Menu
-      </Button>
+      <ArrowDropDown/>
+      </IconButton>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
@@ -73,8 +76,6 @@ export default function CustomizedMenus() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-       
-
           {
 
             childArr.map((child,i)=> (
@@ -85,24 +86,6 @@ export default function CustomizedMenus() {
 
           }
           </StyledMenu>
-
-       
-        {/* <StyledMenuItem>
-
-        <ListItemText primary="Matthew" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-
-        <ListItemText primary="Marianna" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-
-          <ListItemText primary="Jennifer" />
-        </StyledMenuItem> */}
-      
-
-
-      
-    </div>
+    </>
   );
 }

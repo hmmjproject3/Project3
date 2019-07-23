@@ -52,7 +52,10 @@ const ChoresContext = createContext({
   _userPassword: '',
   isLoggedIn: false,
 
-  numOfChildren: 1
+  numOfChildren: 1,
+
+  choreName: '',
+  cheddarReward: Number
 })
 
 export default ChoresContext
