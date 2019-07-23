@@ -24,9 +24,9 @@ const Chores = {
   getOneChore: id => axios.get(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-  addChore: chore => axios.post('/chores', {
+  addChore: chore => axios.post('/chores', chore, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, chore),
+  }),
   updateChore: (id, chore) => axios.put(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }, chore),

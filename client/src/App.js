@@ -23,8 +23,26 @@ const App = _ => {
     childArr: [],
     reward: {},
     rewardsArr: [],
+    choreName: '',
+    cheddarReward: null,
     numOfChildren: 1
   })
+
+  choreState.handleInputChange = event => {
+    setChoreState({ ...choreState, [event.target.id]: event.target.value })
+  }
+
+  choreState.addChore = event => {
+    event.preventDefault()
+    const chore = {
+      name: choreState.choreName,
+      points: parseInt(choreState.cheddarReward)
+    }
+
+    setChoreState({...choreState, choreName: '', cheddarReward: null})
+    console.log(chore)
+    Chores.addChore(chore)
+  }
 
   // choreState.addChore = event => {
   //   event.preventDefault()
@@ -47,11 +65,10 @@ const App = _ => {
         .then(_ => {
           setChoreState({ ...choreState, childArr: arr })
         })
-      window.location.href = '/chores'
+      // window.location.href = '/chores'
     } else {
       alert('Please add children to continue')
     }
-
   }
 
 
@@ -59,11 +76,11 @@ const App = _ => {
     setChoreState({ ...choreState, child })
   }
 
-  choreState.choreName = useRef()
-  choreState.chorePoints = useRef()
-  choreState.choreStartTime = useRef()
-  choreState.choreDueTime = useRef()
-  choreState.childName = useRef()
+  // choreState.choreName = useRef()
+  // choreState.chorePoints = useRef()
+  // choreState.choreStartTime = useRef()
+  // choreState.choreDueTime = useRef()
+  // choreState.childName = useRef()
 
 
   //User State and its functions
@@ -127,6 +144,8 @@ const App = _ => {
       })
       .catch(e => console.error(e))
   }
+
+  
 
   //USE EFFECT
   //When navigating to the login/signup page if we fail to verify, we should try using this in the future
