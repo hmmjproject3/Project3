@@ -1,20 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Selection from '../Selection'
 import ChoresContext from '../../utils/ChoresContext'
-import Table from '@material-ui/core/Table';
+import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import ArrowDropDown from '@material-ui/icons/ExpandMore';
-import Delete from '@material-ui/icons/Delete';
-import Edit from '@material-ui/icons/Edit';
-import Button from '@material-ui/core/Button';
+import ArrowDropDown from '@material-ui/icons/ExpandMore'
+import Delete from '@material-ui/icons/Delete'
+import Edit from '@material-ui/icons/Edit'
+import Button from '@material-ui/core/Button'
+import AddKidChores from '../AddKidChores'
 
-import IconButton from '@material-ui/core/IconButton';
+
+import IconButton from '@material-ui/core/IconButton'
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,8 +34,34 @@ const useStyles = makeStyles(theme => ({
 
 const ChildChores = _ => {
 
-  const { childArr, selectChild, child } = useContext(ChoresContext)
+
+
+  const { childArr, selectChild, child, handleInputChange, addChore } = useContext(ChoresContext)
   const classes = useStyles()
+
+
+  const [addView, toggleAddView] = useState(false)
+  const [editing, updateEdits] = useState({
+      id: false
+  })
+
+  function toggleEdit(id) {
+      updateEdits({
+          ...editing,
+          [id]: !editing[id]
+      })
+  }
+
+  const toggleThenAddChore = event => {
+    toggleAddView(!addView)
+
+    if (addView) {
+    addChore(event)
+  }
+}
+
+
+
 
   return (
    
@@ -50,6 +78,11 @@ const ChildChores = _ => {
               <Selection />
               </Grid>
      </Grid>
+
+
+{ !addView ? (
+
+
      <Grid item id='bonusChoresBody' xs={12} style={{height: '250px', backgroundColor: 'white'}}>
             <Table className={classes.table}>
           <TableHead>
@@ -66,6 +99,7 @@ const ChildChores = _ => {
             <TableBody>
 
      <>
+   
                   {
                     child.chores ? 
                     child.chores.map(chore => {
@@ -100,17 +134,33 @@ const ChildChores = _ => {
                       </>
                     )
                   }) : null
+
+                  
                   }
+
+
+       
 
                </>
                </TableBody>
           </Table>
 
-          <Button variant="contained" className={classes.button}>
+
+
+          </Grid>
+
+
+) : <AddKidChores/>
+
+}
+
+<Button variant="contained" className={classes.button}
+onClick={() => toggleAddView(!addView)}
+>
         Create New Chore
       </Button>
 
-          </Grid>
+
     </Paper>
   </div> 
 
