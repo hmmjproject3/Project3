@@ -20,30 +20,23 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
-    task: '',
-    points: 0,
-    isCompleted: false,
-    startDate: new Date(),
-    dueDate: new Date(),
+    reward: {},
+    rewardsArr: [],
     numOfChildren: 1
   })
 
-  choreState.testMe = _ => {
-    console.log('test')
-  }
+  // choreState.addChore = event => {
+  //   event.preventDefault()
 
-  choreState.addChore = event => {
-    event.preventDefault()
+  //   const chore = {
+  //     task: choreState.choreName.current.value,
+  //     points: choreState.chorePoints.current.value,
+  //     child: "5d2ea38e69bc173e608fa05f"
+  //   }
 
-    const chore = {
-      task: choreState.choreName.current.value,
-      points: choreState.chorePoints.current.value,
-      child: "5d2ea38e69bc173e608fa05f"
-    }
+  //   console.log(chore)
 
-    console.log(chore)
-
-  }
+  // }
 
   choreState.addChildren = (arr) => {
     if (arr.length) {
@@ -54,9 +47,7 @@ const App = _ => {
           setChoreState({ ...choreState, childArr: arr })
         })
       window.location.href = '/chores'
-      // console.log(arr.length)
     } else {
-      // console.log(arr.length)
       alert('Please add children to continue')
     }
 
