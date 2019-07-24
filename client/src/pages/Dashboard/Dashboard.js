@@ -30,35 +30,13 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-// export default function Dashboard() {
-//     const classes = useStyles();
-
-//     return (
-//         <div className={classes.mainCon}>
-//             {/* <MenuBar /> */}
-//             <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', margin: '50px' }}>
-//                 <Grid item id='progressChart' xs={12} style={{ marginBottom: '10px' }}>
-//                     <ProgressChart />
-//                 </Grid>
-//             </Grid>
-//         </div>
-//     )
-// }
-
-// const useStyles = makeStyles(theme => ({
-//     root: {
-//         backgroundColor: '#153B69',
-//         padding: theme.spacing(0, 0),
-//     },
-// }))
-
-const Dashboard = _ => {
-    const classes = useStyles()
+export default function Dashboard() {
+    const classes = useStyles();
 
     return (
-        <>
-            <MenuBar />
-                <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', marginTop: '40px', marginLeft: '50px', marginRight: '50px', marginBottom: '20px' }}>
+        <div className={classes.mainCon}>   
+        <MenuBar />    
+                <Grid container id='dashContainer' spacing={3} style={{ textAlign: 'center', width: 'auto', marginTop: '40px', marginBottom: '20px' }}>
                 <Grid item id='progressChartContainer' xs={12} style={{ marginBottom: '10px' }}>
                     <Paper className={classes.root}>
                         <Grid item id='progressHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
@@ -76,8 +54,7 @@ const Dashboard = _ => {
                     <BonusChores />
                 </Grid>
             </Grid>
-        </>
+        </div>
     )
 }
 
-export default Dashboard
