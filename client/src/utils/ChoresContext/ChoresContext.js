@@ -29,23 +29,19 @@ const ChoresContext = createContext({
   choresArr: [],
   child: {},
   childArr: [],
-  task: '',
-  points: 0,
-  isCompleted: false,
+  reward: {},
+  rewardsArr: [],
+  choreName: '',
+  cheddarReward: Number,
 
-  //Functions that will hit the routes
-  addChildren: _ => { },
-  getOneChild: _ => { },
-  getAllChildren: _ => { },
-  addChore: _ => { },
-  getOneChore: _ => { },
-  getAllChores: _ => { },
-  deleteChore: _ => { },
-  updateChore: _ => { },
+  addChildren: _ => {},
+  selectChild: _ => {},
 
-  registerUser: _ => { },
-  loginUser: _ => { },
-  logoutUser: _ => { },
+  handleInputChange: _ => {},
+
+  registerUser: _ => {},
+  loginUser: _ => {},
+
 
   //user login tracking variables. Token will be saved in localStorage
   name: '',
@@ -56,7 +52,10 @@ const ChoresContext = createContext({
   _userPassword: '',
   isLoggedIn: false,
 
-  numOfChildren: 1
+  numOfChildren: 1,
+
+  choreName: '',
+  cheddarReward: Number
 })
 
 export default ChoresContext

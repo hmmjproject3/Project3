@@ -1,10 +1,9 @@
 import React, { useContext } from 'react'
+import 'typeface-roboto'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-// import FormControlLabel from '@material-ui/core/FormControlLabel'
-// import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
@@ -12,14 +11,11 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ChoresContext from '../../utils/ChoresContext'
 import { Link } from 'react-router-dom'
-
 import PropTypes from 'prop-types'
 import SwipeableViews from 'react-swipeable-views'
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-// import Logo from '../../assets/logo.png'
-// import Input from '@material-ui/core/Input';
 
 function TabContainer({ children, dir }) {
   return (
@@ -34,14 +30,11 @@ TabContainer.propTypes = {
   dir: PropTypes.string.isRequired,
 };
 
-
-
-
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
-
+      backgroundColor: '#395980',
+      fontFamily: 'roboto',
       width: 500,
       margin: 'auto',
       color: "#153B69",
@@ -71,6 +64,41 @@ const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
+
+  tabs: {
+    // color: '#FFE200'
+  },
+
+  header: {
+    color: '#FFE200'
+  },
+
+  // unfocused text field label
+  cssLabel: {
+    color : 'white'
+  },
+
+  // unfocused text field outline
+  notchedOutline: {
+    border: '1 px',
+    borderColor: 'white'
+  },
+
+  // focused text field outline
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `#FFBA00 !important`,
+      border: '2px solid'
+    }
+  },
+
+  // focused input text
+  cssFocused: {
+    color: '#153B69'
+  },
+
+
+
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -78,7 +106,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: 100,
     marginBottom: 100,
     width: 'auto',
-    backgroundColor: 'white'
+    backgroundColor: '#153B69',
+    // borderColor: '#FFBA00',
+    // border: '3px double'
   }
 }));
 
@@ -102,10 +132,10 @@ const SignUpForm = _ => {
       <CssBaseline />
       <AppBar position="static" color="default">
         <Tabs
+          className={classes.tabs}
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
-          textColor="primary"
           centered
 
         >
@@ -125,7 +155,7 @@ const SignUpForm = _ => {
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography className={classes.header} component="h1" variant="h5">
               Sign up
         </Typography>
             <form className={classes.form} noValidate>
@@ -142,6 +172,20 @@ const SignUpForm = _ => {
                     onChange={handleInputChange}
                     label="Name"
                     autoFocus
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                      inputMode: "numeric"
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -156,6 +200,20 @@ const SignUpForm = _ => {
                     onChange={handleInputChange}
                     label="User Name"
                     autoFocus
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                      inputMode: "numeric"
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -169,6 +227,20 @@ const SignUpForm = _ => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                      inputMode: "numeric"
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -183,29 +255,43 @@ const SignUpForm = _ => {
                     value={password}
                     onChange={handleInputChange}
                     autoComplete="current-password"
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssOutlinedInput,
+                        focused: classes.cssFocused,
+                        notchedOutline: classes.notchedOutline,
+                      },
+                      inputMode: "numeric"
+                    }}
                   />
                 </Grid>
               </Grid>
               {
-                
-                <Link to = "/">
-                <Button
-                  onClick={registerUser}
-                  type="button"
-                  fullWidth
-                  variant="contained"
-                  style={{ 
-                    backgroundColor: '#968AF2',
-                    color: 'white',
-                    fontWeight: 'bold',
-                    textDecoration: 'none'
-                  }}
-                  className={classes.submit}
-                >
-                  Sign Up
+
+                <Link to="/">
+                  <Button
+                    onClick={registerUser}
+                    type="button"
+                    fullWidth
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#968AF2',
+                      color: 'white',
+                      fontWeight: 'bold',
+                      textDecoration: 'none'
+                    }}
+                    className={classes.submit}
+                  >
+                    Sign Up
           </Button>
-                  </Link> 
-          
+                </Link>
+
 
               }
               <Grid container justify="flex-end">
@@ -225,7 +311,7 @@ const SignUpForm = _ => {
           <Avatar className={classes.avatarLogin}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography className={classes.header} component="h1" variant="h5">
             Log in
         </Typography>
           <form className={classes.form} noValidate>
@@ -241,6 +327,20 @@ const SignUpForm = _ => {
               autoFocus
               value={_userName}
               onChange={handleInputChange}
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                },
+                inputMode: "numeric"
+              }}
             />
             <TextField
               variant="outlined"
@@ -254,16 +354,30 @@ const SignUpForm = _ => {
               autoComplete="current-password"
               value={_userPassword}
               onChange={handleInputChange}
+              InputLabelProps={{
+                classes: {
+                  root: classes.cssLabel,
+                  focused: classes.cssFocused,
+                },
+              }}
+              InputProps={{
+                classes: {
+                  root: classes.cssOutlinedInput,
+                  focused: classes.cssFocused,
+                  notchedOutline: classes.notchedOutline,
+                },
+                inputMode: "numeric"
+              }}
             />
 
             <Button
-              
+
               type="button"
               fullWidth
               variant="contained"
               className={classes.submit}
               onClick={loginUser}
-              style={{ 
+              style={{
                 backgroundColor: '#968AF2',
                 color: 'white',
                 fontWeight: 'bold',
@@ -281,7 +395,7 @@ const SignUpForm = _ => {
               {/* Log In */}
               {/* </Link>
               } */}
-          </Button>
+            </Button>
             <Grid container>
               {/* <Grid item xs>
               <Link href="#" variant="body2">
