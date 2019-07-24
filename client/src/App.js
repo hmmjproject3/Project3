@@ -35,7 +35,8 @@ const App = _ => {
     const chore = {
       name: choreState.choreName,
       points: parseInt(choreState.cheddarReward),
-      child: choreState.child._id
+      child: choreState.child._id,
+      isCompleted: false
     }
 
     Chores.addChore(chore)
