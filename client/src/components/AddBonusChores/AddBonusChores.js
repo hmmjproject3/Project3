@@ -98,6 +98,7 @@ const BonusChores = _ => {
     })
 
     function toggleEdit(id) {
+        console.log(id, editing[id])
         updateEdits({
             ...editing,
             [id]: !editing[id]
@@ -110,7 +111,7 @@ const BonusChores = _ => {
                 <Grid item id='bonusChoresHead' xs={12} style={{ height: '50px', color: 'white', textAlign: 'left' }}>
                     <p style={{ paddingTop: '10px', fontSize: '25px', padding: '10px'}}>Bonus Chores</p>
                 </Grid>
-                <Grid item id='bonusChoresBody' xs={12} style={{ height: '500px', backgroundColor: 'white' }} >
+                <Grid item id='bonusChoresBody' xs={12} style={{ height: '400px', backgroundColor: 'white', overflowY: "auto" }}>
 
                     {!addView ? <Table className={classes.table}>
                         <TableHead>
@@ -446,7 +447,9 @@ const BonusChores = _ => {
                                 />
                             </Form>
                         </div>}
-                    <Grid item xs={12} style={{ textAlign: 'center' }}>
+                </Grid>
+            </Paper>
+            <Grid item xs={12} style={{ textAlign: 'center' }}>
                         <Button
                             className={classes.margin}
                             onClick={() => toggleAddView(!addView)}
@@ -461,8 +464,6 @@ const BonusChores = _ => {
                             Create New
                         </Button>
                     </Grid>
-                </Grid>
-            </Paper>
         </>
     )
 }
