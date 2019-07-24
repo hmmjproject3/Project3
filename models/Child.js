@@ -10,6 +10,10 @@ module.exports = (Schema, model) => {
       type: Schema.Types.ObjectId,
       ref: 'Chore'
     }],
+    rewards: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Reward'
+    }]
   })
 
   return model('Child', Child)

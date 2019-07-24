@@ -6,8 +6,12 @@ module.exports = (Schema, model) => {
     points: {
       type: Number
     },
-    isClaime: {
+    isClaimed: {
       type: Boolean
+    },
+    child: {
+      type: Schema.Types.ObjectId,
+      ref: 'Child'
     }
   })
 

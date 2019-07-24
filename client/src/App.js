@@ -20,9 +20,10 @@ const App = _ => {
     childArr: [],
     reward: {},
     rewardsArr: [],
-    numOfChildren: 1,
     choreName: '',
-    cheddarReward: null
+    cheddarReward: null,
+    rewardName: '',
+    rewardAmount: null
   })
 
   choreState.handleInputChange = event => {
@@ -34,7 +35,8 @@ const App = _ => {
     const chore = {
       name: choreState.choreName,
       points: parseInt(choreState.cheddarReward),
-      child: choreState.child._id
+      child: choreState.child._id,
+      isCompleted: false
     }
 
     Chores.addChore(chore)
@@ -48,6 +50,11 @@ const App = _ => {
             // console.log(choreState.childArr)
           }).catch(e => console.log(e))
       })
+  }
+
+  choreState.addReward = event => {
+    event.preventDefault()
+    
   }
 
 
