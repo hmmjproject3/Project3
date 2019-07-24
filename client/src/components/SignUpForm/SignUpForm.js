@@ -75,26 +75,31 @@ const useStyles = makeStyles(theme => ({
 
   // unfocused text field label
   cssLabel: {
-    color : 'white'
+    color : 'white',
+    '&$cssFocused': {
+      color: '#FFE200',
+    }
   },
 
   // unfocused text field outline
   notchedOutline: {
+    borderColor: 'white',
     border: '1 px',
-    borderColor: 'white'
   },
 
   // focused text field outline
   cssOutlinedInput: {
+    color: 'white',
     '&$cssFocused $notchedOutline': {
-      borderColor: `#FFBA00 !important`,
-      border: '2px solid'
+      borderColor: `#FFE200 !important`,
+      border: '2px solid',
+      color: '#FFE200'
     }
   },
 
   // focused input text
   cssFocused: {
-    color: '#153B69'
+    color: '#FFE200'
   },
 
 
