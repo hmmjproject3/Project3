@@ -8,9 +8,6 @@ import Left from '../../assets/left.png';
 import Right from '../../assets/right.png';
 import AddBonusChores from '../../components/AddBonusChores'
 
-
-
-
 const useStyles = makeStyles({
   mainCon: {
     backgroundColor: "#E4ECF2",
