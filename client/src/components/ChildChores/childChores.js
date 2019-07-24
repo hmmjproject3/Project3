@@ -14,7 +14,8 @@ import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
 import Button from '@material-ui/core/Button'
 import AddKidChores from '../AddKidChores'
-
+import Fab from '@material-ui/core/Fab'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 import IconButton from '@material-ui/core/IconButton'
 
@@ -24,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
     width: 'auto',
+    fontFamily: 'roboto',
   },
   table: {
     width: '100%',
@@ -44,8 +46,11 @@ const ChildChores = _ => {
   const [editing, updateEdits] = useState({
     id: false
   })
+  const [currentChore, setCurrentChore] = useState(undefined)
 
   function toggleEdit(id) {
+    setCurrentChore(id)
+    console.log(editing[id])
     updateEdits({
       ...editing,
       [id]: !editing[id]
@@ -60,21 +65,22 @@ const ChildChores = _ => {
     }
   }
 
+  let rows = [0, 1 , 2, 3, 4]
 
 
 
   return (
 
-    <div>
-      <Paper style={{ marginTop: '10px' }} className={classes.root} >
-        <Grid container spacing={3} style={{ height: '60px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
-          <Grid item xs={6}>
-            <p style={{ color: 'white', padding: 0, marginTop: 0, marginLeft: 12, fontFamily: 'roboto', fontSize: '25px', }}>
+    <div >
+      <Paper style={{ marginTop: '32px' }} className={classes.root} >
+        <Grid container spacing={2} style={{ height: '60px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
+          <Grid>
+            <p style={{ color: 'white', padding: 10, marginTop: 0, marginLeft: 12, fontFamily: 'roboto', fontSize: '25px', }}>
               {child.name}
             </p>
           </Grid>
 
-          <Grid item xs={6} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'right', margin: 0 }}>
+          <Grid style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'right', margin: 0 }}>
             <Selection />
           </Grid>
         </Grid>
@@ -85,17 +91,15 @@ const ChildChores = _ => {
           !addView ? (
 
 
-            <Grid item id='bonusChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white', overflowY: "auto" }}>
+            <Grid item id='bonusChoresBody' xs={12} style={{ height: '400px', backgroundColor: 'white', overflowY: "auto" }}>
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
-                    <TableCell style={{ color: '#153B69' }} align="left">Chores Title</TableCell>
-                    <TableCell style={{ color: '#153B69' }} align="left">Cheddar</TableCell>
-                    <TableCell style={{ color: '#153B69' }} align="left">Progress</TableCell>
-                    <TableCell style={{ color: '#153B69' }} align="left"></TableCell>
-                    <TableCell style={{ color: '#153B69' }} align="left"></TableCell>
-
-
+                  <TableCell style={{ color: '#153B69', width: '250px', paddingRight: '15px' }}>Task</TableCell>
+                  <TableCell style={{ color: '#153B69', width: '100px', paddingRight: '15px' }} align="left">Cheddar</TableCell>
+                  <TableCell style={{ color: '#153B69', width: '80px', paddingRight: '20px', paddingLeft: '5px' }} align="left">Status</TableCell>
+                  <TableCell style={{ color: '#153B69', width: '5px', paddingRight: '0px' }} align="left"></TableCell>
+                  <TableCell style={{ color: '#153B69', width: '5px' }} align="left"></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody style={{ maxHeight: '100%', overflow: 'hidden' }}>
@@ -105,11 +109,12 @@ const ChildChores = _ => {
                     {
 
                       child.chores ?
-
-                        !editing["id"] ?
-                          child.chores.map(chore => {
-
-                            return (
+                      
+                        
+                          child.chores.map((chore, i) => {
+                          return   !editing[i] ?
+                           
+                
 
                               <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                                 <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
@@ -128,22 +133,24 @@ const ChildChores = _ => {
                                 </TableCell>
 
                                 <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                  <IconButton>
+                                  <IconButton onClick = {_=>toggleEdit(i)}>
                                     <Edit />
                                   </IconButton>
                                 </TableCell>
                               </TableRow>
 
 
-                            )
-                          }) : 
+                             :  
+                              <h3>Hellloooo</h3>
+                            
+                          }) 
 
                           ///ENTER UPDATE CHORES FORM ROWS HERE
-                          child.chores.map(chore => {
-                            return (
-                              <h3>Hellloooo</h3>
-                            )
-                          })
+                          // child.chores.map((chore, i) => {
+                           
+                          // })
+
+                       
 
 
                         : null //null when there are no chores
@@ -166,17 +173,27 @@ const ChildChores = _ => {
         }
 
 
-        <Button variant="contained" className={classes.button}
-          onClick={toggleThenAddChore}
-        >
-          Create New Chore
-      </Button>
-
-
       </Paper>
+      <div style={{textAlign: 'center'}}>
+      <Button variant="contained" className={classes.button} onClick={toggleThenAddChore}
+       style={{
+       paddingLeft: '50px',
+       paddingRight: '50px',
+       color: 'white',
+       backgroundColor: '#FFBA00',
+       marginTop: '25px',
+       width: 'auto'
+       }}
+        >
+          Assign Chores
+      </Button>
+      </div>
     </div>
 
   )
 }
 
 export default ChildChores
+
+
+

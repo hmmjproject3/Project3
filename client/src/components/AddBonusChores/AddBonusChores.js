@@ -110,7 +110,7 @@ const BonusChores = _ => {
         <Grid item id='bonusChoresHead' xs={12} style={{ height: '50px', color: 'white', textAlign: 'left' }}>
           <p style={{ paddingTop: '10px', fontSize: '25px', padding: '10px' }}>Bonus Chores</p>
         </Grid>
-        <Grid item id='bonusChoresBody' xs={12} style={{ height: '500px', backgroundColor: 'white' }} >
+        <Grid item id='bonusChoresBody' xs={12} style={{ height: '400px', backgroundColor: 'white', overflowY: "auto" }}>
 
           {!addView ? <Table className={classes.table}>
             <TableHead>
@@ -446,23 +446,23 @@ const BonusChores = _ => {
                 />
               </Form>
             </div>}
-          <Grid item xs={12} style={{ textAlign: 'center' }}>
-            <Button
-              className={classes.margin}
-              onClick={() => toggleAddView(!addView)}
-              style={{
-                paddingLeft: '50px',
-                paddingRight: '50px',
-                color: 'white',
-                backgroundColor: '#FFBA00',
-                marginTop: '25px',
-                width: 'auto'
-              }}>
-              Create New
-                        </Button>
-          </Grid>
         </Grid>
       </Paper>
+      <Grid item xs={12} style={{ textAlign: 'center' }}>
+        <Button
+          className={classes.margin}
+          onClick={() => toggleAddView(!addView)}
+          style={{
+            paddingLeft: '50px',
+            paddingRight: '50px',
+            color: 'white',
+            backgroundColor: '#FFBA00',
+            marginTop: '25px',
+            width: 'auto'
+          }}>
+          Create New
+                        </Button>
+      </Grid>
     </>
   )
 }

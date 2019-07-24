@@ -3,12 +3,13 @@ import Chores from './utils/Chores.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Chorespage from './pages/Chores'
-import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
 import SignUpPage from './pages/SignUp'
 import ChildrenFormPage from './pages/ChildrenFormPage'
+import ProfilePage from './pages/ProfilePage'
+// import { object } from 'prop-types';
 
 
 const App = _ => {
@@ -193,13 +194,15 @@ const App = _ => {
 
         </ChoresContext.Provider>
 
+        <ChoresContext.Provider value={choreState}>
         <Route exact path='/rewards' render={_ =>
           <Rewards />
         } />
-        <Route exact path='/hamza' render={_ =>
-          <HamzaPage />
-        } />
-
+        <Route exact path='/ProfilePage' render={_ =>
+        <ProfilePage />
+        }/>
+        </ChoresContext.Provider>
+        
         <ChoresContext.Provider value={userState}>
 
           <Route exact path='/SignIn' render={_ =>

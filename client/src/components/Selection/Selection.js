@@ -66,8 +66,9 @@ export default function CustomizedMenus() {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="#ffffff"
         onClick={handleClick}
+        style={{color: '#FFBA00'}}
+        
       >
       <ArrowDropDown/>
       </IconButton>

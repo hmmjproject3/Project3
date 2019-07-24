@@ -8,9 +8,6 @@ import Left from '../../assets/left.png';
 import Right from '../../assets/right.png';
 import AddBonusChores from '../../components/AddBonusChores'
 
-
-
-
 const useStyles = makeStyles({
   mainCon: {
     backgroundColor: "#E4ECF2",
@@ -20,7 +17,6 @@ const useStyles = makeStyles({
     paddingLeft: 50,
     paddingRight: 50,
     height: 768,
-
   },
   date: {
     textAlign: "center",
@@ -40,7 +36,7 @@ export default function Chores() {
         <img alt="Left Right" src={Right} />
         {/* </h3> */}
         </Typography>
-      <Grid container spacing={3}>
+      <Grid container spacing={1}>
 
         <Grid item xs={6}>
           <ChildChores />

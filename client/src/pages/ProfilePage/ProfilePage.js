@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import MenuBar from '../../components/MenuBar'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -9,6 +9,8 @@ import Right from '../../assets/right.png'
 import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
+import ProfileComplete from '../../components/ProfileComplete'
+
 
 
 const useStyles = makeStyles({
@@ -27,7 +29,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Reward() {
+const ProfilePage = _ => {
   const classes = useStyles();
 
   return (
@@ -39,7 +41,10 @@ export default function Reward() {
         style={{
           textAlign: 'center',
           width: 'auto',
-          marginTop: '20px',
+          marginTop: '40px',
+          marginLeft: '50px',
+          marginRight: '50px',
+          marginBottom: '20px'
         }}>
         <Grid item xs={12}
           id='usersOverviewContainer'
@@ -71,7 +76,7 @@ export default function Reward() {
           </Paper>
         </Grid>
         <Grid item xs={12} md={6} id='claimedRewardsContainer'>
-          <Claimed />
+          <ProfileComplete />
         </Grid>
         <Grid item id='upForGrabsContainer' xs={12} md={6}>
           <Grabs />
@@ -80,3 +85,5 @@ export default function Reward() {
     </div>
   )
 }
+
+export default ProfilePage
