@@ -153,7 +153,7 @@ const ChildChores = _ => {
                        
 
 
-                        : null
+                        : null //null when there are no chores
 
                     }
 

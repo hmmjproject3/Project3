@@ -7,12 +7,12 @@ const Chores = {
   getOneChild: id => axios.get(`/children/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-  addManyChildren: children => axios.post('/children', {
+  addManyChildren: children => axios.post('/children', children, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, children),
-  updateChild: (id, child) => axios.put(`/children/${id}`, {
+  }),
+  updateChild: (id, child) => axios.put(`/children/${id}`, child, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, child),
+  }),
 
 
 
@@ -27,9 +27,9 @@ const Chores = {
   addChore: chore => axios.post('/chores', chore, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-  updateChore: (id, chore) => axios.put(`/chores/${id}`, {
+  updateChore: (id, chore) => axios.put(`/chores/${id}`, chore, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, chore),
+  }, ),
   deleteChore: id => axios.delete(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
@@ -56,12 +56,12 @@ const Chores = {
   getOneReward: id => axios.get(`/rewards/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-  addReward: reward => axios.post('/rewards', {
+  addReward: reward => axios.post('/rewards', reward, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, reward),
-  updateReward: (id, reward) => axios.put(`/rewards/${id}`, {
+  }),
+  updateReward: (id, reward) => axios.put(`/rewards/${id}`, reward, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, reward),
+  }),
   deleteReward: id => axios.delete(`/rewards/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),

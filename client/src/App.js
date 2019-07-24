@@ -21,9 +21,10 @@ const App = _ => {
     childArr: [],
     reward: {},
     rewardsArr: [],
-    numOfChildren: 1,
     choreName: '',
-    cheddarReward: null
+    cheddarReward: null,
+    rewardName: '',
+    rewardAmount: null
   })
 
   choreState.handleInputChange = event => {
@@ -50,6 +51,11 @@ const App = _ => {
             // console.log(choreState.childArr)
           }).catch(e => console.log(e))
       })
+  }
+
+  choreState.addReward = event => {
+    event.preventDefault()
+    
   }
 
 
