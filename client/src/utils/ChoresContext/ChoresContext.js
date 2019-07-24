@@ -12,14 +12,6 @@ const ChoresContext = createContext({
   choreDueTime: _ => { },
   childName: _ => { },
 
-  //userRef for registration
-  // name: _ => {},
-  // userName: _ => {},
-  // userEmail: _ => {},
-  // userPassword: _ => {},
-  // //userRef for login
-  // _userName: _ => {},
-  // _userPassword: _ => {},
 
   handleInputChange: _ => { },
 
@@ -33,9 +25,12 @@ const ChoresContext = createContext({
   rewardsArr: [],
   choreName: '',
   cheddarReward: Number,
+  rewardName: '',
+  rewardAmount: Number,
 
   addChildren: _ => {},
   selectChild: _ => {},
+  addChore: _ => {},
 
   handleInputChange: _ => {},
 
@@ -52,10 +47,6 @@ const ChoresContext = createContext({
   _userPassword: '',
   isLoggedIn: false,
 
-  numOfChildren: 1,
-
-  choreName: '',
-  cheddarReward: Number
 })
 
 export default ChoresContext
