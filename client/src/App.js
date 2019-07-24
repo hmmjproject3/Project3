@@ -3,7 +3,6 @@ import Chores from './utils/Chores.js'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Chorespage from './pages/Chores'
-import HamzaPage from './pages/HamzaPage'
 import Rewards from './pages/Reward'
 import Dashboard from './pages/Dashboard'
 import ChoresContext from './utils/ChoresContext'
@@ -11,6 +10,7 @@ import SignUpPage from './pages/SignUp'
 import LogInPage from './pages/LogIn'
 import ChartContext from './utils/ChartContext'
 import ChildrenFormPage from './pages/ChildrenFormPage'
+import ProfilePage from './pages/ProfilePage'
 // import { object } from 'prop-types';
 
 
@@ -191,9 +191,9 @@ const App = _ => {
         <Route exact path='/rewards' render={_ =>
           <Rewards />
         } />
-        <Route exact path='/hamza' render={_ =>
-          <HamzaPage />
-        } />
+        <Route exact path='/ProfilePage' render={_ =>
+        <ProfilePage />
+        }/>
 
         <ChoresContext.Provider value={userState}>
 

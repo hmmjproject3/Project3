@@ -75,7 +75,7 @@ const BonusChores = _ => {
                                     <Fab onClick={() => toggleEdit("id")} color="secondary" aria-label="Edit" className={classes.fab}><Icon>edit_icon</Icon></Fab>
                                     <Fab disabled aria-label="Delete" className={classes.fab}><DeleteIcon /></Fab>
                                 </TableRow>
-                            }
+                            } 
                             {/* <TableRow key='row.name'>
                                 <TableCell component="th" scope="row" style={{ color: '#153B69' }}>marianna</TableCell>
                                 <TableCell align="left">390</TableCell>
