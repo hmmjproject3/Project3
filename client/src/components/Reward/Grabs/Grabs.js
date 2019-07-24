@@ -18,7 +18,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
-    width: 'auto'
+    width: 'auto',
+    fontFamily: 'roboto'
   },
   addBtn: {
     backgroundColor: '#153B69',
@@ -30,7 +31,23 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     height: 20,
     width: 20,
+  },
+  textField: {
+    backgroundColor: '#dce2e9',
+    width: '350px'
+},
+// form - focused input text
+cssFocused: {
+  color: '#153B69 !important',
+  borderColor: '#153B69'
+},
+// form - focused text field outline
+cssOutlinedInput: {
+  '&$cssFocused $notchedOutline': {
+    borderColor: `#FFBA00 !important`,
+    border: '2px solid'
   }
+},
 }))
 
 
@@ -95,11 +112,11 @@ const UpForGrabs = _ => {
             </TableBody>
           </Table> :
           <div>
-            <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
-              <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
+            <Form style={{ marginBottom: '10px', marginTop: '5px', marginRight: '10px', marginLeft: '10px', height: '200px', width: 'auto' }}>
+              <p style={{ marginTop: '20px', marginBottom: '10px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Reward</p>
               <TextField
                 id="outlined-name"
-                label="Task Name"
+                label="Reward Name"
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
@@ -126,6 +143,7 @@ const UpForGrabs = _ => {
                 variant="outlined"
                 InputLabelProps={{
                   classes: {
+                    root: classes.cssLabel,
                     focused: classes.cssFocused,
                   },
                 }}
@@ -133,6 +151,7 @@ const UpForGrabs = _ => {
                   classes: {
                     root: classes.cssInput,
                     focused: classes.cssFocused,
+                    underline: classes.cssUnderline,
                   },
                 }}
               />
@@ -146,7 +165,7 @@ const UpForGrabs = _ => {
               paddingRight: '50px',
               color: 'white',
               backgroundColor: '#FFBA00',
-              marginTop: '15px',
+              marginTop: '20px',
               width: 'auto'
             }}>
             Create New
