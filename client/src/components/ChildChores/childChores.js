@@ -19,6 +19,7 @@ import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton'
+import Chores from '../../utils/Chores.js'
 
 
 const useStyles = makeStyles(theme => ({
@@ -75,6 +76,33 @@ const ChildChores = _ => {
     id: false
   })
   const [currentChore, setCurrentChore] = useState(undefined)
+
+
+const _choreName = useRef()
+const _chorePoints = useRef()
+const _choreComplete =useRef()
+
+const updateAChore = event => {
+  console.log(event.currentTarget.id)
+  console.log(_choreName.current.value, _chorePoints.current.value, _choreComplete.current.value)
+
+  Chores.updateChore(event.currentTarget.id, {
+    name: _choreName.current.value,
+    points: _chorePoints.current.value,
+    isCompleted: _chorePoints.current.value
+  })
+  .then(_ => {
+    window.location.reload()
+      // Chores.getAllChildren()
+      //   .then(({ data }) => {
+      //     setChoreState(prev => {
+      //       return { ...prev, childArr: data }
+      //     })
+      //   })
+      //   .catch(e => console.log(e));
+    })
+    .catch(e => console.log(e));
+}
 
   function toggleEdit(id) {
     setCurrentChore(id)
@@ -140,22 +168,22 @@ const ChildChores = _ => {
 
 
                         child.chores.map((chore, i) => {
-                          return editing['1'] ?
+                          return editing[i] ?
 
                             <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                <input className={classes.taskEdit}></input>
+                                <input className={classes.taskEdit} ref={_choreName}></input>
                               </TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                <input className={classes.taskEdit}></input>
+                                <input className={classes.taskEdit} ref={_chorePoints}></input>
 
                               </TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                <input className={classes.taskEdit}></input>
+                                <input className={classes.taskEdit} ref={_choreComplete}></input>
                               </TableCell>
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                                <Fab onClick={() => toggleEdit('1')} color="secondary" aria-label="Edit" className={classes.editBtn}>
+                                <Fab id={chore._id} onClick={(event) => {toggleEdit(i); updateAChore(event)}} color="secondary" aria-label="Edit" className={classes.editBtn}>
                                   <Icon className={classes.editIcon}>edit_icon</Icon>
                                 </Fab>
                               </TableCell>
@@ -193,7 +221,7 @@ const ChildChores = _ => {
                               </TableCell>
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                                <Fab onClick={() => toggleEdit('1')} color="secondary" aria-label="Edit" className={classes.editBtn}>
+                                <Fab onClick={() => toggleEdit(i)} color="secondary" aria-label="Edit" className={classes.editBtn}>
                                   <Icon className={classes.editIcon}>edit_icon</Icon>
                                 </Fab>
                               </TableCell>
