@@ -31,6 +31,10 @@ const App = _ => {
     setChoreState({ ...choreState, [event.target.id]: event.target.value })
   }
 
+  choreState.assignReward = event => {
+    console.log(event.target.id)
+  }
+
   choreState.addChore = event => {
     event.preventDefault()
     const chore = {
@@ -113,6 +117,7 @@ const App = _ => {
           // localStorage.setItem('id', data._id)
           setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
           console.log(userState.isLoggedIn)
+          
         }
       })
       .catch(e => console.error(e))
@@ -166,6 +171,11 @@ const App = _ => {
         console.log(data)
         setChoreState({ ...choreState, childArr: data })
       }).catch(e => console.log(e))
+
+    // Chores.getAllRewards()
+    //   .then(({data}) => {
+    //     setChoreState({...choreState, rewardsArr: data})
+    //   }).catch(e=>console.log(e))
 
   }, [])
 

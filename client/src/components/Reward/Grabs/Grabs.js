@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import 'typeface-roboto'
 import Paper from '@material-ui/core/Paper'
@@ -13,6 +13,9 @@ import Fab from '@material-ui/core/Fab'
 import Button from '@material-ui/core/Button'
 import Form from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
+import ChoresContext from '../../../utils/ChoresContext'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,127 +38,163 @@ const useStyles = makeStyles(theme => ({
 
 
 
+
+
+
+
 const UpForGrabs = _ => {
+  const { childArr, handleInputChange, assignReward, rewardsArr } = useContext(ChoresContext)
   const classes = useStyles()
   const [addView, toggleAddView] = useState(false)
   // const [editing, updateEdits] = useState({
   //   id: false
   // })
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event) {
+
+    console.log(childArr)
+    setAnchorEl(event.currentTarget);
+
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
+
+
+console.log(childArr)
 
   return (
+
     <div>
       <Paper style={{ marginTop: '10px' }} className={classes.root}>
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Up For Grabs</p>
         </Grid>
         <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
-          {!addView ? <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
-                <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Cheddar</TableCell>
-                <TableCell style={{ color: '#153B69', width: '20px' }} align="left"></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {/* {rows.map(row => ( */}
-              <TableRow key='row.name'>
-                <TableCell component="th" scope="row">
-                  $100 Cash
-              </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
-                <TableCell align="left">
-                  <Fab size='small' aria-label="Add" className={classes.addBtn}>
-                    <AddIcon className={classes.addIcon} />
-                  </Fab>
-                </TableCell>
-              </TableRow>
-              <TableRow key='row.name'>
-                <TableCell component="th" scope="row">
-                  Really Cool Gift
-              </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>5000</TableCell>
-                <TableCell align="left">
-                  <Fab size='small' aria-label="Add" className={classes.addBtn}>
-                    <AddIcon className={classes.addIcon} />
-                  </Fab>
-                </TableCell>
-              </TableRow>
-              <TableRow key='row.name'>
-                <TableCell component="th" scope="row">
-                  $100 Cash
-              </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
-                <TableCell align="left">
-                  <Fab size='small' aria-label="Add" className={classes.addBtn}>
-                    <AddIcon className={classes.addIcon} />
-                  </Fab>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table> :
-          <div>
-            <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
-              <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
-              <TextField
-                id="outlined-name"
-                label="Task Name"
-                className={classes.textField}
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  classes: {
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused,
-                  },
-                }}
-                InputProps={{
-                  classes: {
-                    root: classes.cssInput,
-                    focused: classes.cssFocused,
-                    underline: classes.cssUnderline,
-                  },
-                }}
-              />
-              <TextField
 
-                id="outlined-name"
-                label="Points"
-                className={classes.textField}
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  classes: {
-                    focused: classes.cssFocused,
-                  },
-                }}
-                InputProps={{
-                  classes: {
-                    root: classes.cssInput,
-                    focused: classes.cssFocused,
-                  },
-                }}
-              />
-            </Form>
-          </div>}
+          {!addView ?
+
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
+                  <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Cheddar</TableCell>
+                  <TableCell style={{ color: '#153B69', width: '20px' }} align="left"></TableCell>
+                </TableRow>
+              </TableHead>
+
+              <TableBody>
+          {rewardsArr ? 
+                rewardsArr.filter(rewards => rewards.isClaimed===false).map(eachReward => (
+                    <TableRow key='row.name'>
+                      <TableCell component="th" scope="row">
+                        {eachReward.name}
+              </TableCell>
+                      <TableCell align="left" style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
+                      <TableCell align="left">
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+
+                          <Fab size='small' aria-label="Add" className={classes.addBtn}>
+                            <AddIcon className={classes.addIcon} />
+                          </Fab>
+                        </Button>
+
+
+                        <Menu
+                          id="customized-menu"
+                          anchorEl={anchorEl}
+                          keepMounted
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                        >
+
+                          {
+                            // console.log(childArr)
+                            childArr.map(child => (
+                              <MenuItem id={child._id} onClick={event => { assignReward(event); handleClose() }}>
+                                {child.name}
+                              </MenuItem>
+                            ))
+                          }
+                        </Menu>
+                      </TableCell>
+                    </TableRow>
+
+            
+
+
+)) : null}
+              </TableBody>
+  
+            </Table>
+
+              :
+  
+  
+            <div>
+                <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
+                  <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
+                  <TextField
+                    id="outlined-name"
+                    label="Task Name"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssInput,
+                        focused: classes.cssFocused,
+                        underline: classes.cssUnderline,
+                      },
+                    }}
+                  />
+                  <TextField
+
+                    id="outlined-name"
+                    label="Points"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                      classes: {
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                    InputProps={{
+                      classes: {
+                        root: classes.cssInput,
+                        focused: classes.cssFocused,
+                      },
+                    }}
+                  />
+                </Form>
+              </div>}
           <Button
-            className={classes.margin}
-            onClick={() => toggleAddView(!addView)}
-            style={{
-              paddingLeft: '50px',
-              paddingRight: '50px',
-              color: 'white',
-              backgroundColor: '#FFBA00',
-              marginTop: '15px',
-              width: 'auto'
-            }}>
-            Create New
+                className={classes.margin}
+                onClick={() => toggleAddView(!addView)}
+                style={{
+                  paddingLeft: '50px',
+                  paddingRight: '50px',
+                  color: 'white',
+                  backgroundColor: '#FFBA00',
+                  marginTop: '15px',
+                  width: 'auto'
+                }}>
+                Create New
           </Button>
         </Grid>
       </Paper>
     </div>
-  )
-}
-
-
+        )
+      }
+      
+      
 export default UpForGrabs
