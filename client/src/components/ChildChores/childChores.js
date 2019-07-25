@@ -17,7 +17,7 @@ import AddKidChores from '../AddKidChores'
 import Fab from '@material-ui/core/Fab'
 import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
-
+import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton'
 
 
@@ -66,7 +66,7 @@ const ChildChores = _ => {
 
 
 
-  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward } = useContext(ChoresContext)
+  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
   const classes = useStyles()
 
 
@@ -184,11 +184,12 @@ const ChildChores = _ => {
                             <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
                               </TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}</TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}
+                              </TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                <IconButton>
-                                  <ArrowDropDown />
-                                </IconButton>
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.isCompleted ? 'Completed' : 'Not Complete'}</TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
                               </TableCell>
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
@@ -198,9 +199,17 @@ const ChildChores = _ => {
                               </TableCell>
 
                               <TableCell style={{ paddingLeft: '5px' }}>
-                                <Fab aria-label="Delete" className={classes.delBtn}>
+                                
+                                <Fab id={chore._id} onClick={event=>deleteAChore({
+                                  id: chore._id,
+                                  childId: chore.child
+                                })} aria-label="Delete" className={classes.delBtn}
+                        
+                                >
                                   <DeleteIcon className={classes.delIcon} />
                                 </Fab>
+                               
+                               
                               </TableCell>
 
 
@@ -253,19 +262,19 @@ const ChildChores = _ => {
 
 
       </Paper>
-      <div style={{ textAlign: 'center' }}>
-        <Button variant="contained" className={classes.button} onClick={toggleThenAddChore}
-          style={{
-            paddingLeft: '50px',
-            paddingRight: '50px',
-            color: 'white',
-            backgroundColor: '#FFBA00',
-            marginTop: '25px',
-            width: 'auto'
-          }}
+      <div style={{textAlign: 'center'}}>
+      <Fab className={classes.fab}
+       onClick={toggleThenAddChore}
+       style={{
+       padding: 'auto',
+       color: 'white',
+       backgroundColor: '#FFBA00',
+       marginTop: '15px',
+       }}
         >
-          Assign Chores
-      </Button>
+      <AddIcon />
+
+      </Fab>
       </div>
     </div>
 
