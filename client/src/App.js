@@ -117,7 +117,7 @@ const App = _ => {
           // localStorage.setItem('id', data._id)
           setUserState({ ...userState, isLoggedIn: data.isLoggedIn, userName: data.user })
           console.log(userState.isLoggedIn)
-          
+
         }
       })
       .catch(e => console.error(e))
@@ -172,10 +172,10 @@ const App = _ => {
         setChoreState({ ...choreState, childArr: data })
       }).catch(e => console.log(e))
 
-    // Chores.getAllRewards()
-    //   .then(({data}) => {
-    //     setChoreState({...choreState, rewardsArr: data})
-    //   }).catch(e=>console.log(e))
+    Chores.getAllRewards()
+      .then(({data}) => {
+        setChoreState({...choreState, rewardsArr: data})
+      }).catch(e=>console.log(e))
 
   }, [])
 

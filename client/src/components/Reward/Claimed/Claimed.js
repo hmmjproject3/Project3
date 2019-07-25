@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import 'typeface-roboto'
 import Form from '@material-ui/core/FormControl'
@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
-    width: 'auto'
+    width: 'auto',
+    fontFamily: 'roboto'
   },
   table: {
     width: '100%',
@@ -36,15 +37,31 @@ const useStyles = makeStyles(theme => ({
   iconLeft: {
     height: 30,
     width: 30,
-  }
+  },
+  textField: {
+    backgroundColor: '#dce2e9',
+    width: '350px'
+  },
+  // form - focused input text
+  cssFocused: {
+    color: '#153B69 !important',
+    borderColor: '#153B69'
+  },
+  // form - focused text field outline
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `#FFBA00 !important`,
+      border: '2px solid'
+    }
+  },
 }))
 
 const Claimed = _ => {
   const classes = useStyles()
   const [addView, toggleAddView] = useState(false)
-    // const [editing, updateEdits] = useState({
-    //   id: false
-    // })
+  // const [editing, updateEdits] = useState({
+  //   id: false
+  // })
 
   return (
     <div>
@@ -53,7 +70,7 @@ const Claimed = _ => {
           <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
         <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
-        {!addView ? <Table className={classes.table}>
+          {!addView ? <Table className={classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
@@ -98,67 +115,69 @@ const Claimed = _ => {
               </TableRow>
             </TableBody>
           </Table> :
-          <div>
-          <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
-            <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
-            <TextField
-              id="outlined-name"
-              label="Task Name"
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                classes: {
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused,
-                },
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.cssInput,
-                  focused: classes.cssFocused,
-                  underline: classes.cssUnderline,
-                },
-              }}
-            />
-            <TextField
+            <div>
+              <Form style={{ marginBottom: '10px', marginTop: '5px', marginRight: '10px', marginLeft: '10px', height: '200px', width: 'auto' }}>
+                <p style={{ marginTop: '20px', marginBottom: '10px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Edit Rewards</p>
+                <TextField
+                  id="outlined-name"
+                  label="Reward Name"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssInput,
+                      focused: classes.cssFocused,
+                      underline: classes.cssUnderline,
+                    },
+                  }}
+                />
+                <TextField
 
-              id="outlined-name"
-              label="Points"
-              className={classes.textField}
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                classes: {
-                  focused: classes.cssFocused,
-                },
-              }}
-              InputProps={{
-                classes: {
-                  root: classes.cssInput,
-                  focused: classes.cssFocused,
-                },
-              }}
-            />
-          </Form>
-        </div>}
-        <Button
-          className={classes.margin}
-          onClick={() => toggleAddView(!addView)}
-          style={{
-            paddingLeft: '50px',
-            paddingRight: '50px',
-            color: 'white',
-            backgroundColor: '#FFBA00',
-            marginTop: '15px',
-            width: 'auto'
-          }}>
-          Create New
-        </Button>
-      </Grid>
-    </Paper>
-  </div>
-)
+                  id="outlined-name"
+                  label="Points"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssInput,
+                      focused: classes.cssFocused,
+                      underline: classes.cssUnderline,
+                    },
+                  }}
+                />
+              </Form>
+            </div>}
+          <Button
+            className={classes.margin}
+            onClick={() => toggleAddView(!addView)}
+            style={{
+              paddingLeft: '50px',
+              paddingRight: '50px',
+              color: 'white',
+              backgroundColor: '#FFBA00',
+              marginTop: '20px',
+              width: 'auto'
+            }}>
+            Edit Reward
+          </Button>
+        </Grid>
+      </Paper>
+    </div>
+  )
 }
 
 export default Claimed

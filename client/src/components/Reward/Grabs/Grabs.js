@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
-    width: 'auto'
+    width: 'auto',
+    fontFamily: 'roboto'
   },
   addBtn: {
     backgroundColor: '#153B69',
@@ -33,7 +34,23 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     height: 20,
     width: 20,
+  },
+  textField: {
+    backgroundColor: '#dce2e9',
+    width: '350px'
+},
+// form - focused input text
+cssFocused: {
+  color: '#153B69 !important',
+  borderColor: '#153B69'
+},
+// form - focused text field outline
+cssOutlinedInput: {
+  '&$cssFocused $notchedOutline': {
+    borderColor: `#FFBA00 !important`,
+    border: '2px solid'
   }
+},
 }))
 
 
