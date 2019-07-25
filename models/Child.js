@@ -3,6 +3,9 @@ module.exports = (Schema, model) => {
     name: {
       type: String
     },
+    color: {
+      type: String
+    },
     totalPoints: {
       type: Number
     },

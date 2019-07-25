@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react'
+import ChoresContext from '../../utils/ChoresContext'
 import { makeStyles } from '@material-ui/core/styles';
 import Settings from '@material-ui/icons/Settings';
 import LocalAtm from '@material-ui/icons/LocalAtm';
@@ -12,7 +13,9 @@ import Jennifer from '../../assets/jennifer.png';
 import Matthew from '../../assets/matthew.png';
 import Marianna from '../../assets/marianna.png';
 import Avatar from '@material-ui/core/Avatar';
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
+import Chores from '../../utils/Chores.js'
+
 
 const useStyles = makeStyles({
   root: {
@@ -35,43 +38,43 @@ const useStyles = makeStyles({
     width: 48,
     display: 'inline-flex',
   },
-  peachAvatar: {
-    color: '#fff',
-    backgroundColor: "#FFBA00",
-    height: 48,
-    width: 48,
-    display: "inline",
-    marginRight: '5px',
-    display: 'inline-flex',
-    fontSize: '25px'
-  },
-  orangeAvatar: {
-    color: '#fff',
-    backgroundColor: "#FF9300",
-    height: 48,
-    width: 48,
-    marginRight: '5px',
-    display: 'inline-flex',
-    fontSize: '25px'
-  },
-  blueAvatar: {
-    color: '#fff',
-    backgroundColor: "#60B0F5",
-    height: 48,
-    width: 48,
-    marginRight: '5px',
-    display: 'inline-flex',
-    fontSize: '25px',
-  },
-  purpleAvatar: {
-    color: '#fff',
-    backgroundColor: "#968AF2",
-    height: 48,
-    width: 48,
-    marginRight: '5px',
-    display: 'inline-flex',
-    fontSize: '25px'
-  },
+  // peachAvatar: {
+  //   color: '#fff',
+  //   backgroundColor: "#FFBA00",
+  //   height: 48,
+  //   width: 48,
+  //   display: "inline",
+  //   marginRight: '5px',
+  //   display: 'inline-flex',
+  //   fontSize: '25px'
+  // },
+  // orangeAvatar: {
+  //   color: '#fff',
+  //   backgroundColor: "#FF9300",
+  //   height: 48,
+  //   width: 48,
+  //   marginRight: '5px',
+  //   display: 'inline-flex',
+  //   fontSize: '25px'
+  // },
+  // blueAvatar: {
+  //   color: '#fff',
+  //   backgroundColor: "#60B0F5",
+  //   height: 48,
+  //   width: 48,
+  //   marginRight: '5px',
+  //   display: 'inline-flex',
+  //   fontSize: '25px',
+  // },
+  // avatar: {
+  //   color: '#fff',
+  //   backgroundColor: { color },
+  //   height: 48,
+  //   width: 48,
+  //   marginRight: '5px',
+  //   display: 'inline-flex',
+  //   fontSize: '25px'
+  // },
   link: {
     textDecoration: 'none'
   },
@@ -79,68 +82,87 @@ const useStyles = makeStyles({
     backgroundColor: "#E4ECF2",
     boxShadow: "none",
     position: 'initial',
-    
+
   }
 })
 
 export default function SimpleAppBar() {
+  const { childArr } = useContext(ChoresContext)
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      
-        <div className={classes.con}>
+
+      <div className={classes.con}>
         <Grid container spacing={3}>
 
-        <Grid className={classes.left} item xs={8}>
-
-         <Link className={classes.link} to='/hamza'>
-         <Avatar className={classes.peachAvatar}>H</Avatar>
-        </Link>
-
-        <Avatar className={classes.blueAvatar}>M</Avatar>
-
-        <Avatar className={classes.orangeAvatar}>J</Avatar>
-
-        <Avatar className={classes.purpleAvatar}>M</Avatar>
-
-         </Grid>
-        
-
-        <Grid className={classes.right} item xs={4}>
-
-        <Link className={classes.link} to='/'>
-        <IconButton className={classes.iconsright}>
-          <Home />
-        </IconButton>
-        </Link>
-
-
-        <Link className={classes.link} to='/chores'>
-        <IconButton className={classes.iconsright}>
-          <LocalLaundryService />
-        </IconButton>
-        </Link>
-
-        <Link className={classes.link} to='/rewards'>
-        <IconButton className={classes.iconsright}>
-        <LocalAtm />
-        </IconButton>
-        </Link>
-
-   
-
-        <Link className={classes.link} to='/'>
-        <IconButton className={classes.iconsright}>
-        <Settings />
-        </IconButton> 
-        </Link>
+          <Grid className={classes.left} item xs={8}>
+            {childArr.map(({ name, color }) => {
+              return (
+                <Link className={classes.link} to='/hamza'>
+                  <Avatar
+                    className={classes.avatar}
+                    style={{
+                      color: '#fff',
+                      backgroundColor: `${color}`,
+                      height: 48,
+                      width: 48,
+                      marginRight: '5px',
+                      display: 'inline-flex',
+                      fontSize: '25px'
+                    }}
+                  >{name[0]}
+                  </Avatar>
+                </Link>
+              )
+            }
+            )}
 
 
+
+            {/* // <Avatar className={classes.blueAvatar}>M</Avatar>
+
+            // <Avatar className={classes.orangeAvatar}>J</Avatar>
+
+            // <Avatar className={classes.purpleAvatar}>M</Avatar> */}
+
+          </Grid>
+
+
+          <Grid className={classes.right} item xs={4}>
+
+            <Link className={classes.link} to='/'>
+              <IconButton className={classes.iconsright}>
+                <Home />
+              </IconButton>
+            </Link>
+
+
+            <Link className={classes.link} to='/chores'>
+              <IconButton className={classes.iconsright}>
+                <LocalLaundryService />
+              </IconButton>
+            </Link>
+
+            <Link className={classes.link} to='/rewards'>
+              <IconButton className={classes.iconsright}>
+                <LocalAtm />
+              </IconButton>
+            </Link>
+
+
+
+            <Link className={classes.link} to='/'>
+              <IconButton className={classes.iconsright}>
+                <Settings />
+              </IconButton>
+            </Link>
+
+
+          </Grid>
         </Grid>
-        </Grid>
-        </div>
-      
+      </div>
+
 
     </div>
   );
