@@ -69,7 +69,7 @@ const Claimed = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
           {!addView ? <Table className={classes.table}>
             <TableHead>
               <TableRow>
@@ -161,21 +161,23 @@ const Claimed = _ => {
                 />
               </Form>
             </div>}
-          <Button
-            className={classes.margin}
-            onClick={() => toggleAddView(!addView)}
-            style={{
-              paddingLeft: '50px',
-              paddingRight: '50px',
-              color: 'white',
-              backgroundColor: '#FFBA00',
-              marginTop: '20px',
-              width: 'auto'
-            }}>
-            Edit Reward
-          </Button>
+
         </Grid>
+
       </Paper>
+      <Button
+        className={classes.margin}
+        onClick={() => toggleAddView(!addView)}
+        style={{
+          paddingLeft: '50px',
+          paddingRight: '50px',
+          color: 'white',
+          backgroundColor: '#FFBA00',
+          marginTop: '20px',
+          width: 'auto'
+        }}>
+        Edit Reward
+          </Button>
     </div>
   )
 }
