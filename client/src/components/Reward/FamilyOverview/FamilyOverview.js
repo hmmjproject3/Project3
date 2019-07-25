@@ -3,21 +3,31 @@ import 'typeface-roboto'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Avatar from '@material-ui/core/Avatar'
-import Hamza from '../../../assets/hamza.png'
-import Jennifer from '../../../assets/jennifer.png'
-import Matthew from '../../../assets/matthew.png'
-import Marianna from '../../../assets/marianna.png'
-import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
-    avatar: {
-        height: 60,
-        width: 60,
-    },
-    iconLeft: {
-        height: 50,
-        width: 50,
-    }
+    peachAvatar: {
+        margin: 0,
+        color: '#fff',
+        backgroundColor: "#FFBA00",
+      },
+      orangeAvatar: {
+        margin: 0,
+        color: '#fff',
+        backgroundColor: "#FF9300",
+      },
+      blueAvatar: {
+        margin: 0,
+        color: '#fff',
+        backgroundColor: "#60B0F5",
+      },
+      purpleAvatar: {
+        margin: 0,
+        color: '#fff',
+        backgroundColor: "#968AF2",
+      },
+      avatar: {
+        margin: 0,
+      },
 }))
 
 
@@ -28,36 +38,28 @@ const FamilyOverview = _ => {
         <Grid container>
             <Grid item xs={12} md={3}>
                 <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>
-                    <Avatar className={classes.iconLeft} style={{ backgroundColor: '#968AF2' }}>
-                        <img className={classes.avatar} alt="Avatar" src={Marianna} />
-                    </Avatar>
+                <Avatar className={classes.purpleAvatar}>M</Avatar>
                 </Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>Marianna</Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: '#968AF2', fontWeight: 'bold' }}>2000</Grid>
             </Grid>
             <Grid item xs={12} md={3}>
                 <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>
-                    <Avatar className={classes.iconLeft} style={{ backgroundColor: '#FF9300' }}>
-                        <img className={classes.avatar} alt="Avatar" src={Jennifer} />
-                    </Avatar>
+                <Avatar className={classes.orangeAvatar}>J</Avatar>
                 </Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>Jennifer</Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: '#FF9300', fontWeight: 'bold' }}>2000</Grid>
             </Grid>
             <Grid item xs={12} md={3}>
                 <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>
-                    <Avatar className={classes.iconLeft} style={{ backgroundColor: '#968AF2' }}>
-                        <img className={classes.avatar} alt="Avatar" src={Matthew} />
-                    </Avatar>
+                <Avatar className={classes.blueAvatar}>M</Avatar>
                 </Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>Matthew</Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: '#968AF2', fontWeight: 'bold' }}>2000</Grid>
             </Grid>
             <Grid item xs={12} md={3}>
                 <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>
-                    <Avatar className={classes.iconLeft} style={{ backgroundColor: '#FFBA00' }}>
-                        <img className={classes.avatar} alt="Avatar" src={Hamza} />
-                    </Avatar>
+                <Avatar className={classes.orangeAvatar}>J</Avatar>
                     <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>Hamza</Grid>
                     <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: '#FFBA00', fontWeight: 'bold' }}>2000</Grid>
                 </Grid>
