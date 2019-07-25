@@ -51,7 +51,7 @@ const ProfileComplete = _ => {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell style={{ color: '#153B69', width: '70px' }}>Name</TableCell>
+                <TableCell style={{ color: '#153B69', width: '200px' }}>Name</TableCell>
                 <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Cheddar</TableCell>
               </TableRow>
             </TableHead>
@@ -59,40 +59,39 @@ const ProfileComplete = _ => {
               {/* {rows.map(row => ( */}
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
-                  Washing the car.
+                  Mow the Lawn
               </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
+                <TableCell align="left" style={{ color: '#FF9300' }}>300</TableCell>
                 <TableCell align="left">
-                  <Avatar className={classes.iconLeft} style={{ backgroundColor: '#968AF2' }}>
+                  {/* <Avatar className={classes.iconLeft} style={{ backgroundColor: '#968AF2' }}> */}
                     {/* <img className={classes.avatar} alt="Avatar" src={Marianna} /> */}
-                  </Avatar>
+                  {/* </Avatar> */}
                 </TableCell>
               </TableRow>
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
-                  Washing Windows
+                  Clean the Pool
               </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>5000</TableCell>
-                <TableCell align="left">
-                  <Avatar className={classes.iconLeft} style={{ backgroundColor: '#FFBA00' }}>
+                <TableCell align="center" style={{ color: '#FF9300' }}>5000</TableCell>
+                <TableCell align="center">
+                  {/* <Avatar className={classes.iconLeft} style={{ backgroundColor: '#FFBA00' }}> */}
                     {/* <img className={classes.avatar} alt="Avatar" src={Hamza} /> */}
-                  </Avatar>
+                  {/* </Avatar> */}
                 </TableCell>
               </TableRow>
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
                   Mopping the floor
               </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
-                <TableCell align="left">
-                  <Avatar className={classes.iconLeft} style={{ backgroundColor: '#60B0F5' }}>
+                <TableCell align="center" style={{ color: '#FF9300' }}>500</TableCell>
+                <TableCell align="center">
+                  {/* <Avatar className={classes.iconLeft} style={{ backgroundColor: '#60B0F5' }}> */}
                     {/* <img className={classes.avatar} alt="Avatar" src={Matthew} /> */}
-                  </Avatar>
+                  {/* </Avatar> */}
                 </TableCell>
               </TableRow>
             </TableBody>
           </Table>
-          <Button style={{ fontFamily: 'roboto', fontWeight: 'bold', paddingLeft: '50px', paddingRight: '50px', color: 'white', backgroundColor: '#FFBA00', marginTop: '15px', width: 'auto'}}>Claim Reward</Button>
         </Grid>
       </Paper>
     </div>

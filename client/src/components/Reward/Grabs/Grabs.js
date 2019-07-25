@@ -38,19 +38,19 @@ const useStyles = makeStyles(theme => ({
   textField: {
     backgroundColor: '#dce2e9',
     width: '350px'
-},
-// form - focused input text
-cssFocused: {
-  color: '#153B69 !important',
-  borderColor: '#153B69'
-},
-// form - focused text field outline
-cssOutlinedInput: {
-  '&$cssFocused $notchedOutline': {
-    borderColor: `#FFBA00 !important`,
-    border: '2px solid'
-  }
-},
+  },
+  // form - focused input text
+  cssFocused: {
+    color: '#153B69 !important',
+    borderColor: '#153B69'
+  },
+  // form - focused text field outline
+  cssOutlinedInput: {
+    '&$cssFocused $notchedOutline': {
+      borderColor: `#FFBA00 !important`,
+      border: '2px solid'
+    }
+  },
 }))
 
 
@@ -80,7 +80,7 @@ const UpForGrabs = _ => {
   }
 
 
-console.log(childArr)
+  console.log(childArr)
 
   return (
 
@@ -89,7 +89,7 @@ console.log(childArr)
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Up For Grabs</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
 
           {!addView ?
 
@@ -103,12 +103,12 @@ console.log(childArr)
               </TableHead>
 
               <TableBody>
-          {rewardsArr ? 
-                rewardsArr.filter(rewards => rewards.isClaimed===false).map(eachReward => (
+                {rewardsArr ?
+                  rewardsArr.filter(rewards => rewards.isClaimed === false).map(eachReward => (
                     <TableRow key='row.name'>
                       <TableCell component="th" scope="row">
                         {eachReward.name}
-              </TableCell>
+                      </TableCell>
                       <TableCell align="left" style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
                       <TableCell align="left">
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
@@ -139,79 +139,80 @@ console.log(childArr)
                       </TableCell>
                     </TableRow>
 
-            
 
 
-)) : null}
+
+                  )) : null}
               </TableBody>
-  
+
             </Table>
 
-              :
-  
-  
-            <div>
-                <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
-                  <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
-                  <TextField
-                    id="outlined-name"
-                    label="Task Name"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                    InputLabelProps={{
-                      classes: {
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused,
-                      },
-                    }}
-                    InputProps={{
-                      classes: {
-                        root: classes.cssInput,
-                        focused: classes.cssFocused,
-                        underline: classes.cssUnderline,
-                      },
-                    }}
-                  />
-                  <TextField
+            :
 
-                    id="outlined-name"
-                    label="Points"
-                    className={classes.textField}
-                    margin="normal"
-                    variant="outlined"
-                    InputLabelProps={{
-                      classes: {
-                        focused: classes.cssFocused,
-                      },
-                    }}
-                    InputProps={{
-                      classes: {
-                        root: classes.cssInput,
-                        focused: classes.cssFocused,
-                      },
-                    }}
-                  />
-                </Form>
-              </div>}
-          <Button
-                className={classes.margin}
-                onClick={() => toggleAddView(!addView)}
-                style={{
-                  paddingLeft: '50px',
-                  paddingRight: '50px',
-                  color: 'white',
-                  backgroundColor: '#FFBA00',
-                  marginTop: '15px',
-                  width: 'auto'
-                }}>
-                Create New
-          </Button>
+
+            <div>
+              <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
+                <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
+                <TextField
+                  id="outlined-name"
+                  label="Task Name"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssInput,
+                      focused: classes.cssFocused,
+                      underline: classes.cssUnderline,
+                    },
+                  }}
+                />
+                <TextField
+
+                  id="outlined-name"
+                  label="Points"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  InputLabelProps={{
+                    classes: {
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssInput,
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                />
+              </Form>
+            </div>}
+
         </Grid>
       </Paper>
+      <Button
+        className={classes.margin}
+        onClick={() => toggleAddView(!addView)}
+        style={{
+          paddingLeft: '50px',
+          paddingRight: '50px',
+          color: 'white',
+          backgroundColor: '#FFBA00',
+          marginTop: '20px',
+          width: 'auto'
+        }}>
+        Create New
+          </Button>
     </div>
-        )
-      }
-      
-      
+  )
+}
+
+
 export default UpForGrabs
