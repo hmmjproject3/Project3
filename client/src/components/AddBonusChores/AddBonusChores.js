@@ -427,44 +427,43 @@ const BonusChores = _ => {
                 />
                 <TextField
 
-                  id="outlined-name"
-                  label="Points"
-                  className={classes.textField}
-                  margin="normal"
-                  variant="outlined"
-                  InputLabelProps={{
-                    classes: {
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.cssInput,
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                />
-              </Form>
-            </div>}
-        </Grid>
-      </Paper>
-      <Grid item xs={12} style={{ textAlign: 'center' }}>
-        <Button
-          className={classes.margin}
-          onClick={() => toggleAddView(!addView)}
-          style={{
-            paddingLeft: '50px',
-            paddingRight: '50px',
-            color: 'white',
-            backgroundColor: '#FFBA00',
-            marginTop: '25px',
-            width: 'auto'
-          }}>
-          Create New
-                        </Button>
-      </Grid>
-    </>
-  )
+                                    id="outlined-name"
+                                    label="Points"
+                                    className={classes.textField}
+                                    margin="normal"
+                                    variant="outlined"
+                                    InputLabelProps={{
+                                        classes: {
+                                            focused: classes.cssFocused,
+                                        },
+                                    }}
+                                    InputProps={{
+                                        classes: {
+                                            root: classes.cssInput,
+                                            focused: classes.cssFocused,
+                                        },
+                                    }}
+                                />
+                            </Form>
+                        </div>}
+                </Grid>
+            </Paper>
+            <Grid item xs={12} style={{ textAlign: 'center' }}>
+                        <Fab
+                            className={classes.margin}
+                            onClick={() => toggleAddView(!addView)}
+                            style={{
+                                padding: 'auto',
+                                color: 'white',
+                                backgroundColor: '#FFBA00',
+                                marginTop: '15px',
+                            }}>
+                            <AddIcon />
+
+                        </Fab>
+                    </Grid>
+        </>
+    )
 }
 
 export default BonusChores

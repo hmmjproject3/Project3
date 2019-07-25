@@ -17,7 +17,7 @@ import AddKidChores from '../AddKidChores'
 import Fab from '@material-ui/core/Fab'
 import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
-
+import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton'
 
 
@@ -55,13 +55,18 @@ const useStyles = makeStyles(theme => ({
     height: 30,
     width: 30,
   },
+  taskEdit: {
+    border: '1px solid #153B69',
+    borderRadius: '4px',
+    width: '90px'
+  },
 }))
 
 const ChildChores = _ => {
 
 
 
-  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward } = useContext(ChoresContext)
+  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
   const classes = useStyles()
 
 
@@ -135,22 +140,22 @@ const ChildChores = _ => {
 
 
                         child.chores.map((chore, i) => {
-                          return !editing[i] ?
-
-
+                          return editing['1'] ?
 
                             <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
-                              </TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}</TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                <IconButton>
-                                  <ArrowDropDown />
-                                </IconButton>
+                                <input className={classes.taskEdit}></input>
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                                <input className={classes.taskEdit}></input>
+
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                                <input className={classes.taskEdit}></input>
                               </TableCell>
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                                <Fab onClick={() => toggleEdit("1")} color="secondary" aria-label="Edit" className={classes.editBtn}>
+                                <Fab onClick={() => toggleEdit('1')} color="secondary" aria-label="Edit" className={classes.editBtn}>
                                   <Icon className={classes.editIcon}>edit_icon</Icon>
                                 </Fab>
                               </TableCell>
@@ -159,6 +164,52 @@ const ChildChores = _ => {
                                 <Fab aria-label="Delete" className={classes.delBtn}>
                                   <DeleteIcon className={classes.delIcon} />
                                 </Fab>
+                              </TableCell>
+
+
+                              {/* {/* <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                              <IconButton>
+                                <Delete />
+                              </IconButton>
+                            </TableCell> */}
+
+                              {/* <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                            <IconButton onClick={_ => toggleEdit(i)}>
+                              <Edit />
+                            </IconButton>
+                          </TableCell> */}
+
+                            </TableRow> :
+
+                            <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.isCompleted ? 'Completed' : 'Not Complete'}</TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                              </TableCell>
+
+                              <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
+                                <Fab onClick={() => toggleEdit('1')} color="secondary" aria-label="Edit" className={classes.editBtn}>
+                                  <Icon className={classes.editIcon}>edit_icon</Icon>
+                                </Fab>
+                              </TableCell>
+
+                              <TableCell style={{ paddingLeft: '5px' }}>
+                                
+                                <Fab id={chore._id} onClick={event=>deleteAChore({
+                                  id: chore._id,
+                                  childId: chore.child
+                                })} aria-label="Delete" className={classes.delBtn}
+                        
+                                >
+                                  <DeleteIcon className={classes.delIcon} />
+                                </Fab>
+                               
+                               
                               </TableCell>
 
 
@@ -177,12 +228,12 @@ const ChildChores = _ => {
                             </TableRow>
 
 
-                              :
-                            <h3>Hellloooo</h3>
+                          //   :
+                          // <h3>Hellloooo</h3>
 
-                              })
-      
-                              ///ENTER UPDATE CHORES FORM ROWS HERE
+                        })
+
+                        ///ENTER UPDATE CHORES FORM ROWS HERE
                         // child.chores.map((chore, i) => {
 
                         // })
@@ -191,10 +242,10 @@ const ChildChores = _ => {
 
 
                         : null //null when there are no chores
-      
-                          }
-      
-      
+
+                    }
+
+
                   </>
                 </TableBody>
               </Table>
@@ -204,33 +255,33 @@ const ChildChores = _ => {
             </Grid>
 
 
-                ) : <AddKidChores />
+          ) : <AddKidChores />
 
 
-                }
-        
-        
+        }
+
+
       </Paper>
-              <div style={{ textAlign: 'center' }}>
-                <Button variant="contained" className={classes.button} onClick={toggleThenAddChore}
-                  style={{
-                    paddingLeft: '50px',
-                    paddingRight: '50px',
-                    color: 'white',
-                    backgroundColor: '#FFBA00',
-                    marginTop: '25px',
-                    width: 'auto'
-                  }}
-                >
-                  Assign Chores
-      </Button>
-              </div>
+      <div style={{textAlign: 'center'}}>
+      <Fab className={classes.fab}
+       onClick={toggleThenAddChore}
+       style={{
+       padding: 'auto',
+       color: 'white',
+       backgroundColor: '#FFBA00',
+       marginTop: '15px',
+       }}
+        >
+      <AddIcon />
+
+      </Fab>
+      </div>
     </div>
 
-          )
+  )
 }
 
-        export default ChildChores
-        
-        
-        
+export default ChildChores
+
+
+
