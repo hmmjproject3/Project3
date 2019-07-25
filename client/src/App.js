@@ -169,13 +169,14 @@ const App = _ => {
     Chores.getAllChildren()
       .then(({ data }) => {
         console.log(data)
-        setChoreState({ ...choreState, childArr: data })
+        Chores.getAllRewards()
+        .then(({data: data1}) => {
+          console.log(data1)
+          setChoreState({...choreState, childArr: data,  rewardsArr: data1})
+        }).catch(e=>console.log(e))
       }).catch(e => console.log(e))
 
-    Chores.getAllRewards()
-      .then(({data}) => {
-        setChoreState({...choreState, rewardsArr: data})
-      }).catch(e=>console.log(e))
+
 
   }, [])
 
