@@ -32,16 +32,13 @@ TabContainer.propTypes = {
 
 const useStyles = makeStyles(theme => ({
   "@global": {
-    body: {
-      // backgroundColor: '#395980',
-      // width: 500,
-      // margin: 'auto',
-      // color: "#153B69",
-    }
+    body: {}
   },
-  logoBox: {
-    textAlign: "auto"
+
+  link: {
+    textDecoration: 'none'
   },
+
   paper: {
     marginTop: theme.spacing(1),
     display: "flex",
@@ -49,33 +46,24 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     minHeight: "50vh"
   },
-  // avatar: {
-  //   margin: theme.spacing(1),
-  //   backgroundColor: "#ffffff"
-  // },
-  // avatarLogin: {
-  //   marginTop: theme.spacing(4),
-  //   marginBottom: theme.spacing(1),
-  //   backgroundColor: theme.palette.secondary.main
-  // },
+
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3)
   },
 
+  // register and sign-in tabs
   tabs: {
-    // color: '#FFE200'
-  },
-
-  header: {
-    color: "#ffffff"
+    color: '#c12006',
+    indicatorColor: '#c12006'
   },
 
   // unfocused text field label
   cssLabel: {
-    color : 'white',
+    color: 'white',
     '&$cssFocused': {
-      color: '#FFE200',
+      color: '#FFBA00',
+      fontWeight: 'bold'
     }
   },
 
@@ -85,29 +73,36 @@ const useStyles = makeStyles(theme => ({
     border: '1 px',
   },
 
-  // focused text field outline
+  // unfocused and focused text field outline
   cssOutlinedInput: {
+    color: 'white',
     "&$cssFocused $notchedOutline": {
-      borderColor: `#ffffff !important`,
+      borderColor: `#FFBA00 !important`,
       border: "2px solid"
+    },
+    // this contols the hover color of the text fields
+    "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+      borderColor: '#FFBA00'
     }
   },
 
   // focused input text
   cssFocused: {
-    color: "#ffffff"
+    color: "#FFBA00"
   },
 
+  // sign-up and sign-in buttons
   submit: {
     margin: theme.spacing(3, 0, 2)
   },
+
   container: {
     // marginTop: 100,
     // marginBottom: 100,
     width: "auto"
     // backgroundColor: '#153B69',
   }
-}));
+}))
 
 const SignUpForm = _ => {
   const classes = useStyles();
@@ -151,7 +146,7 @@ const SignUpForm = _ => {
             className={classes.tabs}
             value={value}
             onChange={handleChange}
-            indicatorColor="primary"
+            indicatorColor={classes.indicator}
             centered
           >
             <Tab label="Register" />
@@ -199,6 +194,7 @@ const SignUpForm = _ => {
                         classes: {
                           root: classes.cssOutlinedInput,
                           focused: classes.cssFocused,
+                          hover: classes.cssHover,
                           notchedOutline: classes.notchedOutline
                         },
                         inputMode: "numeric"
@@ -290,7 +286,7 @@ const SignUpForm = _ => {
                   </Grid>
                 </Grid>
                 {
-                  <Link to="/">
+                  <Link className={classes.link} to="/">
                     <Button
                       onClick={registerUser}
                       type="button"
@@ -298,10 +294,9 @@ const SignUpForm = _ => {
                       variant="contained"
                       style={{
                         backgroundColor: "#FFBA00",
-                        color: "white",
+                        color: "#c12006",
                         fontWeight: "bold",
-                        textDecoration: "none",
-                      
+                        textDecoration: "none"
                       }}
                       className={classes.submit} >
                       Sign Up
@@ -390,7 +385,7 @@ const SignUpForm = _ => {
                 onClick={loginUser}
                 style={{
                   backgroundColor: "#FFBA00",
-                  color: "white",
+                  color: "#c12006",
                   fontWeight: "bold",
                   textDecoration: "none"
                 }}
@@ -398,7 +393,7 @@ const SignUpForm = _ => {
                 {/* {
                 isLoggedIn ? ( */}
                 {/* <Link to='/childrenForm'> */}
-                Log In
+                Sign In
                 {/* </Link> */}
                 {/* ) : */}
                 {/* <Link to='/welcome'> */}
