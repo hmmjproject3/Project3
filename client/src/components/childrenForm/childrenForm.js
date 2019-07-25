@@ -25,12 +25,16 @@ const useStyles = makeStyles(theme => ({
 
   // text field - bottom border line
   cssUnderline: {
-    borderBottom: '1px solid white'
+    borderBottom: '1px solid white',
+    '&$cssFocused': {
+      borderBottom: '2px solid #FFE200'
+    }
   },
 
   // focused text field - label and input text
   cssFocused: {
-    color: 'white !important',
+    color: '#FFE200 !important',
+    fontWeight: 'bold'
   },
 
 
