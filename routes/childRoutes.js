@@ -6,9 +6,18 @@ module.exports = app => {
   // GET all Children
   app.get('/children', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.find({})
-      .populate('chores')
+      // .populate('chores')
+      // .populate('rewards')
+      .populate([{
+        path: 'chores',
+        // model: 'Chore'
+    }, {
+        path: 'rewards',
+        // model: 'Reward'
+    }])
       .then(children => {
         res.json(children)
+        // console.log(children)
       })
       .catch(e => console.log(e))
   })
@@ -16,7 +25,15 @@ module.exports = app => {
   // Get one Child
   app.get('/children/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.findById(req.params.id)
-      .populate('chores')
+      // .populate('chores')
+      // .populate('rewards')
+      .populate([{
+        path: 'chores',
+        // model: 'Chore'
+    }, {
+        path: 'rewards',
+        // model: 'Reward'
+    }])
       .then(child => {
         res.json(child)
       })

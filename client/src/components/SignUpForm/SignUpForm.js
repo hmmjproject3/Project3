@@ -73,13 +73,16 @@ const useStyles = makeStyles(theme => ({
 
   // unfocused text field label
   cssLabel: {
-    color: "#ffffff"
+    color : 'white',
+    '&$cssFocused': {
+      color: '#FFE200',
+    }
   },
 
   // unfocused text field outline
   notchedOutline: {
-    border: "1 px",
-    borderColor: "#ffffff"
+    borderColor: 'white',
+    border: '1 px',
   },
 
   // focused text field outline

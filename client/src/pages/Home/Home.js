@@ -54,7 +54,7 @@ const Home = _ => {
                         style={{
                             fontSize: '25px'
                         }}
-                        href='/SignIn'>
+                        href='/signin'>
                         Sign-in / Register
                     </Fab>
                 </Grid>

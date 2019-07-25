@@ -7,7 +7,7 @@ import 'typeface-roboto'
 import MenuBar from '../../components/MenuBar'
 import ProgressChart from '../../components/ProgressChart'
 import SquadGoals from '../../components/SqualGoals/SquadGoals'
-import BonusChores from '../../components/BonusChores/BonusChores'
+import BonusChores from '../../components/BonusChores'
 
 
 const useStyles = makeStyles(theme => ({
