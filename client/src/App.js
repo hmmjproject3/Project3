@@ -197,7 +197,7 @@ const App = _ => {
         </ChoresContext.Provider>
 
         <ChoresContext.Provider value={choreState}>
-          <Route exact path='/chores' render={_ =>
+          <Route exact path='/chorespage' render={_ =>
             <Chorespage />
 
           } />
@@ -205,10 +205,10 @@ const App = _ => {
         </ChoresContext.Provider>
 
         <ChoresContext.Provider value={choreState}>
-        <Route exact path='/rewards' render={_ =>
+        <Route exact path='/rewardspage' render={_ =>
           <Rewards />
         } />
-        <Route exact path='/profile' render={_ =>
+        <Route exact path='/profilepage' render={_ =>
         <ProfilePage />
         }/>
         </ChoresContext.Provider>
