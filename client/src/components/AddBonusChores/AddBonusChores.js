@@ -450,19 +450,18 @@ const BonusChores = _ => {
                 </Grid>
             </Paper>
             <Grid item xs={12} style={{ textAlign: 'center' }}>
-                        <Button
+                        <Fab
                             className={classes.margin}
                             onClick={() => toggleAddView(!addView)}
                             style={{
-                                paddingLeft: '50px',
-                                paddingRight: '50px',
+                                padding: 'auto',
                                 color: 'white',
                                 backgroundColor: '#FFBA00',
-                                marginTop: '25px',
-                                width: 'auto'
+                                marginTop: '15px',
                             }}>
-                            Create New
-                        </Button>
+                            <AddIcon />
+
+                        </Fab>
                     </Grid>
         </>
     )

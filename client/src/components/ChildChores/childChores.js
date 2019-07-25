@@ -16,7 +16,7 @@ import Button from '@material-ui/core/Button'
 import AddKidChores from '../AddKidChores'
 import Fab from '@material-ui/core/Fab'
 import DeleteIcon from '@material-ui/icons/Delete'
-
+import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton'
 
 
@@ -119,12 +119,10 @@ const ChildChores = _ => {
                               <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                                 <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
                                 </TableCell>
+                                
                                 <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}</TableCell>
-                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                  <IconButton>
-                                    <ArrowDropDown />
-                                  </IconButton>
-                                </TableCell>
+
+                                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}</TableCell>
 
                                 <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
                                   <IconButton>
@@ -175,18 +173,18 @@ const ChildChores = _ => {
 
       </Paper>
       <div style={{textAlign: 'center'}}>
-      <Button variant="contained" className={classes.button} onClick={toggleThenAddChore}
+      <Fab className={classes.fab}
+       onClick={toggleThenAddChore}
        style={{
-       paddingLeft: '50px',
-       paddingRight: '50px',
+       padding: 'auto',
        color: 'white',
        backgroundColor: '#FFBA00',
-       marginTop: '25px',
-       width: 'auto'
+       marginTop: '15px',
        }}
         >
-          Assign Chores
-      </Button>
+      <AddIcon />
+
+      </Fab>
       </div>
     </div>
 
