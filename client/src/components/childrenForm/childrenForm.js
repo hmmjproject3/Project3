@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Button from '@material-ui/core/Button'
 import ChoresContext from '../../utils/ChoresContext'
+import randomColor from 'randomcolor'
 
 const useStyles = makeStyles(theme => ({
 
@@ -45,12 +46,13 @@ const ChildrenForm = _ => {
 
   const classes = useStyles()
   const { childArr, addChildren } = useContext(ChoresContext)
-  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0 }])
+  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0, color: ''}])
 
   const handleChange = (i, event) => {
     const names = [...inputs]
     names[i].name = event.target.value;
     names[i].totalPoints = 0
+    names[i].color = randomColor()
     setInputs(names)
   }
 
