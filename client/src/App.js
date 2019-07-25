@@ -169,13 +169,14 @@ const App = _ => {
     Chores.getAllChildren()
       .then(({ data }) => {
         console.log(data)
-        setChoreState({ ...choreState, childArr: data })
+        Chores.getAllRewards()
+        .then(({data: data1}) => {
+          console.log(data1)
+          setChoreState({...choreState, childArr: data,  rewardsArr: data1})
+        }).catch(e=>console.log(e))
       }).catch(e => console.log(e))
 
-    Chores.getAllRewards()
-      .then(({data}) => {
-        setChoreState({...choreState, rewardsArr: data})
-      }).catch(e=>console.log(e))
+
 
   }, [])
 
@@ -190,14 +191,14 @@ const App = _ => {
 
         <ChoresContext.Provider value={choreState}>
 
-          <Route exact path='/Dashboard' render={_ =>
+          <Route exact path='/dashboard' render={_ =>
             <Dashboard />
           } />
 
         </ChoresContext.Provider>
 
         <ChoresContext.Provider value={choreState}>
-          <Route exact path='/chores' render={_ =>
+          <Route exact path='/chorespage' render={_ =>
             <Chorespage />
 
           } />
@@ -205,17 +206,17 @@ const App = _ => {
         </ChoresContext.Provider>
 
         <ChoresContext.Provider value={choreState}>
-        <Route exact path='/rewards' render={_ =>
+        <Route exact path='/rewardspage' render={_ =>
           <Rewards />
         } />
-        <Route exact path='/ProfilePage' render={_ =>
+        <Route exact path='/profilepage' render={_ =>
         <ProfilePage />
         }/>
         </ChoresContext.Provider>
         
         <ChoresContext.Provider value={userState}>
 
-          <Route exact path='/SignIn' render={_ =>
+          <Route exact path='/signin' render={_ =>
             <SignUpPage />
           } />
 
@@ -223,7 +224,7 @@ const App = _ => {
 
 
         <ChoresContext.Provider value={choreState}>
-          <Route exact path='/childrenForm' render={_ =>
+          <Route exact path='/childrenform' render={_ =>
             <ChildrenFormPage />
           } />
 

@@ -35,6 +35,7 @@ passport.use(new JWTStrategy({
 ))
 
 require('./routes')(app)
+app.get('*', (req, res) => res.sendFile(join(__dirname, 'client', 'build', 'index.html')))
 
 require('mongoose').connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
   .then(_ => app.listen(process.env.PORT || 3001))
