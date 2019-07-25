@@ -9,25 +9,29 @@ const useStyles = makeStyles(theme => ({
     color: '#fff',
     backgroundColor: "#FFBA00",
     height: 50,
-    width: 50
+    width: 50,
+    fontSize: '25px'
   },
   orangeAvatar: {
     color: '#fff',
     backgroundColor: "#FF9300",
     height: 50,
-    width: 50
+    width: 50,
+    fontSize: '25px'
   },
   blueAvatar: {
     color: '#fff',
     backgroundColor: "#60B0F5",
     height: 50,
-    width: 50
+    width: 50,
+    fontSize: '25px'
   },
   purpleAvatar: {
     color: '#fff',
     backgroundColor: "#968AF2",
     height: 50,
-    width: 50
+    width: 50,
+    fontSize: '25px'
   },
   avatar: {
     margin: 0,
@@ -59,7 +63,7 @@ const FamilyOverview = _ => {
           <Avatar className={classes.blueAvatar}>M</Avatar>
         </Grid>
         <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>Matthew</Grid>
-        <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: '#968AF2', fontWeight: 'bold' }}>2000</Grid>
+        <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: '#60B0F5', fontWeight: 'bold' }}>2000</Grid>
       </Grid>
       <Grid item xs={12} md={3}>
         <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>

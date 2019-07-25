@@ -21,9 +21,9 @@ const useStyles = makeStyles({
   con: {
     flexGrow: 1,
   },
-  left: {
-    textAlign: "left",
-  },
+  // left: {
+  //   textAlign: "left",
+  // },
   right: {
     textAlign: "right",
   },
@@ -33,17 +33,47 @@ const useStyles = makeStyles({
     marginRight: 10,
     height: 48,
     width: 48,
+    display: 'inline-flex',
   },
-  iconLeft: {
-    marginLeft: 10,
-    maxHeight: 48,
-    maxWidth: 48,
-    display: "inline",
-    backgroundColor: "#E4ECF2",
-  },
-  avatar: {
+  peachAvatar: {
+    color: '#fff',
+    backgroundColor: "#FFBA00",
     height: 48,
     width: 48,
+    display: "inline",
+    marginRight: '5px',
+    display: 'inline-flex',
+    fontSize: '25px'
+  },
+  orangeAvatar: {
+    color: '#fff',
+    backgroundColor: "#FF9300",
+    height: 48,
+    width: 48,
+    marginRight: '5px',
+    display: 'inline-flex',
+    fontSize: '25px'
+  },
+  blueAvatar: {
+    color: '#fff',
+    backgroundColor: "#60B0F5",
+    height: 48,
+    width: 48,
+    marginRight: '5px',
+    display: 'inline-flex',
+    fontSize: '25px',
+  },
+  purpleAvatar: {
+    color: '#fff',
+    backgroundColor: "#968AF2",
+    height: 48,
+    width: 48,
+    marginRight: '5px',
+    display: 'inline-flex',
+    fontSize: '25px'
+  },
+  link: {
+    textDecoration: 'none'
   },
   appBar: {
     backgroundColor: "#E4ECF2",
@@ -51,7 +81,7 @@ const useStyles = makeStyles({
     position: 'initial',
     
   }
-});
+})
 
 export default function SimpleAppBar() {
   const classes = useStyles();
@@ -65,22 +95,14 @@ export default function SimpleAppBar() {
         <Grid className={classes.left} item xs={8}>
 
          <Link className={classes.link} to='/hamza'>
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Hamza} />
-         </Avatar>
+         <Avatar className={classes.peachAvatar}>H</Avatar>
         </Link>
 
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Matthew} />
-         </Avatar> 
+        <Avatar className={classes.blueAvatar}>M</Avatar>
 
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Jennifer} />
-         </Avatar>
+        <Avatar className={classes.orangeAvatar}>J</Avatar>
 
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Marianna} />
-         </Avatar>
+        <Avatar className={classes.purpleAvatar}>M</Avatar>
 
          </Grid>
         
