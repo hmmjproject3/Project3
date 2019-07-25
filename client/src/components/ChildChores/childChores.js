@@ -61,7 +61,7 @@ const ChildChores = _ => {
 
 
 
-  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward } = useContext(ChoresContext)
+  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
   const classes = useStyles()
 
 
@@ -135,18 +135,19 @@ const ChildChores = _ => {
 
 
                         child.chores.map((chore, i) => {
+                          console.log(chore)
                           return !editing[i] ?
-
 
 
                             <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
                               </TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}</TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}
+                              </TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                <IconButton>
-                                  <ArrowDropDown />
-                                </IconButton>
+                              </TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.isCompleted ? 'Completed' : 'Not Complete'}</TableCell>
+                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
                               </TableCell>
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
@@ -156,9 +157,17 @@ const ChildChores = _ => {
                               </TableCell>
 
                               <TableCell style={{ paddingLeft: '5px' }}>
-                                <Fab aria-label="Delete" className={classes.delBtn}>
+                                
+                                <Fab id={chore._id} onClick={event=>deleteAChore({
+                                  id: chore._id,
+                                  childId: chore.child
+                                })} aria-label="Delete" className={classes.delBtn}
+                        
+                                >
                                   <DeleteIcon className={classes.delIcon} />
                                 </Fab>
+                               
+                               
                               </TableCell>
 
 
