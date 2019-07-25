@@ -107,6 +107,8 @@ const ChildChores = _ => {
               window.location.reload()
             }).catch(e => console.log(e))
             }).catch(e => console.log(e))
+        }else{
+          window.location.reload()
         }
       })
   .catch (e => console.log(e));
