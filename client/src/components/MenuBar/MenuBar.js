@@ -7,15 +7,8 @@ import Home from '@material-ui/icons/Home';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import Quinton from '../../assets/quinton.png';
-import Hamza from '../../assets/hamza.png';
-import Jennifer from '../../assets/jennifer.png';
-import Matthew from '../../assets/matthew.png';
-import Marianna from '../../assets/marianna.png';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom'
-import Chores from '../../utils/Chores.js'
-
 
 const useStyles = makeStyles({
   root: {
@@ -24,9 +17,6 @@ const useStyles = makeStyles({
   con: {
     flexGrow: 1,
   },
-  // left: {
-  //   textAlign: "left",
-  // },
   right: {
     textAlign: "right",
   },
@@ -38,43 +28,6 @@ const useStyles = makeStyles({
     width: 48,
     display: 'inline-flex',
   },
-  // peachAvatar: {
-  //   color: '#fff',
-  //   backgroundColor: "#FFBA00",
-  //   height: 48,
-  //   width: 48,
-  //   display: "inline",
-  //   marginRight: '5px',
-  //   display: 'inline-flex',
-  //   fontSize: '25px'
-  // },
-  // orangeAvatar: {
-  //   color: '#fff',
-  //   backgroundColor: "#FF9300",
-  //   height: 48,
-  //   width: 48,
-  //   marginRight: '5px',
-  //   display: 'inline-flex',
-  //   fontSize: '25px'
-  // },
-  // blueAvatar: {
-  //   color: '#fff',
-  //   backgroundColor: "#60B0F5",
-  //   height: 48,
-  //   width: 48,
-  //   marginRight: '5px',
-  //   display: 'inline-flex',
-  //   fontSize: '25px',
-  // },
-  // avatar: {
-  //   color: '#fff',
-  //   backgroundColor: { color },
-  //   height: 48,
-  //   width: 48,
-  //   marginRight: '5px',
-  //   display: 'inline-flex',
-  //   fontSize: '25px'
-  // },
   link: {
     textDecoration: 'none'
   },
@@ -117,17 +70,7 @@ export default function SimpleAppBar() {
               )
             }
             )}
-
-
-
-            {/* // <Avatar className={classes.blueAvatar}>M</Avatar>
-
-            // <Avatar className={classes.orangeAvatar}>J</Avatar>
-
-            // <Avatar className={classes.purpleAvatar}>M</Avatar> */}
-
           </Grid>
-
 
           <Grid className={classes.right} item xs={4}>
 
@@ -150,20 +93,15 @@ export default function SimpleAppBar() {
               </IconButton>
             </Link>
 
-
-
             <Link className={classes.link} to='/'>
               <IconButton className={classes.iconsright}>
                 <Settings />
               </IconButton>
             </Link>
 
-
           </Grid>
         </Grid>
       </div>
-
-
     </div>
-  );
+  )
 }
