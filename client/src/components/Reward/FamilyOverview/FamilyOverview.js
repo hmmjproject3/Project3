@@ -6,22 +6,18 @@ import Avatar from '@material-ui/core/Avatar'
 
 const useStyles = makeStyles(theme => ({
     peachAvatar: {
-        margin: 0,
         color: '#fff',
         backgroundColor: "#FFBA00",
       },
       orangeAvatar: {
-        margin: 0,
         color: '#fff',
         backgroundColor: "#FF9300",
       },
       blueAvatar: {
-        margin: 0,
         color: '#fff',
         backgroundColor: "#60B0F5",
       },
       purpleAvatar: {
-        margin: 0,
         color: '#fff',
         backgroundColor: "#968AF2",
       },
