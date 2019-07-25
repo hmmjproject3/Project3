@@ -10,8 +10,8 @@ import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
 import ProfileComplete from '../../components/ProfileComplete'
-
-
+import PersonalOverview from '../../components/PersonalOverview'
+import ActiveChore from '../../components/ActiveChore'
 
 const useStyles = makeStyles({
   mainCon: {
@@ -63,7 +63,7 @@ const ProfilePage = _ => {
                 fontSize: '25px',
                 textAlign: 'left'
               }}>
-              <p style={{ margin: '0px', padding: '10px' }}>Family Overview</p>
+              <p style={{ margin: '0px', padding: '10px' }}>Marianna Overview</p>
             </Grid>
             <Grid item xs={12}
               id='usersOverviewBody'
@@ -71,7 +71,7 @@ const ProfilePage = _ => {
                 height: '175px',
                 backgroundColor: 'white'
               }}>
-              <FamilyOverview />
+              <PersonalOverview />
             </Grid>
           </Paper>
         </Grid>
@@ -79,7 +79,7 @@ const ProfilePage = _ => {
           <ProfileComplete />
         </Grid>
         <Grid item id='upForGrabsContainer' xs={12} md={6}>
-          <Grabs />
+          <ActiveChore />
         </Grid>
       </Grid>
     </div>
