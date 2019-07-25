@@ -52,7 +52,7 @@ cssOutlinedInput: {
 
 
 
-const UpForGrabs = _ => {
+const ActiveChore = _ => {
   const classes = useStyles()
   const [addView, toggleAddView] = useState(false)
   // const [editing, updateEdits] = useState({
@@ -63,13 +63,13 @@ const UpForGrabs = _ => {
     <div>
       <Paper style={{ marginTop: '10px' }} className={classes.root}>
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
-          <p style={{ margin: '0px', padding: '10px' }}>Up For Grabs</p>
+          <p style={{ margin: '0px', padding: '10px' }}>Chores In Progress</p>
         </Grid>
         <Grid item id='claimedChoresBody' xs={12} style={{ height: '300px', backgroundColor: 'white' }}>
           {!addView ? <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
+                <TableCell style={{ color: '#153B69', width: '70px' }}>Name</TableCell>
                 <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Cheddar</TableCell>
                 <TableCell style={{ color: '#153B69', width: '20px' }} align="left"></TableCell>
               </TableRow>
@@ -78,7 +78,7 @@ const UpForGrabs = _ => {
               {/* {rows.map(row => ( */}
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
-                  $100 Cash
+                  Washing the Windows
               </TableCell>
                 <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
                 <TableCell align="left">
@@ -89,7 +89,7 @@ const UpForGrabs = _ => {
               </TableRow>
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
-                  Really Cool Gift
+                  Detail the Cars
               </TableCell>
                 <TableCell align="left" style={{ color: '#FF9300' }}>5000</TableCell>
                 <TableCell align="left">
@@ -100,7 +100,7 @@ const UpForGrabs = _ => {
               </TableRow>
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
-                  $100 Cash
+                  Water the Plants
               </TableCell>
                 <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
                 <TableCell align="left">
@@ -157,19 +157,6 @@ const UpForGrabs = _ => {
               />
             </Form>
           </div>}
-          <Button
-            className={classes.margin}
-            onClick={() => toggleAddView(!addView)}
-            style={{
-              paddingLeft: '50px',
-              paddingRight: '50px',
-              color: 'white',
-              backgroundColor: '#FFBA00',
-              marginTop: '20px',
-              width: 'auto'
-            }}>
-            Create New
-          </Button>
         </Grid>
       </Paper>
     </div>
@@ -177,4 +164,4 @@ const UpForGrabs = _ => {
 }
 
 
-export default UpForGrabs
+export default ActiveChore
