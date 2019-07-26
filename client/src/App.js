@@ -132,7 +132,7 @@ const App = _ => {
         // Chores.getAllChildren()
         //   .then(({data}) =>  {
         //     setChoreState({...choreState, childArr: data, updatingTracker: choreState.updatingTracker ? true : false})
-          
+
 
         // Chores.getAllChildren()
         //   .then(({ data }) => {
@@ -143,7 +143,7 @@ const App = _ => {
         //   .catch(e => console.log(e));
       })
       .catch(e => console.log(e));
-    };
+  };
 
   choreState.addChildren = arr => {
     if (arr.length) {
@@ -266,31 +266,23 @@ const App = _ => {
   return (
     <>
       <Router>
-        <Route exact path="/" render={_ => Chores.verifyUser() ?  <Dashboard/> : <SignUpPage/>} />
-
-        <ChoresContext.Provider value={choreState}>
-          <Route exact path="/dashboard" render={_ => <Dashboard />} />
-        </ChoresContext.Provider>
-
-        <ChoresContext.Provider value={choreState}>
-          <Route exact path="/chorespage" render={_ => <Chorespage />} />
-        </ChoresContext.Provider>
-
-        <ChoresContext.Provider value={choreState}>
-          <Route exact path="/rewardspage" render={_ => <Rewards />} />
-          <Route exact path="/profilepage" render={_ => <ProfilePage />} />
-        </ChoresContext.Provider>
 
         <ChoresContext.Provider value={userState}>
           <Route exact path="/signin" render={_ => <SignUpPage />} />
         </ChoresContext.Provider>
 
         <ChoresContext.Provider value={choreState}>
-          <Route
-            exact
-            path="/childrenform"
-            render={_ => <ChildrenFormPage />}
-          />
+          <Route exact path="/" render={_ => Chores.verifyUser() ? <Dashboard /> : <SignUpPage />} />
+
+          <Route exact path="/dashboard" render={_ => <Dashboard />} />
+
+          <Route exact path="/chorespage" render={_ => <Chorespage />} />
+
+          <Route exact path="/rewardspage" render={_ => <Rewards />} />
+
+          <Route exact path="/profilepage" render={_ => <ProfilePage />} />
+
+          <Route exact path="/childrenform" render={_ => <ChildrenFormPage />} />
         </ChoresContext.Provider>
       </Router>
     </>
