@@ -131,7 +131,7 @@ const App = _ => {
       }).then(_ => {
         setChoreState({ ...choreState, childArr: arr });
       });
-      // window.location.href = '/chores'
+      window.location.href = '/chorespage'
     } else {
       alert("Please add children to continue");
     }
@@ -178,7 +178,8 @@ const App = _ => {
             isLoggedIn: data.isLoggedIn,
             userName: data.user
           });
-          console.log(userState.isLoggedIn);
+          window.location.href = "/childrenform";
+          // console.log(userState.isLoggedIn);
         }
       })
       .catch(e => console.error(e));
@@ -203,7 +204,7 @@ const App = _ => {
             isLoggedIn: data.isLoggedIn,
             userName: data.user
           });
-          window.location.href = "/";
+          window.location.href = "/dashboard";
         } else {
           alert("Invalid username or password");
         }
@@ -216,18 +217,6 @@ const App = _ => {
   //https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
   //I don't think what I have right now is idea but it works!
   useEffect(_ => {
-    // Chores.verifyUser()
-    //   .then(_ => {
-    //     if (window.location.pathname === '/welcome') {
-    //       window.location.href = '/'
-    //     }
-    //   }).catch(e => {
-    //     if (window.location.pathname !== '/welcome') {
-    //       window.location.href = '/welcome'
-    //     }
-    //     console.log(e)
-    //   })
-
     Chores.getAllChildren()
       .then(({ data }) => {
         // console.log(data);
