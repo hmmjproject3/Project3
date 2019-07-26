@@ -26,6 +26,7 @@ const App = _ => {
     rewardAmount: null
   });
 
+
   choreState.handleInputChange = event => {
     setChoreState({ ...choreState, [event.target.id]: event.target.value });
   };

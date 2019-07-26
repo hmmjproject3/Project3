@@ -15,8 +15,8 @@ const ProgressChart = _ => {
     datasets: [
       {
         // label: `This Week's Totals`,
-        backgroundColor: ['#FFBA00', '#60B0F5', '#FF9300', '#968AF2'],
-        borderColor: ['#FFBA00', '#60B0F5', '#FF9300', '#968AF2'],
+        backgroundColor: childArrToGraph.map(child => child.color),
+        borderColor: childArrToGraph.map(child => child.color),
         borderWidth: 1,
         // hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         // hoverBorderColor: 'rgba(255,99,132,1)',
