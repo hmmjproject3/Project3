@@ -5,6 +5,7 @@ import Settings from '@material-ui/icons/Settings';
 import LocalAtm from '@material-ui/icons/LocalAtm';
 import Home from '@material-ui/icons/Home';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
+import People from '@material-ui/icons/People'
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
@@ -93,9 +94,9 @@ export default function SimpleAppBar() {
               </IconButton>
             </Link>
 
-            <Link className={classes.link} to='/'>
+            <Link className={classes.link} to='/childrenform'>
               <IconButton className={classes.iconsright}>
-                <Settings />
+                <People />
               </IconButton>
             </Link>
 
