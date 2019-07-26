@@ -82,7 +82,6 @@ const Claimed = _ => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {rows.map(row => ( */}
                 { rewardsArr ?
                 rewardsArr.filter(reward => reward.isClaimed === true).map(eachReward => (
               <TableRow key='row.name'>
