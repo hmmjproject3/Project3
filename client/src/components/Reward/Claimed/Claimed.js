@@ -70,7 +70,7 @@ const Claimed = _ => {
           <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
         <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
-          {!addView ? <Table className={classes.table}>
+          <Table className={classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
@@ -114,60 +114,13 @@ const Claimed = _ => {
                 </TableCell>
               </TableRow>
             </TableBody>
-          </Table> :
-            <div>
-              <Form style={{ marginBottom: '10px', marginTop: '5px', marginRight: '10px', marginLeft: '10px', height: '200px', width: 'auto' }}>
-                <p style={{ marginTop: '20px', marginBottom: '10px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Edit Rewards</p>
-                <TextField
-                  id="outlined-name"
-                  label="Reward Name"
-                  className={classes.textField}
-                  margin="normal"
-                  variant="outlined"
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.cssLabel,
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.cssInput,
-                      focused: classes.cssFocused,
-                      underline: classes.cssUnderline,
-                    },
-                  }}
-                />
-                <TextField
-
-                  id="outlined-name"
-                  label="Points"
-                  className={classes.textField}
-                  margin="normal"
-                  variant="outlined"
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.cssLabel,
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.cssInput,
-                      focused: classes.cssFocused,
-                      underline: classes.cssUnderline,
-                    },
-                  }}
-                />
-              </Form>
-            </div>}
-
+          </Table> 
         </Grid>
 
       </Paper>
       <Button
         className={classes.margin}
-        onClick={() => toggleAddView(!addView)}
+        // onClick={() => toggleAddView(!addView)}
         style={{
           paddingLeft: '50px',
           paddingRight: '50px',
@@ -176,7 +129,7 @@ const Claimed = _ => {
           marginTop: '20px',
           width: 'auto'
         }}>
-        Edit Reward
+        Clear Rewards
           </Button>
     </div>
   )
