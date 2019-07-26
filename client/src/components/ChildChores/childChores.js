@@ -226,8 +226,9 @@ return (
                             <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}
                             </TableCell>
                             <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                            {chore.isCompleted ? 'Completed' : 'Not Complete'}
                             </TableCell>
-                            <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.isCompleted ? 'Completed' : 'Not Complete'}</TableCell>
+                            <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}></TableCell>
                             <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
                             </TableCell>
 

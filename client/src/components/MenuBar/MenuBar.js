@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react'
+import ChoresContext from '../../utils/ChoresContext'
 import { makeStyles } from '@material-ui/core/styles';
 import Settings from '@material-ui/icons/Settings';
 import LocalAtm from '@material-ui/icons/LocalAtm';
@@ -6,13 +7,8 @@ import Home from '@material-ui/icons/Home';
 import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import Quinton from '../../assets/quinton.png';
-import Hamza from '../../assets/hamza.png';
-import Jennifer from '../../assets/jennifer.png';
-import Matthew from '../../assets/matthew.png';
-import Marianna from '../../assets/marianna.png';
 import Avatar from '@material-ui/core/Avatar';
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -20,9 +16,6 @@ const useStyles = makeStyles({
   },
   con: {
     flexGrow: 1,
-  },
-  left: {
-    textAlign: "left",
   },
   right: {
     textAlign: "right",
@@ -33,93 +26,82 @@ const useStyles = makeStyles({
     marginRight: 10,
     height: 48,
     width: 48,
+    display: 'inline-flex',
   },
-  iconLeft: {
-    marginLeft: 10,
-    maxHeight: 48,
-    maxWidth: 48,
-    display: "inline",
-    backgroundColor: "#E4ECF2",
-  },
-  avatar: {
-    height: 48,
-    width: 48,
+  link: {
+    textDecoration: 'none'
   },
   appBar: {
     backgroundColor: "#E4ECF2",
     boxShadow: "none",
     position: 'initial',
-    
+
   }
-});
+})
 
 export default function SimpleAppBar() {
+  const { childArr } = useContext(ChoresContext)
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      
-        <div className={classes.con}>
+
+      <div className={classes.con}>
         <Grid container spacing={3}>
 
-        <Grid className={classes.left} item xs={8}>
+          <Grid className={classes.left} item xs={8}>
+            {childArr.map(({ name, color }) => {
+              return (
+                <Link className={classes.link} to='/hamza'>
+                  <Avatar
+                    className={classes.avatar}
+                    style={{
+                      color: '#fff',
+                      backgroundColor: `${color}`,
+                      height: 48,
+                      width: 48,
+                      marginRight: '5px',
+                      display: 'inline-flex',
+                      fontSize: '25px'
+                    }}
+                  >{name[0]}
+                  </Avatar>
+                </Link>
+              )
+            }
+            )}
+          </Grid>
 
-         <Link className={classes.link} to='/hamza'>
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Hamza} />
-         </Avatar>
-        </Link>
+          <Grid className={classes.right} item xs={4}>
 
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Matthew} />
-         </Avatar> 
-
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Jennifer} />
-         </Avatar>
-
-         <Avatar className={classes.iconLeft}>
-         <img className={classes.avatar} alt="Avatar" src={Marianna} />
-         </Avatar>
-
-         </Grid>
-        
-
-        <Grid className={classes.right} item xs={4}>
-
-        <Link className={classes.link} to='/'>
-        <IconButton className={classes.iconsright}>
-          <Home />
-        </IconButton>
-        </Link>
-
-
-        <Link className={classes.link} to='/chores'>
-        <IconButton className={classes.iconsright}>
-          <LocalLaundryService />
-        </IconButton>
-        </Link>
-
-        <Link className={classes.link} to='/rewards'>
-        <IconButton className={classes.iconsright}>
-        <LocalAtm />
-        </IconButton>
-        </Link>
-
-   
-
-        <Link className={classes.link} to='/'>
-        <IconButton className={classes.iconsright}>
-        <Settings />
-        </IconButton> 
-        </Link>
+            <Link className={classes.link} to='/Dashboard'>
+              <IconButton className={classes.iconsright}>
+                <Home />
+              </IconButton>
+            </Link>
 
 
+            <Link className={classes.link} to='/chorespage'>
+              <IconButton className={classes.iconsright}>
+                <LocalLaundryService />
+              </IconButton>
+            </Link>
+
+            <Link className={classes.link} to='/rewardspage'>
+              <IconButton className={classes.iconsright}>
+                <LocalAtm />
+              </IconButton>
+            </Link>
+
+            <Link className={classes.link} to='/'>
+              <IconButton className={classes.iconsright}>
+                <Settings />
+              </IconButton>
+            </Link>
+
+          </Grid>
         </Grid>
-        </Grid>
-        </div>
-      
-
+      </div>
     </div>
-  );
+  )
 }

@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Button from '@material-ui/core/Button'
 import ChoresContext from '../../utils/ChoresContext'
+import randomColor from 'randomcolor'
 
 const useStyles = makeStyles(theme => ({
 
@@ -45,12 +46,13 @@ const ChildrenForm = _ => {
 
   const classes = useStyles()
   const { childArr, addChildren } = useContext(ChoresContext)
-  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0 }])
+  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0, color: ''}])
 
   const handleChange = (i, event) => {
     const names = [...inputs]
     names[i].name = event.target.value;
     names[i].totalPoints = 0
+    names[i].color = randomColor({luminosity: 'dark'})
     setInputs(names)
   }
 
@@ -74,13 +76,16 @@ const ChildrenForm = _ => {
       </Typography>
       <Typography style={{ marginTop: '30px', marginBottom: '25px', textAlign: 'center', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '18px' }} variant="h6" gutterBottom>
         Add Children
+        <Fab style={{ minHeight: '0', height: '30px', width: '30px', color: '#153B69', backgroundColor: '#FFBA00', marginLeft: '10px' }} aria-label="Add" onClick={() => handleAdd()}>
+        <AddIcon />
+      </Fab>
         <br></br>
       </Typography>
 
       {inputs.map((input, idx) =>
         (
           <Grid container style={{ marginTop: '25px' }} spacing={3} key={`${input}-${idx}`}>
-            <Grid item xs={9} sm={9}>
+            <Grid item xs={10} sm={10}>
               <TextField
                 classes={{ label: 'label' }}
                 required
@@ -105,8 +110,8 @@ const ChildrenForm = _ => {
               />
             </Grid>
 
-            <Grid item xs={3} sm={3} style={{ paddingTop: '15px' }}>
-              <Fab style={{ height: '30px', width: '30px', color: '#ff0000', backgroundColor: '#153B69', marginLeft: '5px' }} aria-label="Delete" onClick={() => handleRemove(idx)}>
+            <Grid item xs={2} sm={2} style={{ paddingTop: '15px' }}>
+              <Fab style={{ height: '30px', width: '30px', color: '#ff0000', fontWeight: 'bold', backgroundColor: '#153B69', marginLeft: '0px' }} aria-label="Delete" onClick={() => handleRemove(idx)}>
                 <ClearIcon />
               </Fab>
 
@@ -115,9 +120,6 @@ const ChildrenForm = _ => {
         )
       )}
 
-      <Fab style={{ height: '30px', width: '30px', color: '#FFBA00', backgroundColor: '#153B69', marginRight: '5px' }} aria-label="Add" onClick={() => handleAdd()}>
-        <AddIcon />
-      </Fab>
       <Button
         type="button"
         fullWidth
