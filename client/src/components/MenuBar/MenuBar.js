@@ -53,7 +53,7 @@ export default function SimpleAppBar() {
           <Grid className={classes.left} item xs={8}>
             {childArr.map(({ name, color }) => {
               return (
-                <Link className={classes.link} to='/hamza'>
+                <Link className={classes.link} to='/profilepage'>
                   <Avatar
                     className={classes.avatar}
                     style={{
