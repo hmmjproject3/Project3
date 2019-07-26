@@ -39,17 +39,35 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#dce2e9',
     width: '350px'
   },
-  // form - focused input text
-  cssFocused: {
-    color: '#153B69 !important',
-    borderColor: '#153B69'
-  },
-  // form - focused text field outline
-  cssOutlinedInput: {
-    '&$cssFocused $notchedOutline': {
-      borderColor: `#FFBA00 !important`,
-      border: '2px solid'
+
+  // focused and unfocused text field label
+  cssLabel: {
+    '&$cssFocused': {
+      color: '#153B69',
+      fontWeight: 'bold'
     }
+  },
+
+  // unfocused text field outline
+  notchedOutline: {
+    border: '1 px',
+  },
+
+  // unfocused and focused text field outline
+  cssOutlinedInput: {
+    "&$cssFocused $notchedOutline": {
+      borderColor: `#153B69 !important`,
+      border: "2px solid"
+    },
+    // this contols the hover color of the text fields
+    "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
+      borderColor: '#153B69'
+    }
+  },
+
+  // focused input text
+  cssFocused: {
+    color: "#153B69"
   },
 }))
 
@@ -159,8 +177,8 @@ const UpForGrabs = _ => {
 
 
             <div>
-              <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
-                <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
+              <Form style={{ marginBottom: '50px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
+                <p style={{ textAlign: 'center', fontSize: '20px', color: '#153B69', marginBottom: '10px' }}>Create a Reward</p>
                 <TextField
                   id="rewardName"
                   onChange={handleInputChange}
@@ -171,15 +189,17 @@ const UpForGrabs = _ => {
                   InputLabelProps={{
                     classes: {
                       root: classes.cssLabel,
-                      focused: classes.cssFocused,
-                    },
+                      focused: classes.cssFocused
+                    }
                   }}
                   InputProps={{
                     classes: {
-                      root: classes.cssInput,
+                      root: classes.cssOutlinedInput,
                       focused: classes.cssFocused,
-                      underline: classes.cssUnderline,
+                      hover: classes.cssHover,
+                      notchedOutline: classes.notchedOutline
                     },
+                    inputMode: "numeric"
                   }}
                 />
                 <TextField
@@ -192,14 +212,18 @@ const UpForGrabs = _ => {
                   variant="outlined"
                   InputLabelProps={{
                     classes: {
-                      focused: classes.cssFocused,
-                    },
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused
+                    }
                   }}
                   InputProps={{
                     classes: {
-                      root: classes.cssInput,
+                      root: classes.cssOutlinedInput,
                       focused: classes.cssFocused,
+                      hover: classes.cssHover,
+                      notchedOutline: classes.notchedOutline
                     },
+                    inputMode: "numeric"
                   }}
                 />
               </Form>

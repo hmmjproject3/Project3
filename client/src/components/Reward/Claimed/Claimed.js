@@ -72,7 +72,7 @@ const Claimed = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white', overflowY: 'auto' }}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
@@ -81,7 +81,7 @@ const Claimed = _ => {
                 <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Claimed By</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody >
                 { rewardsArr ?
                 rewardsArr.filter(reward => reward.isClaimed === true).map(eachReward => (
               <TableRow key='row.name'>
@@ -109,19 +109,6 @@ const Claimed = _ => {
         </Grid>
 
       </Paper>
-      <Button
-        className={classes.margin}
-        // onClick={() => toggleAddView(!addView)}
-        style={{
-          paddingLeft: '50px',
-          paddingRight: '50px',
-          color: 'white',
-          backgroundColor: '#FFBA00',
-          marginTop: '20px',
-          width: 'auto'
-        }}>
-        Clear Rewards
-          </Button>
     </div>
   )
 }

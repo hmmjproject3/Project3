@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     indicatorColor: '#c12006'
   },
 
-  // unfocused text field label
+  // focused and unfocused text field label
   cssLabel: {
     color: 'white',
     '&$cssFocused': {

@@ -40,3 +40,6 @@ app.get('*', (req, res) => res.sendFile(join(__dirname, 'client', 'build', 'inde
 require('mongoose').connect(MONGODB_URI, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true })
   .then(_ => app.listen(process.env.PORT || 3001))
   .catch(e => console.log(e))
+
+
+  //mongodb://hizzy:bootcamp2019@ds355357.mlab.com:55357/heroku_nzxvm7k8

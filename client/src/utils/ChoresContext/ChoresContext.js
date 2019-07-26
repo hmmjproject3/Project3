@@ -48,6 +48,8 @@ const ChoresContext = createContext({
   _userPassword: '',
   isLoggedIn: false,
 
+  updatingTracker: false
+
 })
 
 export default ChoresContext
