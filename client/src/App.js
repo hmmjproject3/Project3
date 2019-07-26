@@ -72,6 +72,7 @@ const App = _ => {
     Chores.deleteChore(data.id)
     .then(_ => {
       window.location.reload()
+        
         // Chores.getAllChildren()
         //   .then(({ data }) => {
         //     setChoreState(prev => {
