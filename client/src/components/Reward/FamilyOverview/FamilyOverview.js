@@ -5,7 +5,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Avatar from '@material-ui/core/Avatar'
 
-const useStyles = makeStyles(theme => ({}))
+const useStyles = makeStyles(theme => ({
+  familyGrid: {
+    overflow: 'auto'
+  }
+}))
 
 
 const FamilyOverview = _ => {
@@ -13,7 +17,7 @@ const FamilyOverview = _ => {
   const classes = useStyles()
 
   return (
-    <Grid container>
+    <Grid container className={classes.familyGrid}>
       {childArr.map(({ name, color, totalPoints }) => {
         return (
           <Grid item xs={12} md={3}>

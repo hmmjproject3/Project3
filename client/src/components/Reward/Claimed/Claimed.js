@@ -109,19 +109,6 @@ const Claimed = _ => {
         </Grid>
 
       </Paper>
-      <Button
-        className={classes.margin}
-        // onClick={() => toggleAddView(!addView)}
-        style={{
-          paddingLeft: '50px',
-          paddingRight: '50px',
-          color: 'white',
-          backgroundColor: '#FFBA00',
-          marginTop: '20px',
-          width: 'auto'
-        }}>
-        Clear Rewards
-          </Button>
     </div>
   )
 }
