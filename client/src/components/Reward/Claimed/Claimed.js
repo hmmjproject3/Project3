@@ -96,11 +96,11 @@ const Claimed = _ => {
                 style={{
                   color: '#fff',
                   backgroundColor: `${eachReward.child.color}`,
-                  height: 48,
-                  width: 48,
+                  height: 28,
+                  width: 28,
                   marginRight: '5px',
                   display: 'inline-flex',
-                  fontSize: '25px'
+                  fontSize: '15px'
                 }}>{eachReward.child.name[0]}</Avatar>
                 </TableCell>
                 </TableRow> )) : null
