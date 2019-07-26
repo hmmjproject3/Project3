@@ -257,10 +257,10 @@ const [currentChore, setCurrentChore] = useState({
                             <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.name}
                               </TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>{chore.points}
+                              <TableCell style={{ color: '#FF9300', width: '20px', paddingRight: '10px' }}>{chore.points}
                               </TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                                {chore.isCompleted ? 'Completed' : 'Not Complete'}
+                                {chore.isCompleted ? 'Completed' : 'Not Completed'}
                               </TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}></TableCell>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
