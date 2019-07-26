@@ -151,7 +151,7 @@ const BonusChores = _ => {
                 </TableRow>
                 :
                 <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>Wash the car</TableCell>
+                  <TableCell component="th" scope="row" style={{ color: '#153B69', paddingRight: '5px' }}>Wash the car</TableCell>
                   <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>300</TableCell>
                   <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
                     <Fab size='small' aria-label="Add" className={classes.addBtn}>
@@ -197,7 +197,7 @@ const BonusChores = _ => {
                 </TableRow>
                 :
                 <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>Clean Out Garage</TableCell>
+                  <TableCell component="th" scope="row" style={{ color: '#153B69', paddingRight: '5px' }}>Clean Out Garage</TableCell>
                   <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>500</TableCell>
                   <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
                     <Avatar className={classes.iconLeft} style={{ backgroundColor: '#60B0F5' }}>
@@ -243,7 +243,7 @@ const BonusChores = _ => {
                 </TableRow>
                 :
                 <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>Walk the Dogs</TableCell>
+                  <TableCell component="th" scope="row" style={{ color: '#153B69', paddingRight: '5px' }}>Walk the Dogs</TableCell>
                   <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>100</TableCell>
                   <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
                     <Avatar className={classes.iconLeft} style={{ backgroundColor: '#FFBA00' }}>
@@ -289,7 +289,7 @@ const BonusChores = _ => {
                 </TableRow>
                 :
                 <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>Wash the Windows</TableCell>
+                  <TableCell component="th" scope="row" style={{ color: '#153B69', paddingRight: '5px' }}>Wash the Windows</TableCell>
                   <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>300</TableCell>
                   <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
                     <Fab size='small' aria-label="Add" className={classes.addBtn}>
@@ -335,7 +335,7 @@ const BonusChores = _ => {
                 </TableRow>
                 :
                 <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>Mop Kitchen Floor</TableCell>
+                  <TableCell component="th" scope="row" style={{ color: '#153B69', paddingRight: '5px' }}>Mop Kitchen Floor</TableCell>
                   <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>50</TableCell>
                   <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
                     <Fab size='small' aria-label="Add" className={classes.addBtn}>
@@ -344,52 +344,6 @@ const BonusChores = _ => {
                   </TableCell>
                   <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
                     <Fab onClick={() => toggleEdit("5")} color="secondary" aria-label="Edit" className={classes.editBtn}>
-                      <Icon className={classes.editIcon}>edit_icon</Icon>
-                    </Fab>
-                  </TableCell>
-                  <TableCell style={{ paddingLeft: '5px' }}>
-                    <Fab aria-label="Delete" className={classes.delBtn}>
-                      <DeleteIcon className={classes.delIcon} />
-                    </Fab>
-                  </TableCell>
-                </TableRow>
-              }
-              {editing["6"] ?
-                <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>
-                    <input className={classes.taskEdit}></input>
-                  </TableCell>
-                  <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>
-                    <input className={classes.taskEdit}></input>
-                  </TableCell>
-                  <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
-                    <Fab size='small' aria-label="Add" className={classes.addBtn}>
-                      <AddIcon className={classes.addIcon} />
-                    </Fab>
-
-                  </TableCell>
-                  <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                    <Fab onClick={() => toggleEdit("6")} color="secondary" aria-label="Edit" className={classes.editBtn}>
-                      <Icon className={classes.editIcon}>edit_icon</Icon>
-                    </Fab>
-                  </TableCell>
-                  <TableCell style={{ paddingLeft: '5px', paddingRight: '20px' }}>
-                    <Fab aria-label="Delete" className={classes.delBtn}>
-                      <DeleteIcon className={classes.delIcon} />
-                    </Fab>
-                  </TableCell>
-                </TableRow>
-                :
-                <TableRow key='row.name'>
-                  <TableCell component="th" scope="row" style={{ paddingRight: '5px' }}>Make Dinner</TableCell>
-                  <TableCell align="left" style={{ color: '#FF9300', paddingRight: '5px' }}>100</TableCell>
-                  <TableCell align="left" style={{ color: '#60B0F5', fontWeight: 'bold', paddingLeft: '5px', paddingRight: '5px' }}>
-                    <Fab size='small' aria-label="Add" className={classes.addBtn}>
-                      <AddIcon className={classes.addIcon} />
-                    </Fab>
-                  </TableCell>
-                  <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                    <Fab onClick={() => toggleEdit("6")} color="secondary" aria-label="Edit" className={classes.editBtn}>
                       <Icon className={classes.editIcon}>edit_icon</Icon>
                     </Fab>
                   </TableCell>
@@ -427,43 +381,43 @@ const BonusChores = _ => {
                 />
                 <TextField
 
-                                    id="outlined-name"
-                                    label="Points"
-                                    className={classes.textField}
-                                    margin="normal"
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        classes: {
-                                            focused: classes.cssFocused,
-                                        },
-                                    }}
-                                    InputProps={{
-                                        classes: {
-                                            root: classes.cssInput,
-                                            focused: classes.cssFocused,
-                                        },
-                                    }}
-                                />
-                            </Form>
-                        </div>}
-                </Grid>
-            </Paper>
-            <Grid item xs={12} style={{ textAlign: 'center' }}>
-                        <Fab
-                            className={classes.margin}
-                            onClick={() => toggleAddView(!addView)}
-                            style={{
-                                padding: 'auto',
-                                color: 'white',
-                                backgroundColor: '#FFBA00',
-                                marginTop: '15px',
-                            }}>
-                            <AddIcon />
+                  id="outlined-name"
+                  label="Points"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  InputLabelProps={{
+                    classes: {
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssInput,
+                      focused: classes.cssFocused,
+                    },
+                  }}
+                />
+              </Form>
+            </div>}
+        </Grid>
+      </Paper>
+      <Grid item xs={12} style={{ textAlign: 'center' }}>
+        <Fab
+          className={classes.margin}
+          onClick={() => toggleAddView(!addView)}
+          style={{
+            padding: 'auto',
+            color: 'white',
+            backgroundColor: '#FFBA00',
+            marginTop: '15px',
+          }}>
+          <AddIcon />
 
-                        </Fab>
-                    </Grid>
-        </>
-    )
+        </Fab>
+      </Grid>
+    </>
+  )
 }
 
 export default BonusChores
