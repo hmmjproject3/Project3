@@ -230,7 +230,7 @@ const App = _ => {
 
     Chores.getAllChildren()
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         Chores.getAllRewards()
           .then(({ data: data1 }) => {
             console.log(data1);
