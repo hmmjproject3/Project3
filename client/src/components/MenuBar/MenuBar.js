@@ -74,20 +74,20 @@ export default function SimpleAppBar() {
 
           <Grid className={classes.right} item xs={4}>
 
-            <Link className={classes.link} to='/'>
+            <Link className={classes.link} to='/Dashboard'>
               <IconButton className={classes.iconsright}>
                 <Home />
               </IconButton>
             </Link>
 
 
-            <Link className={classes.link} to='/chores'>
+            <Link className={classes.link} to='/chorespage'>
               <IconButton className={classes.iconsright}>
                 <LocalLaundryService />
               </IconButton>
             </Link>
 
-            <Link className={classes.link} to='/rewards'>
+            <Link className={classes.link} to='/rewardspage'>
               <IconButton className={classes.iconsright}>
                 <LocalAtm />
               </IconButton>
