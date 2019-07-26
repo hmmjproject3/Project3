@@ -20,6 +20,7 @@ const App = _ => {
     childArr: [],
     reward: {},
     rewardsArr: [],
+    claimedRewardsArr: [],
     choreName: "",
     cheddarReward: null,
     rewardName: "",
@@ -31,8 +32,48 @@ const App = _ => {
     setChoreState({ ...choreState, [event.target.id]: event.target.value });
   };
 
+  choreState.addReward = event => {
+    event.preventDefault();
+    const reward = {
+      name: choreState.rewardName,
+      points: parseInt(choreState.rewardAmount),
+      isClaimed: false
+    };
+    // console.log(reward)
+
+    Chores.addReward(reward).then(_ => {
+      Chores.getAllRewards()
+        .then(({ data }) => {
+          setChoreState({
+            ...choreState,
+            rewardName: "",
+            rewardAmount: null,
+            rewardsArr: data,
+          });
+          console.log(data)
+        })
+        .catch(e => console.log(e));
+    }).catch(e => console.log(e));
+  };
+
   choreState.assignReward = event => {
-    console.log(event.target);
+    console.log(event.target.id);
+    console.log(event.target.getAttribute('rewardid'))
+
+    const updateRewardInfo = {
+      isClaimed: true,
+      child: event.target.id
+    }
+
+    Chores.updateReward(event.target.getAttribute('rewardid'), updateRewardInfo)
+      .then(_ => {
+        Chores.getAllRewards()
+          .then(({ data }) => {
+            const claimedRewards = data.filter(reward => reward.isClaimed === true)
+            //  console.log(claimedRewards)
+            setChoreState({ ...choreState, rewardsArr: data, claimedRewardsArr: claimedRewards })
+          }).catch(e => console.log(e))
+      }).catch(e => console.log(e))
   };
 
   choreState.addChore = event => {
@@ -61,19 +102,17 @@ const App = _ => {
           // console.log(choreState.childArr)
         })
         .catch(e => console.log(e));
-    });
+    }).catch(e => console.log(e));
   };
 
-  choreState.addReward = event => {
-    event.preventDefault();
-  };
+
 
   choreState.deleteAChore = data => {
     console.log(data);
     Chores.deleteChore(data.id)
-    .then(_ => {
-      window.location.reload()
-        
+      .then(_ => {
+        window.location.reload()
+
         // Chores.getAllChildren()
         //   .then(({ data }) => {
         //     setChoreState(prev => {

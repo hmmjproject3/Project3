@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const UpForGrabs = _ => {
-  const { childArr, handleInputChange, assignReward, rewardsArr } = useContext(ChoresContext)
+  const { childArr, handleInputChange, assignReward, rewardsArr, addReward } = useContext(ChoresContext)
   const classes = useStyles()
   const [addView, toggleAddView] = useState(false)
   // const [editing, updateEdits] = useState({
@@ -70,7 +70,7 @@ const UpForGrabs = _ => {
 
   function handleClick(event) {
 
-    console.log(childArr)
+    // console.log(childArr)
     setAnchorEl(event.currentTarget);
 
   }
@@ -79,8 +79,16 @@ const UpForGrabs = _ => {
     setAnchorEl(null);
   }
 
+  const toggleThenAddReward= event => {
+    toggleAddView(!addView)
+  
+    if (addView) {
+      addReward(event)
+    }
+  }
 
-  console.log(childArr)
+
+  // console.log(childArr)
 
   return (
 
@@ -104,7 +112,7 @@ const UpForGrabs = _ => {
 
               <TableBody>
                 {rewardsArr ?
-                  rewardsArr.filter(rewards => rewards.isClaimed === false).map(eachReward => (
+                  rewardsArr.filter(reward => reward.isClaimed === false).map(eachReward => (
                     <TableRow key='row.name'>
                       <TableCell component="th" scope="row">
                         {eachReward.name}
@@ -130,7 +138,7 @@ const UpForGrabs = _ => {
                           {
                             // console.log(childArr)
                             childArr.map(child => (
-                              <MenuItem id={child._id} onClick={event => { assignReward(event); handleClose() }}>
+                              <MenuItem id={child._id} rewardid={eachReward._id} onClick={event => { assignReward(event); handleClose() }}>
                                 {child.name}
                               </MenuItem>
                             ))
@@ -154,7 +162,8 @@ const UpForGrabs = _ => {
               <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
                 <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Create a New Bonus Chore</p>
                 <TextField
-                  id="outlined-name"
+                  id="rewardName"
+                  onChange={handleInputChange}
                   label="Task Name"
                   className={classes.textField}
                   margin="normal"
@@ -175,7 +184,8 @@ const UpForGrabs = _ => {
                 />
                 <TextField
 
-                  id="outlined-name"
+                  id="rewardAmount"
+                  onChange={handleInputChange}
                   label="Points"
                   className={classes.textField}
                   margin="normal"
@@ -199,7 +209,7 @@ const UpForGrabs = _ => {
       </Paper>
       <Button
         className={classes.margin}
-        onClick={() => toggleAddView(!addView)}
+        onClick={(event) => toggleThenAddReward(event)}
         style={{
           paddingLeft: '50px',
           paddingRight: '50px',
