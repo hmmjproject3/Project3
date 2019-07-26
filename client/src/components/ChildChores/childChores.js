@@ -17,7 +17,8 @@ import AddKidChores from '../AddKidChores'
 import Fab from '@material-ui/core/Fab'
 import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/Add'
+import Save from '@material-ui/icons/Save'
 import IconButton from '@material-ui/core/IconButton'
 import Chores from '../../utils/Chores.js'
 
@@ -196,7 +197,7 @@ return (
 
                             <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
                               <Fab id={chore._id} assignedTo={chore.child} onClick={(event) => { toggleEdit(i); updateAChore(event) }} color="secondary" aria-label="Edit" className={classes.editBtn}>
-                                <Icon className={classes.editIcon}>edit_icon</Icon>
+                                <Save className={classes.editIcon} />
                               </Fab>
                             </TableCell>
 
