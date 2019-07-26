@@ -23,6 +23,7 @@ const ChoresContext = createContext({
   childArr: [],
   reward: {},
   rewardsArr: [],
+  claimedRewardsArr: [],
   choreName: '',
   cheddarReward: Number,
   rewardName: '',

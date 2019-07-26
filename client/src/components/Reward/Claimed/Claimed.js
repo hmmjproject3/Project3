@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import 'typeface-roboto'
 import Form from '@material-ui/core/FormControl'
@@ -16,6 +16,8 @@ import Jennifer from '../../../assets/jennifer.png'
 import Matthew from '../../../assets/matthew.png'
 import Marianna from '../../../assets/marianna.png'
 import Button from '@material-ui/core/Button'
+import ChoresContext from '../../../utils/ChoresContext'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -59,6 +61,7 @@ const useStyles = makeStyles(theme => ({
 const Claimed = _ => {
   const classes = useStyles()
   const [addView, toggleAddView] = useState(false)
+  const { childArr, handleInputChange, assignReward, rewardsArr, addReward } = useContext(ChoresContext)
   // const [editing, updateEdits] = useState({
   //   id: false
   // })
@@ -70,7 +73,7 @@ const Claimed = _ => {
           <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
         <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
-          {!addView ? <Table className={classes.table}>
+          <Table className={classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
@@ -80,94 +83,36 @@ const Claimed = _ => {
             </TableHead>
             <TableBody>
               {/* {rows.map(row => ( */}
+                { rewardsArr ?
+                rewardsArr.filter(reward => reward.isClaimed === true).map(eachReward => (
               <TableRow key='row.name'>
                 <TableCell component="th" scope="row">
-                  $100 Cash
+                  {eachReward.name}
               </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
+                <TableCell align="left" style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
                 <TableCell align="left">
-                  <Avatar className={classes.iconLeft} style={{ backgroundColor: '#968AF2' }}>
-                    <img className={classes.avatar} alt="Avatar" src={Marianna} />
-                  </Avatar>
+                <Avatar
+                className={classes.avatar}
+                style={{
+                  color: '#fff',
+                  backgroundColor: `${eachReward.child.color}`,
+                  height: 28,
+                  width: 28,
+                  marginRight: '5px',
+                  display: 'inline-flex',
+                  fontSize: '15px'
+                }}>{eachReward.child.name[0]}</Avatar>
                 </TableCell>
-              </TableRow>
-              <TableRow key='row.name'>
-                <TableCell component="th" scope="row">
-                  Really Cool Gift
-              </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>5000</TableCell>
-                <TableCell align="left">
-                  <Avatar className={classes.iconLeft} style={{ backgroundColor: '#FFBA00' }}>
-                    <img className={classes.avatar} alt="Avatar" src={Hamza} />
-                  </Avatar>
-                </TableCell>
-              </TableRow>
-              <TableRow key='row.name'>
-                <TableCell component="th" scope="row">
-                  $100 Cash
-              </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>500</TableCell>
-                <TableCell align="left">
-                  <Avatar className={classes.iconLeft} style={{ backgroundColor: '#60B0F5' }}>
-                    <img className={classes.avatar} alt="Avatar" src={Matthew} />
-                  </Avatar>
-                </TableCell>
-              </TableRow>
+                </TableRow> )) : null
+              }
             </TableBody>
-          </Table> :
-            <div>
-              <Form style={{ marginBottom: '10px', marginTop: '5px', marginRight: '10px', marginLeft: '10px', height: '200px', width: 'auto' }}>
-                <p style={{ marginTop: '20px', marginBottom: '10px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Edit Rewards</p>
-                <TextField
-                  id="outlined-name"
-                  label="Reward Name"
-                  className={classes.textField}
-                  margin="normal"
-                  variant="outlined"
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.cssLabel,
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.cssInput,
-                      focused: classes.cssFocused,
-                      underline: classes.cssUnderline,
-                    },
-                  }}
-                />
-                <TextField
-
-                  id="outlined-name"
-                  label="Points"
-                  className={classes.textField}
-                  margin="normal"
-                  variant="outlined"
-                  InputLabelProps={{
-                    classes: {
-                      root: classes.cssLabel,
-                      focused: classes.cssFocused,
-                    },
-                  }}
-                  InputProps={{
-                    classes: {
-                      root: classes.cssInput,
-                      focused: classes.cssFocused,
-                      underline: classes.cssUnderline,
-                    },
-                  }}
-                />
-              </Form>
-            </div>}
-
+          </Table> 
         </Grid>
 
       </Paper>
       <Button
         className={classes.margin}
-        onClick={() => toggleAddView(!addView)}
+        // onClick={() => toggleAddView(!addView)}
         style={{
           paddingLeft: '50px',
           paddingRight: '50px',
@@ -176,7 +121,7 @@ const Claimed = _ => {
           marginTop: '20px',
           width: 'auto'
         }}>
-        Edit Reward
+        Clear Rewards
           </Button>
     </div>
   )
