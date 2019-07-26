@@ -233,7 +233,7 @@ const App = _ => {
   return (
     <>
       <Router>
-        <Route exact path="/" render={_ => <Home />} />
+        <Route exact path="/" render={_ =>  <Home />} />
 
         <ChoresContext.Provider value={choreState}>
           <Route exact path="/dashboard" render={_ => <Dashboard />} />
