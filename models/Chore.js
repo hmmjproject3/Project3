@@ -9,6 +9,9 @@ module.exports = (Schema, model) => {
     isCompleted: {
       type: Boolean
     },
+    isClaimed: {
+      type: Boolean
+    },
     isBonus: {
       type: Boolean
     },

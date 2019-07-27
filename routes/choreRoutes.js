@@ -46,8 +46,23 @@ module.exports = app => {
   //PUT a chore
 
   app.put('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Chore.findByIdAndUpdate(req.params.id, req.body)
-      .then(_ => res.sendStatus(200))
+    Chore.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      upsert: true,
+      runValidators: true,
+      setDefaultsOnInsert: true,
+      populate: {path: 'child', populate: {path: 'chores'}}
+  })
+      // .then(_ => res.sendStatus(200))
+      .then(({ _id, child }) => {
+        Child.updateOne({ _id: child }, { $push: { chores: _id } })
+          .then( _id => 
+            res.sendStatus(200)
+            // console.log(r)
+          
+          )
+          .catch(e => console.log(e))
+      })
       .catch(e => console.log(e))
   })
 

@@ -103,7 +103,8 @@ const App = _ => {
       points: parseInt(choreState.cheddarReward),
       child: choreState.child._id,
       isCompleted: false,
-      isBonus: false
+      isBonus: false,
+      isClaimed: true,
     };
 
     Chores.addChore(chore).then(_ => {
@@ -124,7 +125,72 @@ const App = _ => {
     }).catch(e => console.log(e));
   };
 
+  choreState.addBonusChore = event => {
+    event.preventDefault();
+    const chore = {
+      name: choreState.choreName,
+      points: parseInt(choreState.cheddarReward),
+      isCompleted: false,
+      isBonus: true,
+      isClaimed: false
+    };
 
+    Chores.addChore(chore).then(_ => {
+      // Chores.getAllChildren()
+      //   .then(({ data }) => {
+      //     const childUpdate = data.filter(
+      //       child => child._id === chore.child
+      //     )[0];
+      //     setChoreState({
+      //       ...choreState,
+      //       choreName: "",
+      //       cheddarReward: null,
+      //       childArr: data,
+      //       child: childUpdate
+      //     });
+      //   })
+      Chores.getAllChores()
+        .then(({data})=>{ setChoreState({...choreState, choresArr:data})})
+        .catch(e => console.log(e));
+    }).catch(e => console.log(e));
+  };
+
+
+
+  choreState.assignBonusChore = event => {
+
+    const choreId = event.target.getAttribute('choreid')
+    const childId = event.target.id
+    // let difference
+
+    const updateChoreInfo = {
+      child: childId,
+      isClaimed: true
+    }
+
+    Chores.updateChore(event.target.getAttribute('choreid'), updateChoreInfo)
+    .then(_ => {
+
+      // Chores.getOneChild(childId)
+      //   .then(({ data }) => {
+
+
+          Chores.getAllChores()
+            .then(({ data: dataChores }) => {
+              console.log(dataChores)
+                Chores.getAllChildren()
+                  .then(({ data: myKids }) => {
+                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores })
+                    console.log(myKids)
+                  })
+                  .catch(e => console.log(e));
+              // })
+              //   .catch(e => console.log(e));
+            })
+            .catch(e => console.log(e))
+        // }).catch(e => console.log(e))
+    }).catch(e => console.log(e))
+}
 
   choreState.deleteAChore = data => {
     Chores.deleteChore(data.id)
