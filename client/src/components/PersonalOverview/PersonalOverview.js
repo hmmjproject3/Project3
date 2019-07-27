@@ -25,12 +25,11 @@ const PersonalOverview = _ => {
     console.log(profile)
     return (
         <Grid container>
-            <Grid item xs={12} md={3}>
 
 
-                <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>
+                <Grid item xs={12} md={12} style={{ marginTop: '0px', textAlign: 'center' }}>
                     <Avatar
-                        className={classes.avatar}
+                        className={classes.avatarBig}
                         style={{
                             backgroundColor: '#968AF2',
                             color: '#fff',
@@ -40,13 +39,13 @@ const PersonalOverview = _ => {
                             marginRight: '5px',
                             display: 'inline-flex',
                             fontSize: '25px',
+                            textAlign: 'center'
                         }}>{profile.name ? `${profile.name}`.charAt(0) : 'M'}
                     </Avatar>
                 </Grid>
-                <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>{profile.name}</Grid>
-                <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: `${profile.color}`, fontWeight: 'bold' }}>{profile.totalPoints}</Grid>
+                <Grid item xs={12} md={12} style={{ color: '#153B69', marginTop: '10px', fontFamily: 'roboto', fontSize: '40px' }}>{profile.name}</Grid>
+                <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '40px', color: `${profile.color}`, fontWeight: 'bold' }}>{profile.totalPoints}</Grid>
 
-            </Grid>
         </Grid>
     )
 }
