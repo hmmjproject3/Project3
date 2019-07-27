@@ -10,7 +10,7 @@ module.exports = app => {
     User.register(new User({
       name: req.body.name,
       username: req.body.username,
-      email: req.body.email,
+      email: req.body.email
     }), req.body.password, e => {
       if (e) throw e
       User.authenticate()(req.body.username, req.body.password, (e, user) => {

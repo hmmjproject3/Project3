@@ -1,198 +1,189 @@
-import React, { useContext, useState, useRef, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
-import Selection from '../Selection'
-import ChoresContext from '../../utils/ChoresContext'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import ArrowDropDown from '@material-ui/icons/ExpandMore'
-import Delete from '@material-ui/icons/Delete'
-import Edit from '@material-ui/icons/Edit'
-import Button from '@material-ui/core/Button'
-import AddKidChores from '../AddKidChores'
-import Fab from '@material-ui/core/Fab'
-import Icon from '@material-ui/core/Icon'
-import DeleteIcon from '@material-ui/icons/Delete'
-import AddIcon from '@material-ui/icons/Add'
-import Save from '@material-ui/icons/Save'
-import IconButton from '@material-ui/core/IconButton'
-import Chores from '../../utils/Chores.js'
-
+import React, { useContext, useState, useRef, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import Selection from "../Selection";
+import ChoresContext from "../../utils/ChoresContext";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import ArrowDropDown from "@material-ui/icons/ExpandMore";
+import Delete from "@material-ui/icons/Delete";
+import Edit from "@material-ui/icons/Edit";
+import Button from "@material-ui/core/Button";
+import AddKidChores from "../AddKidChores";
+import Fab from "@material-ui/core/Fab";
+import Icon from "@material-ui/core/Icon";
+import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from "@material-ui/icons/Add";
+import Save from "@material-ui/icons/Save";
+import IconButton from "@material-ui/core/IconButton";
+import Chores from "../../utils/Chores.js";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#153B69',
+    backgroundColor: "#153B69",
     padding: theme.spacing(0, 0),
-    width: 'auto',
-    fontFamily: 'roboto',
+    width: "auto",
+    fontFamily: "roboto"
   },
   table: {
-    width: '100%',
-    overflowX: 'auto',
-    minWidth: 300,
+    width: "100%",
+    overflowX: "auto",
+    minWidth: 300
   },
   editIcon: {
-    color: 'white',
+    color: "white",
     height: 20,
-    width: 20,
+    width: 20
   },
   editBtn: {
-    backgroundColor: '#153B69',
+    backgroundColor: "#153B69",
     minHeight: 0,
     height: 30,
-    width: 30,
+    width: 30
   },
   delIcon: {
-    color: 'white',
+    color: "white",
     height: 20,
-    width: 20,
+    width: 20
   },
   delBtn: {
     backgroundColor: '#60B0F5',
     minHeight: 0,
     height: 30,
-    width: 30,
+    width: 30
   },
   taskEdit: {
-    border: '1px solid #153B69',
-    borderRadius: '4px',
-    width: '90px'
-  },
-  
-}))
+    border: "1px solid #153B69",
+    borderRadius: "4px",
+    width: "90px"
+  }
+}));
 
 const ChildChores = _ => {
+  let childId;
 
-  let childId
+  const { child, addChore, deleteAChore } = useContext(ChoresContext);
+  const classes = useStyles();
 
-  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
-  const classes = useStyles()
-
-
-  const [addView, toggleAddView] = useState(false)
+  const [addView, toggleAddView] = useState(false);
   const [editing, updateEdits] = useState({
     id: false
-  })
-
-
-  const [updateForm, setUpdateForm] = useState({
-    updateName: '',
-    updatePoints: null,
-    updateIsCompleted: ''
-  })
+  });
 
   const handleUpdateChange = event => {
-    setCurrentChore({...currentChore, [event.target.id]: event.target.value})
-  }
+    setCurrentChore({ ...currentChore, [event.target.id]: event.target.value });
+  };
 
-const [currentChore, setCurrentChore] = useState({
-  name: '',
-  points: null,
-  isCompleted: ''
-})
-  
+  const [currentChore, setCurrentChore] = useState({
+    name: "",
+    points: null,
+    isCompleted: ""
+  });
 
-
-
-  const _choreName = useRef()
-  const _chorePoints = useRef()
-  const _choreComplete = useRef()
+  const _choreName = useRef();
+  const _chorePoints = useRef();
+  const _choreComplete = useRef();
 
   const updateAChore = event => {
-
-    console.log(_choreName.current.value)
-    // console.log(event.currentTarget.id)
-    // console.log(childId)
-    // console.log(_choreName.current.value, _chorePoints.current.value, _choreComplete.current.value)
-    let totalPoints
     const updatedChore = {
       name: _choreName.current.value,
       points: parseInt(_chorePoints.current.value),
-      isCompleted: _choreComplete.current.value==='Completed' ? true : false
-    }
+      isCompleted: _choreComplete.current.value === "Completed"
+    };
 
-    console.log(updatedChore)
-    console.log(currentChore)
     Chores.updateChore(event.currentTarget.id, updatedChore)
       .then(_ => {
-
-        // console.log(updatedChore.isCompleted)
         if (updatedChore.isCompleted) {
           Chores.getOneChild(childId)
             .then(({ data }) => {
-              // console.log(data.totalPoints)
               Chores.updateChild(childId, {
                 totalPoints: data.totalPoints + updatedChore.points
-              }).then(_ => {
-                window.location.reload()
-              }).catch(e => console.log(e))
-            }).catch(e => console.log(e))
+              })
+                .then(_ => {
+                  window.location.reload();
+                })
+                .catch(e => console.log(e));
+            })
+            .catch(e => console.log(e));
         } else {
-          window.location.reload()
+          window.location.reload();
         }
       })
       .catch(e => console.log(e));
-  }
+  };
 
   const toggleEdit = (event, id) => {
     if (!editing[id]) {
-
-    const selectedChoreToUpdate = child.chores.filter(chore => chore._id===event.currentTarget.id)[0]
-    console.log(selectedChoreToUpdate)
-
-    setCurrentChore({...currentChore, name: selectedChoreToUpdate.name, points: selectedChoreToUpdate.points, isCompleted: selectedChoreToUpdate.isCompleted ? 'Completed' : 'Not Completed'})
+      const selectedChoreToUpdate = child.chores.filter(
+        chore => chore._id === event.currentTarget.id
+      )[0];
+      setCurrentChore({
+        ...currentChore,
+        name: selectedChoreToUpdate.name,
+        points: selectedChoreToUpdate.points,
+        isCompleted: selectedChoreToUpdate.isCompleted
+          ? "Completed"
+          : "Not Completed"
+      });
     }
-  //   let chores = []
-  //   chores = JSON.parse(JSON.stringify(child.chores))
-  //   // chores.push({name: chore.name, points: chore.points, isCompleted: chore.isCompleted})
-  //   setCurrentChore({...currentChore,chores})
-
-  //   console.log(chores)
-  // }
-  // console.log(event.currentTarget)
-
- 
 
     updateEdits({
       ...editing,
       [id]: !editing[id]
-    })
-
-  }
+    });
+  };
 
   const toggleThenAddChore = event => {
-    toggleAddView(!addView)
+    toggleAddView(!addView);
 
     if (addView) {
-      addChore(event)
+      addChore(event);
     }
-  }
-
-// useEffect(_ => {
-//   setCurrentChore({...currentChore, chores: child.chores })
-//   console.log(currentChore)
-// },[])
-
-  let rows = [0, 1, 2, 3, 4]
-
-
+  };
 
   return (
-
-    <div >
-      <Paper style={{ marginTop: '32px' }} className={classes.root} >
-        <Grid container spacing={2} style={{ height: '60px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
+    <div>
+      <Paper style={{ marginTop: "32px" }} className={classes.root}>
+        <Grid
+          container
+          spacing={2}
+          style={{
+            height: "60px",
+            color: "white",
+            fontFamily: "roboto",
+            fontSize: "25px",
+            textAlign: "left"
+          }}
+        >
           <Grid>
-            <p style={{ color: 'white', padding: 10, marginTop: 0, marginLeft: 12, fontFamily: 'roboto', fontSize: '25px', }}>
+            <p
+              style={{
+                color: "white",
+                padding: 10,
+                marginTop: 0,
+                marginLeft: 12,
+                fontFamily: "roboto",
+                fontSize: "25px"
+              }}
+            >
               {child.name}
             </p>
           </Grid>
 
-          <Grid style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'right', margin: 0 }}>
+          <Grid
+            style={{
+              height: "50px",
+              color: "white",
+              fontFamily: "roboto",
+              fontSize: "25px",
+              textAlign: "right",
+              margin: 0
+            }}
+          >
             <Selection />
           </Grid>
         </Grid>
@@ -348,15 +339,10 @@ const [currentChore, setCurrentChore] = useState({
           }}
         >
           <AddIcon />
-
         </Fab>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default ChildChores
-
-
-
+export default ChildChores;

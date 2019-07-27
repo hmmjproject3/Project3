@@ -1,7 +1,6 @@
 const { Child, Chore } = require('../models')
 const passport = require('passport')
 
-
 module.exports = app => {
   // GET all Children
   app.get('/children', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -9,12 +8,12 @@ module.exports = app => {
       // .populate('chores')
       // .populate('rewards')
       .populate([{
-        path: 'chores',
+        path: 'chores'
         // model: 'Chore'
-    }, {
-        path: 'rewards',
+      }, {
+        path: 'rewards'
         // model: 'Reward'
-    }])
+      }])
       .then(children => {
         res.json(children)
         // console.log(children)
@@ -28,12 +27,12 @@ module.exports = app => {
       // .populate('chores')
       // .populate('rewards')
       .populate([{
-        path: 'chores',
+        path: 'chores'
         // model: 'Chore'
-    }, {
-        path: 'rewards',
+      }, {
+        path: 'rewards'
         // model: 'Reward'
-    }])
+      }])
       .then(child => {
         res.json(child)
       })
@@ -47,18 +46,18 @@ module.exports = app => {
   //     .catch(e => console.log(e))
   // })
 
-  //POST an array of children
+  // POST an array of children
   app.post('/children', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.insertMany(req.body.childArr)
       .then(_ => console.log(req.body))
       .catch(e => console.log(e))
   })
 
-    //PUT a chore
+  // PUT a chore
 
-    app.put('/children/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-      Child.findByIdAndUpdate(req.params.id, req.body)
-        .then(_ => res.sendStatus(200))
-        .catch(e => console.log(e))
-    })
+  app.put('/children/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Child.findByIdAndUpdate(req.params.id, req.body)
+      .then(_ => res.sendStatus(200))
+      .catch(e => console.log(e))
+  })
 }

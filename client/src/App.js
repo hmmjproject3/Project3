@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Chores from "./utils/Chores.js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Chorespage from "./pages/Chores";
-import Rewards from "./pages/Reward";
-import Dashboard from "./pages/Dashboard";
-import ChoresContext from "./utils/ChoresContext";
-import SignUpPage from "./pages/SignUp";
-import ChildrenFormPage from "./pages/ChildrenFormPage";
-import ProfilePage from "./pages/ProfilePage";
-// import { object } from 'prop-types';
+import React, { useEffect, useState } from 'react'
+import Chores from './utils/Chores.js'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Chorespage from './pages/Chores'
+import Rewards from './pages/Reward'
+import Dashboard from './pages/Dashboard'
+import ChoresContext from './utils/ChoresContext'
+import SignUpPage from './pages/SignUp'
+import ChildrenFormPage from './pages/ChildrenFormPage'
+import ProfilePage from './pages/ProfilePage'
 
 const App = _ => {
-  //Chore State and its functions
+  // Chore State and its functions
   const [choreState, setChoreState] = useState({
     chore: {},
     choresArr: [],
@@ -23,45 +21,45 @@ const App = _ => {
     reward: {},
     rewardsArr: [],
     claimedRewardsArr: [],
-    choreName: "",
+    choreName: '',
     cheddarReward: null,
-    rewardName: "",
+    rewardName: '',
     rewardAmount: null,
     updatingTracker: false,
     bonusChoreName: '',
     bonusChoreCheddar: null
-  });
-
+  })
 
   choreState.handleInputChange = event => {
-    setChoreState({ ...choreState, [event.target.id]: event.target.value });
-  };
+    setChoreState({ ...choreState, [event.target.id]: event.target.value })
+  }
 
+  //Function to add a reward
   choreState.addReward = event => {
-    event.preventDefault();
+    event.preventDefault()
     const reward = {
       name: choreState.rewardName,
       points: parseInt(choreState.rewardAmount),
       isClaimed: false
-    };
-    // console.log(reward)
+    }
+    Chores.addReward(reward)
+      .then(_ => {
+        Chores.getAllRewards()
+          .then(({ data }) => {
+            setChoreState({
+              ...choreState,
+              rewardName: '',
+              rewardAmount: null,
+              rewardsArr: data
+            })
+          })
+          .catch(e => console.log(e))
+      })
+      .catch(e => console.log(e))
+  }
 
-    Chores.addReward(reward).then(_ => {
-      Chores.getAllRewards()
-        .then(({ data }) => {
-          setChoreState({
-            ...choreState,
-            rewardName: "",
-            rewardAmount: null,
-            rewardsArr: data,
-          });
-        })
-        .catch(e => console.log(e));
-    }).catch(e => console.log(e));
-  };
-
+  //Assigning a reward
   choreState.assignReward = event => {
-
     const rewardId = event.target.getAttribute('rewardid')
     const childId = event.target.id
     let difference
@@ -71,105 +69,102 @@ const App = _ => {
       child: event.target.id
     }
 
-
     Chores.updateReward(event.target.getAttribute('rewardid'), updateRewardInfo)
       .then(_ => {
-
         Chores.getOneChild(childId)
           .then(({ data }) => {
-
-
             Chores.getAllRewards()
               .then(({ data: dataRewards }) => {
-                const claimedReward = dataRewards.filter(reward => reward._id === rewardId)[0]
+                const claimedReward = dataRewards.filter(
+                  reward => reward._id === rewardId
+                )[0]
                 difference = data.totalPoints - claimedReward.points
                 Chores.updateChild(childId, {
-                  totalPoints: difference //dataRewards.filter(reward => reward._id === rewardId)[0].points
-                }).then(_ => {
-                  Chores.getAllChildren()
-                    .then(({ data: myKids }) => {
-                      setChoreState({ ...choreState, childArr: myKids, rewardsArr: dataRewards, reward: claimedReward, child: data })
-                    })
-                    .catch(e => console.log(e));
+                  totalPoints: difference // dataRewards.filter(reward => reward._id === rewardId)[0].points
                 })
-                  .catch(e => console.log(e));
+                  .then(_ => {
+                    Chores.getAllChildren()
+                      .then(({ data: myKids }) => {
+                        setChoreState({
+                          ...choreState,
+                          childArr: myKids,
+                          rewardsArr: dataRewards,
+                          reward: claimedReward,
+                          child: data
+                        })
+                      })
+                      .catch(e => console.log(e))
+                  })
+                  .catch(e => console.log(e))
               })
               .catch(e => console.log(e))
-          }).catch(e => console.log(e))
-      }).catch(e => console.log(e))
+          })
+          .catch(e => console.log(e))
+      })
+      .catch(e => console.log(e))
   }
 
-
+  //Adding a chore
   choreState.addChore = event => {
-    event.preventDefault();
+    event.preventDefault()
     const chore = {
       name: choreState.choreName,
       points: parseInt(choreState.cheddarReward),
       child: choreState.child._id,
       isCompleted: false,
       isBonus: false,
-      isClaimed: true,
-    };
+      isClaimed: true
+    }
 
-    Chores.addChore(chore).then(_ => {
-      Chores.getAllChildren()
-        .then(({ data }) => {
-          const childUpdate = data.filter(
-            child => child._id === chore.child
-          )[0];
-          setChoreState({
-            ...choreState,
-            choreName: "",
-            cheddarReward: null,
-            childArr: data,
-            child: childUpdate
-          });
-        })
-        .catch(e => console.log(e));
-    }).catch(e => console.log(e));
-  };
+    Chores.addChore(chore)
+      .then(_ => {
+        Chores.getAllChildren()
+          .then(({ data }) => {
+            const childUpdate = data.filter(
+              child => child._id === chore.child
+            )[0]
+            setChoreState({
+              ...choreState,
+              choreName: '',
+              cheddarReward: null,
+              childArr: data,
+              child: childUpdate
+            })
+          })
+          .catch(e => console.log(e))
+      })
+      .catch(e => console.log(e))
+  }
 
-
+  //adding a bonus chore - not assigned to anyone
   choreState.addBonusChore = event => {
-    event.preventDefault();
+    event.preventDefault()
     const chore = {
       name: choreState.choreName,
       points: parseInt(choreState.cheddarReward),
       isCompleted: false,
       isBonus: true,
       isClaimed: false
-    };
+    }
 
-    Chores.addChore(chore).then(_ => {
-      Chores.getAllChores()
-        .then(({data})=>{ 
-          setChoreState({...choreState, choresArr:data,
-            choreName: "",
-            cheddarReward: null})
-        })
-        .catch(e => console.log(e));
-    }).catch(e => console.log(e));
-  };
-
-
-
-  choreState.handleGetProfile = _id => {
-    setChoreState({...choreState, profileArr: {}, kidChoresArr: []})
-    const childId = _id
-    const profileArr = {}
-    const kidChoresArr = []
-    Chores.getOneChild(childId)
-    .then(({ data }) => {
-      kidChoresArr.push(data.chores)
-      setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
-      console.log(kidChoresArr)
-    })
-    .catch(e => console.log(e))
+    Chores.addChore(chore)
+      .then(_ => {
+        Chores.getAllChores()
+          .then(({ data }) => {
+            setChoreState({
+              ...choreState,
+              choresArr: data,
+              choreName: '',
+              cheddarReward: null
+            })
+          })
+          .catch(e => console.log(e))
+      })
+      .catch(e => console.log(e))
   }
 
-
+  //Assigning a bonus chore
   choreState.assignBonusChore = event => {
-
     const choreId = event.target.getAttribute('choreid')
     const childId = event.target.id
     // let difference
@@ -179,41 +174,43 @@ const App = _ => {
       isClaimed: true
     }
 
-    Chores.updateBonusChore(event.target.getAttribute('choreid'), updateChoreInfo)
-    .then(_ => {
-
-      Chores.getOneChild(childId)
-        .then(({ data }) => {
-
-
-          Chores.getAllChores()
-            .then(({ data: dataChores }) => {
-              // console.log(dataChores)
+    Chores.updateBonusChore(
+      event.target.getAttribute('choreid'),
+      updateChoreInfo
+    )
+      .then(_ => {
+        Chores.getOneChild(childId)
+          .then(({ data }) => {
+            Chores.getAllChores()
+              .then(({ data: dataChores }) => {
                 Chores.getAllChildren()
                   .then(({ data: myKids }) => {
-                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores, child: data })
-                    // console.log(myKids)
+                    setChoreState({
+                      ...choreState,
+                      childArr: myKids,
+                      choresArr: dataChores,
+                      child: data
+                    })
                   })
-                  .catch(e => console.log(e));
-              // })
-              //   .catch(e => console.log(e));
-            })
-            .catch(e => console.log(e))
-        }).catch(e => console.log(e))
-    }).catch(e => console.log(e))
-}
+                  .catch(e => console.log(e))
+              })
+              .catch(e => console.log(e))
+          })
+          .catch(e => console.log(e))
+      })
+      .catch(e => console.log(e))
+  }
 
+  //Deleting a chore
   choreState.deleteAChore = data => {
     Chores.deleteChore(data.id)
       .then(_ => {
-        // if (!data.isBonus){
-          
-          window.location.reload()
-        // } 
+
+        window.location.reload()
+
         // Chores.getAllChildren()
         //   .then(({data}) =>  {
         //     setChoreState({...choreState, childArr: data, updatingTracker: choreState.updatingTracker ? true : false})
-
 
         // Chores.getAllChildren()
         //   .then(({ data }) => {
@@ -223,100 +220,122 @@ const App = _ => {
         //   })
         //   .catch(e => console.log(e));
       })
-      .catch(e => console.log(e));
-  };
+      .catch(e => console.log(e))
+  }
 
+
+  //Retrieve profile
+  choreState.handleGetProfile = _id => {
+    setChoreState({ ...choreState, profileArr: {}, kidChoresArr: [] })
+    const childId = _id
+    const profileArr = {}
+    const kidChoresArr = []
+    Chores.getOneChild(childId)
+      .then(({ data }) => {
+        kidChoresArr.push(data.chores)
+        setChoreState({
+          ...choreState,
+          profileArr: data,
+          kidChoresArr: data.chores
+        })
+      })
+      .catch(e => console.log(e))
+  }
+
+  
+//Adding children
   choreState.addChildren = arr => {
     if (arr.length) {
       Chores.addManyChildren({
         childArr: arr
       }).then(_ => {
-        setChoreState({ ...choreState, childArr: arr });
-      });
+        setChoreState({ ...choreState, childArr: arr })
+      })
       window.location.href = '/chorespage'
     } else {
-      alert("Please add children to continue");
+      alert('Please add children to continue')
     }
-  };
+  }
 
+  //Selecting a child
   choreState.selectChild = child => {
-    setChoreState({ ...choreState, child });
-  };
+    setChoreState({ ...choreState, child })
+  }
 
-  //User State and its functions
+  // User State and its functions
   const [userState, setUserState] = useState({
-    name: "",
-    userName: "",
-    email: "",
-    password: "",
-    _userName: "",
-    _userPassword: "",
+    name: '',
+    userName: '',
+    email: '',
+    password: '',
+    _userName: '',
+    _userPassword: '',
     isLoggedIn: false
-  });
+  })
 
   userState.handleInputChange = event => {
-    setUserState({ ...userState, [event.target.id]: event.target.value });
-  };
+    setUserState({ ...userState, [event.target.id]: event.target.value })
+  }
 
+  //Register a user at first time use
   userState.registerUser = event => {
-    event.preventDefault();
+    event.preventDefault()
 
     const user = {
       name: userState.name,
       username: userState.userName,
       email: userState.email,
       password: userState.password
-    };
+    }
 
     Chores.addUser(user)
       .then(({ data }) => {
-        console.log(data);
         if (data.isLoggedIn) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", data.user);
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user', data.user)
           setUserState({
             ...userState,
             isLoggedIn: data.isLoggedIn,
             userName: data.user
-          });
-          window.location.href = "/childrenform";
+          })
+          window.location.href = '/childrenform'
         }
       })
-      .catch(e => console.error(e));
-  };
+      .catch(e => console.error(e))
+  }
 
+  //loggin in a user
   userState.loginUser = event => {
-    event.preventDefault();
+    event.preventDefault()
 
     const loginUser = {
       username: userState._userName,
       password: userState._userPassword
-    };
+    }
 
     Chores.loginUser(loginUser)
       .then(({ data }) => {
         if (data.isLoggedIn) {
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("user", data.user);
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user', data.user)
           setUserState({
             ...userState,
             isLoggedIn: data.isLoggedIn,
             userName: data.user
-          });
-          window.location.href = "/dashboard";
+          })
+          window.location.href = '/dashboard'
         } else {
-          alert("Invalid username or password");
+          alert('Invalid username or password')
         }
       })
-      .catch(e => console.error(e));
-  };
+      .catch(e => console.error(e))
+  }
 
-  //USE EFFECT
-  //When navigating to the login/signup page if we fail to verify, we should try using this in the future
-  //https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
-  //I don't think what I have right now is idea but it works!
+  // USE EFFECT
+  // When navigating to the login/signup page if we fail to verify, we should try using this in the future
+  // https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
+  // Verifying if the user was previously logged in
   useEffect(_ => {
-
     Chores.verifyUser()
       .then(_ => {
         if (window.location.pathname === '/signin') {
@@ -329,52 +348,61 @@ const App = _ => {
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
-
                 Chores.getAllChores()
-                  .then(({ data: allChores}) => {
-
-                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
-
-
-                  }).catch(e => console.log(e));
-                
-   
+                  .then(({ data: allChores }) => {
+                    setChoreState({
+                      ...choreState,
+                      choresArr: allChores,
+                      childArr: data,
+                      rewardsArr: data1,
+                      child: firstChild,
+                      profileArr: firstChild
+                    })
+                  })
+                  .catch(e => console.log(e))
               })
-              .catch(e => console.log(e));
+              .catch(e => console.log(e))
           })
-          .catch(e => console.log(e));
-      }).catch(e => {
+          .catch(e => console.log(e))
+      })
+      .catch(e => {
         if (window.location.pathname !== '/signin') {
           window.location.href = '/signin'
         }
       })
-
-  }, []);
+  }, [])
 
   return (
     <>
       <Router>
-
         <ChoresContext.Provider value={userState}>
-          <Route exact path="/signin" render={_ => <SignUpPage />} />
+          <Route exact path='/signin' render={_ => <SignUpPage />} />
         </ChoresContext.Provider>
 
         <ChoresContext.Provider value={choreState}>
-          <Route exact path="/" render={_ => Chores.verifyUser() ? <Dashboard /> : <SignUpPage />} />
+          <Route
+            exact
+            path='/'
+            render={_ => (Chores.verifyUser() ? <Dashboard /> : <SignUpPage />)}
+          />
 
-          <Route exact path="/dashboard" render={_ => <Dashboard />} />
+          <Route exact path='/dashboard' render={_ => <Dashboard />} />
 
-          <Route exact path="/chorespage" render={_ => <Chorespage />} />
+          <Route exact path='/chorespage' render={_ => <Chorespage />} />
 
-          <Route exact path="/rewardspage" render={_ => <Rewards />} />
+          <Route exact path='/rewardspage' render={_ => <Rewards />} />
 
-          <Route exact path="/profilepage" render={_ => <ProfilePage />} />
+          <Route exact path='/profilepage' render={_ => <ProfilePage />} />
 
-          <Route exact path="/childrenform" render={_ => <ChildrenFormPage />} />
+          <Route
+            exact
+            path='/childrenform'
+            render={_ => <ChildrenFormPage />}
+          />
         </ChoresContext.Provider>
       </Router>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

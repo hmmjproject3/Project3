@@ -1,1 +1,1 @@
-export {default} from './Claimed.js'
+export { default } from './Claimed.js'

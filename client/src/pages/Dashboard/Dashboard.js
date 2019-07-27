@@ -13,14 +13,14 @@ import Right from '../../assets/right.png';
 import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles(theme => ({
-    mainCon: {
-        backgroundColor: "#E4ECF2",
-        boxShadow: "none",
-        paddingTop: 20,
-        paddingBottom: 20,
-        paddingLeft: 50,
-        paddingRight: 50,
-        height: 768,
+  mainCon: {
+    backgroundColor: '#E4ECF2',
+    boxShadow: 'none',
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 50,
+    paddingRight: 50,
+    height: 768
 
     },
     date: {
@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function Dashboard() {
-    const classes = useStyles();
+export default function Dashboard () {
+  const classes = useStyles()
 
     return (
         <div className={classes.mainCon}>   
@@ -62,8 +62,7 @@ export default function Dashboard() {
                 <Grid item id='squadGoalsContainer' xs={12} md={12}>
                     <SquadGoals />
                 </Grid>
-            </Grid>
-        </div>
-    )
+      </Grid>
+    </div>
+  )
 }
-

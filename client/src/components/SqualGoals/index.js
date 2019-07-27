@@ -1,1 +1,1 @@
-export {default} from './SquadGoals.js'
+export { default } from './SquadGoals.js'

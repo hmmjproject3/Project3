@@ -1,1 +1,1 @@
-export {default} from './ActiveChore.js'
+export { default } from './ActiveChore.js'

@@ -4,11 +4,9 @@ import ChoresContext from '../../utils/ChoresContext'
 // import { Button } from '@material-ui/core';
 
 const ProgressChart = _ => {
-
   const { childArr } = useContext(ChoresContext)
 
   let childArrToGraph = JSON.parse(JSON.stringify(childArr))
-
 
   const data = {
     labels: childArrToGraph.map(child => child.name),
@@ -27,32 +25,32 @@ const ProgressChart = _ => {
 
   return (
     <>
-    <div id='progressChart' style={{ position: 'relative', width: 'auto' }}>
-      <HorizontalBar
-        data={data}
-        width={80}
-        height={200}
-        options={{
-          legend: false,
-          maintainAspectRatio: false,
-          scales: {
-            yAxes: [{
-              barPercentage: 0.5,
-              barThickness: 8,
-              maxBarThickness: 8,
-              minBarLength: 100,
-              gridLines: {
-                offsetGridLines: false
-              },
-              stacked: true
-            }],
-            xAxes: [{
-              stacked: true
-            }],      
-          }
-        }}
-      />
-    </div>
+      <div id='progressChart' style={{ position: 'relative', width: 'auto' }}>
+        <HorizontalBar
+          data={data}
+          width={80}
+          height={200}
+          options={{
+            legend: false,
+            maintainAspectRatio: false,
+            scales: {
+              yAxes: [{
+                barPercentage: 0.5,
+                barThickness: 8,
+                maxBarThickness: 8,
+                minBarLength: 100,
+                gridLines: {
+                  offsetGridLines: false
+                },
+                stacked: true
+              }],
+              xAxes: [{
+                stacked: true
+              }]
+            }
+          }}
+        />
+      </div>
     </>
   )
 }

@@ -1,1 +1,1 @@
-export {default} from './FamilyOverview.js'
+export { default } from './FamilyOverview.js'
