@@ -19,15 +19,15 @@ const useStyles = makeStyles(theme => ({
   table: {
     width: '100%',
     overflowX: 'auto',
-    minWidth: 300,
+    minWidth: 300
   },
   avatar: {
     height: 30,
-    width: 30,
+    width: 30
   },
   iconLeft: {
     height: 30,
-    width: 30,
+    width: 30
   }
 }))
 
@@ -46,21 +46,21 @@ const ActiveChore = _ => {
             <TableHead>
               <TableRow>
                 <TableCell style={{ color: '#153B69', width: '100px' }}>Task</TableCell>
-                <TableCell style={{ color: '#153B69', width: '100px' }} align="left">Cheddar</TableCell>
+                <TableCell style={{ color: '#153B69', width: '100px' }} align='left'>Cheddar</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody style={{ overflowX: 'scroll'}}>
+            <TableBody style={{ overflowX: 'scroll' }}>
               {/* kidChoresArr.filter(chore=>chore.isCompleted).map(chore=>{}) */}
               {kidChoresArr.map(({ isCompleted, name, points }) => {
-                  if (isCompleted === false) {
-                    return <TableRow key='row.name'>
-                      <TableCell component="th" scope="row">
-                        {name}
-                      </TableCell>
-                      <TableCell align="left" style={{ color: '#FF9300' }}>{points}</TableCell>
-                    </TableRow>
-                  }
-                })}
+                if (isCompleted === false) {
+                  return <TableRow key='row.name'>
+                    <TableCell component='th' scope='row'>
+                      {name}
+                    </TableCell>
+                    <TableCell align='left' style={{ color: '#FF9300' }}>{points}</TableCell>
+                  </TableRow>
+                }
+              })}
             </TableBody>
           </Table>
         </Grid>

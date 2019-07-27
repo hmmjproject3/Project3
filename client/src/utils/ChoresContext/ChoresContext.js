@@ -2,20 +2,19 @@ import { createContext } from 'react'
 
 const ChoresContext = createContext({
 
-  //mock data
+  // mock data
   squad: [],
 
-  //useRef functions
+  // useRef functions
   choreName: _ => { },
   chorePoints: _ => { },
   choreStartTime: _ => { },
   choreDueTime: _ => { },
   childName: _ => { },
 
-
   handleInputChange: _ => { },
 
-  //Child and chore variables
+  // Child and chore variables
   chore: {},
   choresArr: [],
   child: {},
@@ -42,8 +41,7 @@ const ChoresContext = createContext({
   registerUser: _ => {},
   loginUser: _ => {},
 
-
-  //user login tracking variables. Token will be saved in localStorage
+  // user login tracking variables. Token will be saved in localStorage
   name: '',
   userName: '',
   email: '',

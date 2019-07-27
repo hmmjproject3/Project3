@@ -1,1 +1,1 @@
-export {default} from './ProfileComplete.js'
+export { default } from './ProfileComplete.js'

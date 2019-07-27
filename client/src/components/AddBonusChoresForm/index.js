@@ -1,1 +1,1 @@
-export {default} from './AddBonusChoresForm.js'
+export { default } from './AddBonusChoresForm.js'

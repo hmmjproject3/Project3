@@ -14,10 +14,6 @@ const Chores = {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
 
-
-
-
-  
   getAllChores: _ => axios.get('/chores', {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
@@ -29,18 +25,14 @@ const Chores = {
   }),
   updateChore: (id, chore) => axios.put(`/chores/${id}`, chore, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, ),
+  }),
   deleteChore: id => axios.delete(`/chores/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
 
-  updateBonusChore:  (id, bonusChore) => axios.put(`/bonuschores/${id}`, bonusChore, {
+  updateBonusChore: (id, bonusChore) => axios.put(`/bonuschores/${id}`, bonusChore, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }, ),
-
-
-
-
+  }),
 
   addUser: user => axios.post('/register', user),
 
@@ -49,10 +41,6 @@ const Chores = {
   verifyUser: _ => axios.post('/verify', {}, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
-
-
-
-
 
   getAllRewards: _ => axios.get('/rewards', {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
@@ -68,9 +56,7 @@ const Chores = {
   }),
   deleteReward: id => axios.delete(`/rewards/${id}`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
-  }),
-
-
+  })
 
 }
 

@@ -1,166 +1,149 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Selection from "../Selection";
-import ChoresContext from "../../utils/ChoresContext";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import ArrowDropDown from "@material-ui/icons/ExpandMore";
-import Delete from "@material-ui/icons/Delete";
-import Edit from "@material-ui/icons/Edit";
-import Button from "@material-ui/core/Button";
-import AddKidChores from "../AddKidChores";
-import Fab from "@material-ui/core/Fab";
-import Icon from "@material-ui/core/Icon";
-import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
-import Save from "@material-ui/icons/Save";
-import IconButton from "@material-ui/core/IconButton";
-import Chores from "../../utils/Chores.js";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import React, { useContext, useState, useRef } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import ChoresContext from '../../utils/ChoresContext'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Button from '@material-ui/core/Button'
+import AddKidChores from '../AddKidChores'
+import Fab from '@material-ui/core/Fab'
+import Icon from '@material-ui/core/Icon'
+import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
+import Chores from '../../utils/Chores.js'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: "#153B69",
+    backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
-    width: "auto",
-    fontFamily: "roboto"
+    width: 'auto',
+    fontFamily: 'roboto'
   },
   table: {
-    width: "100%",
-    overflowX: "auto",
+    width: '100%',
+    overflowX: 'auto',
     minWidth: 300
   },
   editIcon: {
-    color: "white",
+    color: 'white',
     height: 20,
     width: 20
   },
   editBtn: {
-    backgroundColor: "#153B69",
+    backgroundColor: '#153B69',
     minHeight: 0,
     height: 30,
     width: 30
   },
   delIcon: {
-    color: "white",
+    color: 'white',
     height: 20,
     width: 20
   },
   delBtn: {
-    backgroundColor: "#ED4F4F",
+    backgroundColor: '#ED4F4F',
     minHeight: 0,
     height: 30,
     width: 30
   },
   taskEdit: {
-    border: "1px solid #153B69",
-    borderRadius: "4px",
-    width: "90px"
+    border: '1px solid #153B69',
+    borderRadius: '4px',
+    width: '90px'
   },
   addBtn: {
-    backgroundColor: "#153B69",
+    backgroundColor: '#153B69',
     minHeight: 0,
     height: 30,
     width: 30
   },
   addIcon: {
-    color: "white",
+    color: 'white',
     height: 20,
     width: 20
   },
   textField: {
-    backgroundColor: "#dce2e9",
-    width: "350px"
+    backgroundColor: '#dce2e9',
+    width: '350px'
   }
-}));
+}))
 
 const ChildChores = _ => {
-  let childId;
+  let childId
 
   const {
     childArr,
-    selectChild,
-    child,
-    handleInputChange,
     addBonusChore,
     assignBonusChore,
-    choreName,
-    cheddarReward,
     deleteAChore,
     choresArr
-  } = useContext(ChoresContext);
-  const classes = useStyles();
+  } = useContext(ChoresContext)
+  const classes = useStyles()
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
-  function handleClick(event) {
-    setAnchorEl(event.currentTarget);
+  const handleClick  = (event)  => {
+    setAnchorEl(event.currentTarget)
   }
-  function handleClose() {
-    setAnchorEl(null);
+  const handleClose  = () => {
+    setAnchorEl(null)
   }
 
-  const [addView, toggleAddView] = useState(false);
+  const [addView, toggleAddView] = useState(false)
   const [editing, updateEdits] = useState({
     id: false
-  });
-
-  // const [updateForm, setUpdateForm] = useState({
-  //   updateName: "",
-  //   updatePoints: null,
-  //   updateIsCompleted: ""
-  // });
+  })
 
   const handleUpdateChange = event => {
-    setCurrentChore({ ...currentChore, [event.target.id]: event.target.value });
-  };
+    setCurrentChore({ ...currentChore, [event.target.id]: event.target.value })
+  }
 
   const [currentChore, setCurrentChore] = useState({
-    name: "",
+    name: '',
     points: null,
-    isCompleted: ""
-  });
+    isCompleted: ''
+  })
 
-  const _choreName = useRef();
-  const _chorePoints = useRef();
-  const _choreComplete = useRef();
+  const _choreName = useRef()
+  const _chorePoints = useRef()
+  const _choreComplete = useRef()
 
-  const updateAChore = event => {
-    console.log(_choreName.current.value);
+  // const updateAChore = event => {
+  //   console.log(_choreName.current.value)
 
-    let totalPoints;
-    const updatedChore = {
-      name: _choreName.current.value,
-      points: parseInt(_chorePoints.current.value),
-      isCompleted: _choreComplete.current.value === "Completed" ? true : false
-    };
+  //   let totalPoints
+  //   const updatedChore = {
+  //     name: _choreName.current.value,
+  //     points: parseInt(_chorePoints.current.value),
+  //     isCompleted: _choreComplete.current.value === 'Completed'
+  //   }
 
-    Chores.updateChore(event.currentTarget.id, updatedChore)
-      .then(_ => {
-        if (updatedChore.isCompleted) {
-          Chores.getOneChild(childId)
-            .then(({ data }) => {
-              Chores.updateChild(childId, {
-                totalPoints: data.totalPoints + updatedChore.points
-              })
-                .then(_ => {
-                  window.location.reload();
-                })
-                .catch(e => console.log(e));
-            })
-            .catch(e => console.log(e));
-        } else {
-          window.location.reload();
-        }
-      })
-      .catch(e => console.log(e));
-  };
+  //   Chores.updateChore(event.currentTarget.id, updatedChore)
+  //     .then(_ => {
+  //       if (updatedChore.isCompleted) {
+  //         Chores.getOneChild(childId)
+  //           .then(({ data }) => {
+  //             Chores.updateChild(childId, {
+  //               totalPoints: data.totalPoints + updatedChore.points
+  //             })
+  //               .then(_ => {
+  //                 window.location.reload()
+  //               })
+  //               .catch(e => console.log(e))
+  //           })
+  //           .catch(e => console.log(e))
+  //       } else {
+  //         window.location.reload()
+  //       }
+  //     })
+  //     .catch(e => console.log(e))
+  // }
 
   // const toggleEdit = (event, id) => {
   //   if (!editing[id]) {
@@ -185,57 +168,51 @@ const ChildChores = _ => {
   // };
 
   const toggleThenAddChore = event => {
-    toggleAddView(!addView);
+    toggleAddView(!addView)
 
     if (addView) {
-      addBonusChore(event);
+      addBonusChore(event)
     }
-  };
+  }
 
-  // useEffect(_ => {
-  //   setCurrentChore({...currentChore, chores: child.chores })
-  //   console.log(currentChore)
-  // },[])
-
-  let rows = [0, 1, 2, 3, 4];
 
   return (
     <div>
-      <Paper style={{ marginTop: "32px" }} className={classes.root}>
+      <Paper style={{ marginTop: '32px' }} className={classes.root}>
         <Grid
           container
           spacing={2}
           style={{
-            height: "60px",
-            color: "white",
-            fontFamily: "roboto",
-            fontSize: "25px",
-            textAlign: "left"
+            height: '60px',
+            color: 'white',
+            fontFamily: 'roboto',
+            fontSize: '25px',
+            textAlign: 'left'
           }}
         >
           <p
             style={{
-              color: "white",
+              color: 'white',
               padding: 10,
               marginTop: 0,
               marginLeft: 12,
-              fontFamily: "roboto",
-              fontSize: "25px"
+              fontFamily: 'roboto',
+              fontSize: '25px'
             }}
           >
-            Bonus Chores{" "}
+            Bonus Chores{' '}
           </p>
         </Grid>
 
         {!addView ? (
           <Grid
             item
-            id="bonusChoresBody"
+            id='bonusChoresBody'
             xs={12}
             style={{
-              height: "400px",
-              backgroundColor: "white",
-              overflowY: "auto"
+              height: '400px',
+              backgroundColor: 'white',
+              overflowY: 'auto'
             }}
           >
             <Table className={classes.table}>
@@ -243,69 +220,69 @@ const ChildChores = _ => {
                 <TableRow>
                   <TableCell
                     style={{
-                      color: "#153B69",
-                      width: "250px",
-                      paddingRight: "15px"
+                      color: '#153B69',
+                      width: '250px',
+                      paddingRight: '15px'
                     }}
                   >
                     Task
                   </TableCell>
                   <TableCell
                     style={{
-                      color: "#153B69",
-                      width: "100px",
-                      paddingRight: "15px"
+                      color: '#153B69',
+                      width: '100px',
+                      paddingRight: '15px'
                     }}
-                    align="left"
+                    align='left'
                   >
                     Cheddar
                   </TableCell>
                   <TableCell
                     style={{
-                      color: "#153B69",
-                      width: "80px",
-                      paddingRight: "20px",
-                      paddingLeft: "5px"
+                      color: '#153B69',
+                      width: '80px',
+                      paddingRight: '20px',
+                      paddingLeft: '5px'
                     }}
-                    align="left"
+                    align='left'
                   >
                     Claim
                   </TableCell>
                   <TableCell
                     style={{
-                      color: "#153B69",
-                      width: "5px",
-                      paddingRight: "0px"
+                      color: '#153B69',
+                      width: '5px',
+                      paddingRight: '0px'
                     }}
-                    align="left"
+                    align='left'
                   />
                   <TableCell
-                    style={{ color: "#153B69", width: "5px" }}
-                    align="left"
+                    style={{ color: '#153B69', width: '5px' }}
+                    align='left'
                   />
                 </TableRow>
               </TableHead>
-              <TableBody style={{ maxHeight: "100%", overflow: "hidden" }}>
+              <TableBody style={{ maxHeight: '100%', overflow: 'hidden' }}>
                 <>
                   {choresArr
                     ? choresArr
-                      .filter(chore => (chore.isBonus && !chore.isClaimed))
+                      .filter(chore => chore.isBonus && !chore.isClaimed)
                       .map((chore, i) => {
                         // childId = chore.child;
                         // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
                         return editing[i] ? (
                           <TableRow
-                            style={{ maxHeight: "100%", overflow: "hidden" }}
+                            style={{ maxHeight: '100%', overflow: 'hidden' }}
                           >
                             <TableCell
                               style={{
-                                color: "#153B69",
-                                width: "20px",
-                                paddingRight: "10px"
+                                color: '#153B69',
+                                width: '20px',
+                                paddingRight: '10px'
                               }}
                             >
                               <input
-                                id="name"
+                                id='name'
                                 className={classes.taskEdit}
                                 ref={_choreName}
                                 onChange={handleUpdateChange}
@@ -314,13 +291,13 @@ const ChildChores = _ => {
                             </TableCell>
                             <TableCell
                               style={{
-                                color: "#153B69",
-                                width: "20px",
-                                paddingRight: "10px"
+                                color: '#153B69',
+                                width: '20px',
+                                paddingRight: '10px'
                               }}
                             >
                               <input
-                                id="points"
+                                id='points'
                                 className={classes.taskEdit}
                                 ref={_chorePoints}
                                 onChange={handleUpdateChange}
@@ -329,18 +306,16 @@ const ChildChores = _ => {
                             </TableCell>
                             <TableCell
                               style={{
-                                color: "#153B69",
-                                width: "20px",
-                                paddingRight: "10px"
+                                color: '#153B69',
+                                width: '20px',
+                                paddingRight: '10px'
                               }}
-                            >
-
-                            </TableCell>
+                            />
 
                             <TableCell
                               style={{
-                                paddingRight: "5px",
-                                paddingLeft: "5px"
+                                paddingRight: '5px',
+                                paddingLeft: '5px'
                               }}
                             >
                               <Fab
@@ -350,19 +325,19 @@ const ChildChores = _ => {
                                 //   toggleEdit(event, i);
                                 //   updateAChore(event);
                                 // }}
-                                color="secondary"
-                                aria-label="Edit"
+                                color='secondary'
+                                aria-label='Edit'
                                 className={classes.editBtn}
                               >
                                 <Icon className={classes.editIcon}>
-                                  edit_icon
-                                  </Icon>
+                                    edit_icon
+                                </Icon>
                               </Fab>
                             </TableCell>
 
-                            <TableCell style={{ paddingLeft: "5px" }}>
+                            <TableCell style={{ paddingLeft: '5px' }}>
                               <Fab
-                                aria-label="Delete"
+                                aria-label='Delete'
                                 className={classes.delBtn}
                               >
                                 <DeleteIcon className={classes.delIcon} />
@@ -370,147 +345,147 @@ const ChildChores = _ => {
                             </TableCell>
                           </TableRow>
                         ) : (
-                            <TableRow
-                              style={{ maxHeight: "100%", overflow: "hidden" }}
+                          <TableRow
+                            style={{ maxHeight: '100%', overflow: 'hidden' }}
+                          >
+                            <TableCell
+                              style={{
+                                color: '#153B69',
+                                width: '20px',
+                                paddingRight: '10px'
+                              }}
                             >
-                              <TableCell
-                                style={{
-                                  color: "#153B69",
-                                  width: "20px",
-                                  paddingRight: "10px"
-                                }}
-                              >
-                                {chore.name}
-                              </TableCell>
-                              <TableCell
-                                style={{
-                                  color: "#FF9300",
-                                  width: "20px",
-                                  paddingRight: "10px"
-                                }}
-                              >
-                                {chore.points}
-                              </TableCell>
+                              {chore.name}
+                            </TableCell>
+                            <TableCell
+                              style={{
+                                color: '#FF9300',
+                                width: '20px',
+                                paddingRight: '10px'
+                              }}
+                            >
+                              {chore.points}
+                            </TableCell>
 
-                              {/* ClaimButton */}
-                              <TableCell align="left">
-                                <Button
-                                  aria-controls="simple-menu"
-                                  aria-haspopup="true"
-                                  onClick={handleClick}
+                            {/* ClaimButton */}
+                            <TableCell align='left'>
+                              <Button
+                                aria-controls='simple-menu'
+                                aria-haspopup='true'
+                                onClick={handleClick}
+                              >
+                                <Fab
+                                  size='small'
+                                  aria-label='Add'
+                                  className={classes.addBtn}
                                 >
-                                  <Fab
-                                    size="small"
-                                    aria-label="Add"
-                                    className={classes.addBtn}
+                                  <AddIcon className={classes.addIcon} />
+                                </Fab>
+                              </Button>
+
+                              <Menu
+                                id='customized-menu'
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                              >
+                                {childArr.map(child => (
+                                  <MenuItem
+                                    id={child._id}
+                                    choreid={chore._id}
+                                    onClick={event => {
+                                      assignBonusChore(event)
+                                      handleClose()
+                                    }}
                                   >
-                                    <AddIcon className={classes.addIcon} />
-                                  </Fab>
-                                </Button>
+                                    {child.name}
+                                  </MenuItem>
+                                ))}
+                              </Menu>
+                            </TableCell>
 
-                                <Menu
-                                  id="customized-menu"
-                                  anchorEl={anchorEl}
-                                  keepMounted
-                                  open={Boolean(anchorEl)}
-                                  onClose={handleClose}
-                                >
-                                  {childArr.map(child => (
-                                    <MenuItem
-                                      id={child._id}
-                                      choreid={chore._id}
-                                      onClick={event => {
-                                        assignBonusChore(event);
-                                        handleClose();
-                                      }}
-                                    >
-                                      {child.name}
-                                    </MenuItem>
-                                  ))}
-                                </Menu>
-                              </TableCell>
+                            {/* ClaimButtonEnd */}
 
-                              {/* ClaimButtonEnd */}
+                            <TableCell
+                              style={{
+                                color: '#153B69',
+                                width: '20px',
+                                paddingRight: '10px'
+                              }}
+                            />
+                            <TableCell
+                              style={{
+                                color: '#153B69',
+                                width: '20px',
+                                paddingRight: '10px'
+                              }}
+                            />
 
-                              <TableCell
-                                style={{
-                                  color: "#153B69",
-                                  width: "20px",
-                                  paddingRight: "10px"
-                                }}
-                              />
-                              <TableCell
-                                style={{
-                                  color: "#153B69",
-                                  width: "20px",
-                                  paddingRight: "10px"
-                                }}
-                              />
-
-                              <TableCell
-                                style={{
-                                  paddingRight: "5px",
-                                  paddingLeft: "5px"
-                                }}
+                            <TableCell
+                              style={{
+                                paddingRight: '5px',
+                                paddingLeft: '5px'
+                              }}
+                            >
+                              <Fab
+                                id={chore._id}
+                                // onClick={event => toggleEdit(event, i)}
+                                color='secondary'
+                                aria-label='Edit'
+                                className={classes.editBtn}
                               >
-                                <Fab
-                                  id={chore._id}
-                                  // onClick={event => toggleEdit(event, i)}
-                                  color="secondary"
-                                  aria-label="Edit"
-                                  className={classes.editBtn}
-                                >
-                                  <Icon className={classes.editIcon}>
+                                <Icon className={classes.editIcon}>
                                     edit_icon
-                                  </Icon>
-                                </Fab>
-                              </TableCell>
+                                </Icon>
+                              </Fab>
+                            </TableCell>
 
-                              <TableCell style={{ paddingLeft: "5px" }}>
-                                <Fab
-                                  id={chore._id}
-                                  onClick={event =>
-                                    deleteAChore({
-                                      id: chore._id,
-                                      childId: chore.child,
-                                      isBonus: chore.isBonus
-                                    })
-                                  }
-                                  aria-label="Delete"
-                                  className={classes.delBtn}
-                                >
-                                  <DeleteIcon className={classes.delIcon} />
-                                </Fab>
-                              </TableCell>
-                            </TableRow>
-                          );
+                            <TableCell style={{ paddingLeft: '5px' }}>
+                              <Fab
+                                id={chore._id}
+                                onClick={event =>
+                                  deleteAChore({
+                                    id: chore._id,
+                                    childId: chore.child,
+                                    isBonus: chore.isBonus
+                                  })
+                                }
+                                aria-label='Delete'
+                                className={classes.delBtn}
+                              >
+                                <DeleteIcon className={classes.delIcon} />
+                              </Fab>
+                            </TableCell>
+                          </TableRow>
+                        )
                       })
-                    : null //null when there are no chores
+                    : null // null when there are no chores
                   }
                 </>
               </TableBody>
             </Table>
           </Grid>
         ) : (
-            <AddKidChores />
-          )}
+          <AddKidChores />
+        )}
       </Paper>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         <Fab
           className={classes.fab}
           onClick={toggleThenAddChore}
           style={{
-            padding: "auto",
-            color: "white",
-            backgroundColor: "#FFBA00",
-            marginTop: "15px"
+            padding: 'auto',
+            color: 'white',
+            backgroundColor: '#FFBA00',
+            marginTop: '15px'
           }}
         >
           <AddIcon />
         </Fab>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ChildChores;
+export default ChildChores

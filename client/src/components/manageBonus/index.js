@@ -1,1 +1,1 @@
-export {default} from './manageBonus.js' 
+export { default } from './manageBonus.js'

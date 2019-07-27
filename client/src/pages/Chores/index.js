@@ -1,1 +1,1 @@
-export {default} from './Chores'
+export { default } from './Chores'
