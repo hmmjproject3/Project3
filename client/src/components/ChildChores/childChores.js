@@ -262,9 +262,9 @@ const [currentChore, setCurrentChore] = useState({
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
                                 {chore.isCompleted ? 'Completed' : 'Not Completed'}
                               </TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}></TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                              </TableCell>
+                              {/* <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}></TableCell> */}
+                              {/* <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
+                              </TableCell> */}
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
                                 <Fab id={chore._id} onClick={(event) => toggleEdit(event, i)} color="secondary" aria-label="Edit" className={classes.editBtn}>
