@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-import ChoresContext from '../../utils/ChoresContext'
+import React from 'react'
 import MenuBar from '../../components/MenuBar'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -25,7 +24,6 @@ const useStyles = makeStyles({
 });
 
 const ProfilePage = _ => {
-  const { childArr } = useContext(ChoresContext)
   const classes = useStyles()
 
   return (
