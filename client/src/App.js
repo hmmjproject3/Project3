@@ -128,14 +128,14 @@ const App = _ => {
 
   choreState.handleGetProfile = _id => {
     const childId = _id
-    const profileArr = []
+    const profileArr = {}
     const kidChoresArr = []
     Chores.getOneChild(childId)
     .then(({ data }) => {
-      profileArr.push(data)
+      // profileArr.push(data)
       kidChoresArr.push(data.chores)
       setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
-      console.log(profileArr)
+      // console.log(profileArr)
       console.log(kidChoresArr)
     })
     .catch(e => console.log(e))
