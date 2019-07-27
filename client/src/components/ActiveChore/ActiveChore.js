@@ -50,6 +50,7 @@ const ActiveChore = _ => {
               </TableRow>
             </TableHead>
             <TableBody style={{ overflowX: 'scroll'}}>
+              {/* kidChoresArr.filter(chore=>chore.isCompleted).map(chore=>{}) */}
               {kidChoresArr.map(({ isCompleted, name, points }) => {
                   if (isCompleted === false) {
                     return <TableRow key='row.name'>

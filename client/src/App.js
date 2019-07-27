@@ -265,7 +265,7 @@ const App = _ => {
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
                 console.log(data1);
-                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild });
+                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
               })
               .catch(e => console.log(e));
           })

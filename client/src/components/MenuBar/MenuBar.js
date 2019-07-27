@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 })
 
 export default function SimpleAppBar() {
-  const { childArr, handleGetProfile, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
+  const { profileArr, childArr, handleGetProfile, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
   const classes = useStyles()
 
   return (

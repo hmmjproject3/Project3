@@ -40,7 +40,7 @@ const PersonalOverview = _ => {
                             marginRight: '5px',
                             display: 'inline-flex',
                             fontSize: '25px',
-                        }}>{`${profile.name}`.charAt(0)}
+                        }}>{profile.name ? `${profile.name}`.charAt(0) : 'M'}
                     </Avatar>
                 </Grid>
                 <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>{profile.name}</Grid>
