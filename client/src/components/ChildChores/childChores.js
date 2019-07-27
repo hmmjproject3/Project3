@@ -242,7 +242,7 @@ const [currentChore, setCurrentChore] = useState({
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
                                 <Fab  id={chore._id} assignedTo={chore.child} onClick={(event) => { toggleEdit(event, i); updateAChore(event) }} color="secondary" aria-label="Edit" className={classes.editBtn}>
-                                  <Icon className={classes.editIcon}>edit_icon</Icon>
+                                  <Save className={classes.editIcon}>edit_icon</Save>
                                 </Fab>
                               </TableCell>
 
