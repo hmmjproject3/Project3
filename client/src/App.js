@@ -27,7 +27,9 @@ const App = _ => {
     cheddarReward: null,
     rewardName: "",
     rewardAmount: null,
-    updatingTracker: false
+    updatingTracker: false,
+    bonusChoreName: '',
+    bonusChoreCheddar: null
   });
 
 
@@ -139,21 +141,12 @@ const App = _ => {
     };
 
     Chores.addChore(chore).then(_ => {
-      // Chores.getAllChildren()
-      //   .then(({ data }) => {
-      //     const childUpdate = data.filter(
-      //       child => child._id === chore.child
-      //     )[0];
-      //     setChoreState({
-      //       ...choreState,
-      //       choreName: "",
-      //       cheddarReward: null,
-      //       childArr: data,
-      //       child: childUpdate
-      //     });
-      //   })
       Chores.getAllChores()
-        .then(({data})=>{ setChoreState({...choreState, choresArr:data})})
+        .then(({data})=>{ 
+          setChoreState({...choreState, choresArr:data,
+            choreName: "",
+            cheddarReward: null})
+        })
         .catch(e => console.log(e));
     }).catch(e => console.log(e));
   };
@@ -161,15 +154,14 @@ const App = _ => {
 
 
   choreState.handleGetProfile = _id => {
+    setChoreState({...choreState, profileArr: {}, kidChoresArr: []})
     const childId = _id
     const profileArr = {}
     const kidChoresArr = []
     Chores.getOneChild(childId)
     .then(({ data }) => {
-      // profileArr.push(data)
       kidChoresArr.push(data.chores)
       setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
-      // console.log(profileArr)
       console.log(kidChoresArr)
     })
     .catch(e => console.log(e))
@@ -214,7 +206,10 @@ const App = _ => {
   choreState.deleteAChore = data => {
     Chores.deleteChore(data.id)
       .then(_ => {
-        window.location.reload()
+        // if (!data.isBonus){
+          
+          window.location.reload()
+        // } 
         // Chores.getAllChildren()
         //   .then(({data}) =>  {
         //     setChoreState({...choreState, childArr: data, updatingTracker: choreState.updatingTracker ? true : false})
@@ -353,7 +348,6 @@ const App = _ => {
         if (window.location.pathname !== '/signin') {
           window.location.href = '/signin'
         }
-        console.log(e)
       })
 
   }, []);
