@@ -43,9 +43,9 @@ module.exports = app => {
       .catch(e => console.log(e))
   })
 
-  //PUT a chore
+  //PUT a bonus chore
 
-  app.put('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  app.put('/bonuschores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       upsert: true,
@@ -65,6 +65,15 @@ module.exports = app => {
       })
       .catch(e => console.log(e))
   })
+
+    //PUT a chore
+
+    app.put('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+      Chore.findByIdAndUpdate(req.params.id, req.body)
+        .then(_ => res.sendStatus(200))
+        .catch(e => console.log(e))
+    })
+  
 
   //DELETE a chore
   app.delete('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {

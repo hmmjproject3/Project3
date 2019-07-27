@@ -18,7 +18,7 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
-    profileArr: [],
+    profileArr: {},
     kidChoresArr: [],
     reward: {},
     rewardsArr: [],
@@ -127,7 +127,7 @@ const App = _ => {
     }).catch(e => console.log(e));
   };
 
-<<<<<<< HEAD
+
   choreState.addBonusChore = event => {
     event.preventDefault();
     const chore = {
@@ -159,7 +159,7 @@ const App = _ => {
   };
 
 
-=======
+
   choreState.handleGetProfile = _id => {
     const childId = _id
     const profileArr = {}
@@ -174,7 +174,7 @@ const App = _ => {
     })
     .catch(e => console.log(e))
   }
->>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
+
 
   choreState.assignBonusChore = event => {
 
@@ -187,11 +187,11 @@ const App = _ => {
       isClaimed: true
     }
 
-    Chores.updateChore(event.target.getAttribute('choreid'), updateChoreInfo)
+    Chores.updateBonusChore(event.target.getAttribute('choreid'), updateChoreInfo)
     .then(_ => {
 
-      // Chores.getOneChild(childId)
-      //   .then(({ data }) => {
+      Chores.getOneChild(childId)
+        .then(({ data }) => {
 
 
           Chores.getAllChores()
@@ -199,15 +199,15 @@ const App = _ => {
               console.log(dataChores)
                 Chores.getAllChildren()
                   .then(({ data: myKids }) => {
-                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores })
-                    console.log(myKids)
+                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores, child: data })
+                    // console.log(myKids)
                   })
                   .catch(e => console.log(e));
               // })
               //   .catch(e => console.log(e));
             })
             .catch(e => console.log(e))
-        // }).catch(e => console.log(e))
+        }).catch(e => console.log(e))
     }).catch(e => console.log(e))
 }
 
@@ -334,21 +334,17 @@ const App = _ => {
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
-<<<<<<< HEAD
+
 
                 Chores.getAllChores()
                   .then(({ data: allChores}) => {
 
-                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild });
+                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
 
 
-                  })
+                  }).catch(e => console.log(e));
                 
-       
-=======
-                console.log(data1);
-                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
->>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
+   
               })
               .catch(e => console.log(e));
           })

@@ -34,6 +34,10 @@ const Chores = {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
 
+  updateBonusChore:  (id, bonusChore) => axios.put(`/bonuschores/${id}`, bonusChore, {
+    headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
+  }, ),
+
 
 
 
