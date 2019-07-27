@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ChildChores = _ => {
+const AddBonusChores = _ => {
   let childId;
 
   const {
@@ -162,27 +162,27 @@ const ChildChores = _ => {
       .catch(e => console.log(e));
   };
 
-  const toggleEdit = (event, id) => {
-    if (!editing[id]) {
-      const selectedChoreToUpdate = child.chores.filter(
-        chore => chore._id === event.currentTarget.id
-      )[0];
+  // const toggleEdit = (event, id) => {
+  //   if (!editing[id]) {
+  //     const selectedChoreToUpdate = child.chores.filter(
+  //       chore => chore._id === event.currentTarget.id
+  //     )[0];
 
-      setCurrentChore({
-        ...currentChore,
-        name: selectedChoreToUpdate.name,
-        points: selectedChoreToUpdate.points,
-        isCompleted: selectedChoreToUpdate.isCompleted
-          ? "Completed"
-          : "Not Completed"
-      });
-    }
+  //     setCurrentChore({
+  //       ...currentChore,
+  //       name: selectedChoreToUpdate.name,
+  //       points: selectedChoreToUpdate.points,
+  //       isCompleted: selectedChoreToUpdate.isCompleted
+  //         ? "Completed"
+  //         : "Not Completed"
+  //     });
+  //   }
 
-    updateEdits({
-      ...editing,
-      [id]: !editing[id]
-    });
-  };
+  //   updateEdits({
+  //     ...editing,
+  //     [id]: !editing[id]
+  //   });
+  // };
 
   const toggleThenAddChore = event => {
     toggleAddView(!addView);
@@ -268,14 +268,52 @@ const ChildChores = _ => {
                 <>
                   {choresArr
                     ? choresArr
-                        .filter(chore => (chore.isBonus && !chore.isClaimed))
-                        .map((chore, i) => {
-                          // childId = chore.child;
-                          // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
-                          return editing[i] ? (
-                            <TableRow
-                              style={{ maxHeight: "100%", overflow: "hidden" }}
+                      .filter(chore => (chore.isBonus && !chore.isClaimed))
+                      .map((chore, i) => {
+                        // childId = chore.child;
+                        // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
+                        return editing[i] ? (
+                          <TableRow
+                            style={{ maxHeight: "100%", overflow: "hidden" }}
+                          >
+                            <TableCell
+                              style={{
+                                color: "#153B69",
+                                width: "20px",
+                                paddingRight: "10px"
+                              }}
                             >
+                              <input
+                                id="name"
+                                className={classes.taskEdit}
+                                ref={_choreName}
+                                onChange={handleUpdateChange}
+                                value={currentChore.name}
+                              />
+                            </TableCell>
+                            <TableCell
+                              style={{
+                                color: "#153B69",
+                                width: "20px",
+                                paddingRight: "10px"
+                              }}
+                            >
+                              <input
+                                id="points"
+                                className={classes.taskEdit}
+                                ref={_chorePoints}
+                                onChange={handleUpdateChange}
+                                value={currentChore.points}
+                              />
+                            </TableCell>
+                            {/* <TableCell
+                              style={{
+                                color: "#153B69",
+                                width: "20px",
+                                paddingRight: "10px"
+                              }}
+                            > */}
+                              {/* Might have to comment out the above tablecell */}
                               <TableCell
                                 style={{
                                   color: "#153B69",
@@ -312,10 +350,10 @@ const ChildChores = _ => {
                                 <Fab
                                   id={chore._id}
                                   assignedTo={chore.child}
-                                  onClick={event => {
-                                    toggleEdit(event, i);
-                                    updateAChore(event);
-                                  }}
+                                  // onClick={event => {
+                                  //   toggleEdit(event, i);
+                                  //   updateAChore(event);
+                                  // }}
                                   color="secondary"
                                   aria-label="Edit"
                                   className={classes.editBtn}
@@ -323,8 +361,8 @@ const ChildChores = _ => {
                                   <Icon className={classes.editIcon}>
                                     edit_icon
                                   </Icon>
-                                </Fab>
-                              </TableCell>
+                              </Fab>
+                            </TableCell>
 
                               <TableCell>
                                 <Fab
@@ -383,12 +421,12 @@ const ChildChores = _ => {
                                 >
                                   {childArr.map(child => (
                                     <MenuItem
-                                    id={child._id}
-                                    choreid={chore._id}
-                                    onClick={event => {
-                                      assignBonusChore(event);
-                                      handleClose();
-                                    }}
+                                      id={child._id}
+                                      choreid={chore._id}
+                                      onClick={event => {
+                                        assignBonusChore(event);
+                                        handleClose();
+                                      }}
                                     >
                                       {child.name}
                                     </MenuItem>
@@ -407,7 +445,7 @@ const ChildChores = _ => {
                               >
                                 <Fab
                                   id={chore._id}
-                                  onClick={event => toggleEdit(event, i)}
+                                  // onClick={event => toggleEdit(event, i)}
                                   color="secondary"
                                   aria-label="Edit"
                                   className={classes.editBtn}
@@ -424,7 +462,8 @@ const ChildChores = _ => {
                                   onClick={event =>
                                     deleteAChore({
                                       id: chore._id,
-                                      // childId: chore.child
+                                      childId: chore.child,
+                                      isBonus: chore.isBonus
                                     })
                                   }
                                   aria-label="Delete"
@@ -435,7 +474,7 @@ const ChildChores = _ => {
                               </TableCell>
                             </TableRow>
                           );
-                        })
+                      })
                     : null //null when there are no chores
                   }
                 </>
@@ -443,8 +482,8 @@ const ChildChores = _ => {
             </Table>
           </Grid>
         ) : (
-          <AddKidChores />
-        )}
+            <AddKidChores />
+          )}
       </Paper>
       <div style={{ textAlign: "center", backgroundColor: '#F5F5F5' }}>
         <Fab
@@ -466,4 +505,4 @@ const ChildChores = _ => {
   );
 };
 
-export default ChildChores;
+export default AddBonusChores;

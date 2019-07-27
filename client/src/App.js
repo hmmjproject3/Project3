@@ -18,7 +18,7 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
-    profileArr: [],
+    profileArr: {},
     kidChoresArr: [],
     reward: {},
     rewardsArr: [],
@@ -27,7 +27,9 @@ const App = _ => {
     cheddarReward: null,
     rewardName: "",
     rewardAmount: null,
-    updatingTracker: false
+    updatingTracker: false,
+    bonusChoreName: '',
+    bonusChoreCheddar: null
   });
 
 
@@ -126,7 +128,9 @@ const App = _ => {
         .catch(e => console.log(e));
     }).catch(e => console.log(e));
   };
-    choreState.addBonusChore = event => {
+
+
+  choreState.addBonusChore = event => {
     event.preventDefault();
     const chore = {
       name: choreState.choreName,
@@ -137,25 +141,31 @@ const App = _ => {
     };
 
     Chores.addChore(chore).then(_ => {
-      // Chores.getAllChildren()
-      //   .then(({ data }) => {
-      //     const childUpdate = data.filter(
-      //       child => child._id === chore.child
-      //     )[0];
-      //     setChoreState({
-      //       ...choreState,
-      //       choreName: "",
-      //       cheddarReward: null,
-      //       childArr: data,
-      //       child: childUpdate
-      //     });
-      //   })
       Chores.getAllChores()
-        .then(({data})=>{ setChoreState({...choreState, choresArr:data})})
+        .then(({data})=>{ 
+          setChoreState({...choreState, choresArr:data,
+            choreName: "",
+            cheddarReward: null})
+        })
         .catch(e => console.log(e));
     }).catch(e => console.log(e));
   };
 
+
+
+  choreState.handleGetProfile = _id => {
+    setChoreState({...choreState, profileArr: {}, kidChoresArr: []})
+    const childId = _id
+    const profileArr = {}
+    const kidChoresArr = []
+    Chores.getOneChild(childId)
+    .then(({ data }) => {
+      kidChoresArr.push(data.chores)
+      setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
+      console.log(kidChoresArr)
+    })
+    .catch(e => console.log(e))
+  }
 
 
   choreState.assignBonusChore = event => {
@@ -169,13 +179,11 @@ const App = _ => {
       isClaimed: true
     }
 
-
-
-    Chores.updateChore(event.target.getAttribute('choreid'), updateChoreInfo)
+    Chores.updateBonusChore(event.target.getAttribute('choreid'), updateChoreInfo)
     .then(_ => {
 
-      // Chores.getOneChild(childId)
-      //   .then(({ data }) => {
+      Chores.getOneChild(childId)
+        .then(({ data }) => {
 
 
           Chores.getAllChores()
@@ -183,22 +191,25 @@ const App = _ => {
               // console.log(dataChores)
                 Chores.getAllChildren()
                   .then(({ data: myKids }) => {
-                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores })
-                    console.log(myKids)
+                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores, child: data })
+                    // console.log(myKids)
                   })
                   .catch(e => console.log(e));
               // })
               //   .catch(e => console.log(e));
             })
             .catch(e => console.log(e))
-        // }).catch(e => console.log(e))
+        }).catch(e => console.log(e))
     }).catch(e => console.log(e))
 }
 
   choreState.deleteAChore = data => {
     Chores.deleteChore(data.id)
       .then(_ => {
-        window.location.reload()
+        // if (!data.isBonus){
+          
+          window.location.reload()
+        // } 
         // Chores.getAllChildren()
         //   .then(({data}) =>  {
         //     setChoreState({...choreState, childArr: data, updatingTracker: choreState.updatingTracker ? true : false})
@@ -322,12 +333,12 @@ const App = _ => {
                 Chores.getAllChores()
                   .then(({ data: allChores}) => {
 
-                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild });
+                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
 
 
-                  })
+                  }).catch(e => console.log(e));
                 
-       
+   
               })
               .catch(e => console.log(e));
           })
@@ -336,7 +347,6 @@ const App = _ => {
         if (window.location.pathname !== '/signin') {
           window.location.href = '/signin'
         }
-        console.log(e)
       })
 
   }, []);

@@ -49,22 +49,10 @@ const ProfilePage = _ => {
           <Paper
             className={classes.root}>
             <Grid item xs={12}
-              id='usersOverviewHead'
-              style={{
-                backgroundColor: '#153B69',
-                height: '50px',
-                color: 'white',
-                fontFamily: 'roboto',
-                fontSize: '25px',
-                textAlign: 'left'
-              }}>
-              <p style={{ margin: '0px', padding: '10px' }}>{profile.name}</p>
-            </Grid>
-            <Grid item xs={12}
               id='usersOverviewBody'
               style={{
                 height: '175px',
-                backgroundColor: 'white'
+                backgroundColor: '#E4ECF2'
               }}>
               <PersonalOverview />
             </Grid>
