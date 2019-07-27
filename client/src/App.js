@@ -18,7 +18,7 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
-    profileArr: [],
+    profileArr: {},
     kidChoresArr: [],
     reward: {},
     rewardsArr: [],
@@ -187,11 +187,11 @@ const App = _ => {
       isClaimed: true
     }
 
-    Chores.updateChore(event.target.getAttribute('choreid'), updateChoreInfo)
+    Chores.updateBonusChore(event.target.getAttribute('choreid'), updateChoreInfo)
     .then(_ => {
 
-      // Chores.getOneChild(childId)
-      //   .then(({ data }) => {
+      Chores.getOneChild(childId)
+        .then(({ data }) => {
 
 
           Chores.getAllChores()
@@ -199,15 +199,15 @@ const App = _ => {
               console.log(dataChores)
                 Chores.getAllChildren()
                   .then(({ data: myKids }) => {
-                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores })
-                    console.log(myKids)
+                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores, child: data })
+                    // console.log(myKids)
                   })
                   .catch(e => console.log(e));
               // })
               //   .catch(e => console.log(e));
             })
             .catch(e => console.log(e))
-        // }).catch(e => console.log(e))
+        }).catch(e => console.log(e))
     }).catch(e => console.log(e))
 }
 
