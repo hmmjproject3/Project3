@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     width: 20,
   },
   delBtn: {
-    backgroundColor: '#ED4F4F',
+    backgroundColor: '#60B0F5',
     minHeight: 0,
     height: 30,
     width: 30,
@@ -207,11 +207,12 @@ const [currentChore, setCurrentChore] = useState({
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
-                    <TableCell style={{ color: '#153B69', width: '250px', paddingRight: '15px' }}>Task</TableCell>
-                    <TableCell style={{ color: '#153B69', width: '100px', paddingRight: '15px' }} align="left">Cheddar</TableCell>
-                    <TableCell style={{ color: '#153B69', width: '80px', paddingRight: '20px', paddingLeft: '5px' }} align="left">Status</TableCell>
-                    <TableCell style={{ color: '#153B69', width: '5px', paddingRight: '0px' }} align="left"></TableCell>
-                    <TableCell style={{ color: '#153B69', width: '5px' }} align="left"></TableCell>
+                    <TableCell style={{ color: '#153B69', width: '120px', paddingRight: '15px' }}>Task</TableCell>
+                    <TableCell style={{ color: '#153B69', width: '120px', paddingRight: '15px' }} align="left">Cheddar</TableCell>
+                    <TableCell style={{ color: '#153B69', width: '223px', paddingRight: '15px' }} align="left">Status</TableCell>
+                    <TableCell style={{ color: '#153B69', width: '53px', paddingRight: '20px', paddingLeft: '5px' }} align="left"></TableCell>
+                    <TableCell style={{ color: '#153B69', width: '53px', paddingRight: '20px', paddingLeft: '5px' }} align="left"></TableCell>
+
                   </TableRow>
                 </TableHead>
                 <TableBody style={{ maxHeight: '100%', overflow: 'hidden' }}>
@@ -262,9 +263,7 @@ const [currentChore, setCurrentChore] = useState({
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
                                 {chore.isCompleted ? 'Completed' : 'Not Completed'}
                               </TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}></TableCell>
-                              <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>
-                              </TableCell>
+                              
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
                                 <Fab id={chore._id} onClick={(event) => toggleEdit(event, i)} color="secondary" aria-label="Edit" className={classes.editBtn}>
@@ -336,14 +335,16 @@ const [currentChore, setCurrentChore] = useState({
 
 
       </Paper>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', backgroundColor: "#F5F5F5" }}>
         <Fab className={classes.fab}
           onClick={toggleThenAddChore}
           style={{
             padding: 'auto',
             color: 'white',
-            backgroundColor: '#FFBA00',
+            backgroundColor: '#153B69',
             marginTop: '15px',
+            marginBottom: '15px',
+
           }}
         >
           <AddIcon />

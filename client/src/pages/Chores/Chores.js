@@ -19,7 +19,9 @@ const useStyles = makeStyles({
     height: 768,
   },
   date: {
+    paddingTop: "30px",
     textAlign: "center",
+    color: "#153B69",
   }
 });
 

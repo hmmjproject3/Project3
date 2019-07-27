@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'roboto'
   },
   addBtn: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#FFBA00',
     minHeight: 0,
     height: 30,
     width: 30,
@@ -115,7 +115,7 @@ const UpForGrabs = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Up For Grabs</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '220px', backgroundColor: 'white', overflowY: 'auto' }}>
 
           {!addView ?
 
@@ -231,19 +231,21 @@ const UpForGrabs = _ => {
 
         </Grid>
       </Paper>
-      <Button
+      <div style={{ textAlign: "center", backgroundColor: '#F5F5F5' }}>
+
+      <Fab
         className={classes.margin}
         onClick={(event) => toggleThenAddReward(event)}
         style={{
-          paddingLeft: '50px',
-          paddingRight: '50px',
           color: 'white',
-          backgroundColor: '#FFBA00',
-          marginTop: '20px',
-          width: 'auto'
+          backgroundColor: '#153B69',
+          marginTop: '15px',
+          marginBottom: '15px',
         }}>
-        Create New
-          </Button>
+         <AddIcon />
+
+          </Fab>
+          </div>
     </div>
   )
 }

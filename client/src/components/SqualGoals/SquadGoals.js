@@ -41,11 +41,11 @@ const SquadGoals = _ => {
 
   return (
     <div>
-      <Paper style={{marginTop: '10px'}} className={classes.root}>
+      <Paper className={classes.root}>
             <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left'}}>
                 <p style={{margin: '0px', padding: '10px'}}>Squad Goals</p>
                 </Grid>
-            <Grid item id='bonusChoresBody' xs={12} style={{height: '250px', backgroundColor: 'white'}}>
+            <Grid item id='bonusChoresBody' xs={12} style={{height: '220px', backgroundColor: 'white', overflowY: "auto"}}>
             <Table className={classes.table}>
           <TableHead>
             <TableRow>
