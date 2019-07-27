@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
     width: 'auto'
-  },
+  }
 }))
 
 const manageBonus = _ => {
@@ -19,7 +19,7 @@ const manageBonus = _ => {
         <Grid item id='manageBonushead' xs={12} style={{ height: '50px', color: 'white', textAlign: 'right' }}>
           <h3 style={{ padding: '10px', paddingTop: '13px' }}>manageBonus</h3>
         </Grid>
-        <Grid item id='manageBonusbody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} ></Grid>
+        <Grid item id='manageBonusbody' xs={12} style={{ height: '200px', backgroundColor: 'white' }} />
       </Paper>
     </div>
   )

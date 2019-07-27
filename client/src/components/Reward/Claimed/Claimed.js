@@ -18,8 +18,6 @@ import Marianna from '../../../assets/marianna.png'
 import Button from '@material-ui/core/Button'
 import ChoresContext from '../../../utils/ChoresContext'
 
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#153B69',
@@ -30,15 +28,15 @@ const useStyles = makeStyles(theme => ({
   table: {
     width: '100%',
     overflowX: 'auto',
-    minWidth: 300,
+    minWidth: 300
   },
   avatar: {
     height: 30,
-    width: 30,
+    width: 30
   },
   iconLeft: {
     height: 30,
-    width: 30,
+    width: 30
   },
   textField: {
     backgroundColor: '#dce2e9',
@@ -55,16 +53,12 @@ const useStyles = makeStyles(theme => ({
       borderColor: `#FFBA00 !important`,
       border: '2px solid'
     }
-  },
+  }
 }))
 
 const Claimed = _ => {
   const classes = useStyles()
-  const [addView, toggleAddView] = useState(false)
-  const { childArr, handleInputChange, assignReward, rewardsArr, addReward } = useContext(ChoresContext)
-  // const [editing, updateEdits] = useState({
-  //   id: false
-  // })
+  const { rewardsArr } = useContext(ChoresContext)
 
   return (
     <div>
@@ -77,35 +71,35 @@ const Claimed = _ => {
             <TableHead>
               <TableRow>
                 <TableCell style={{ color: '#153B69', width: '70px' }}>Reward</TableCell>
-                <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Cheddar</TableCell>
-                <TableCell style={{ color: '#153B69', width: '10px' }} align="left">Claimed By</TableCell>
+                <TableCell style={{ color: '#153B69', width: '10px' }} align='left'>Cheddar</TableCell>
+                <TableCell style={{ color: '#153B69', width: '10px' }} align='left'>Claimed By</TableCell>
               </TableRow>
             </TableHead>
             <TableBody >
-                { rewardsArr ?
-                rewardsArr.filter(reward => reward.isClaimed === true).map(eachReward => (
-              <TableRow key='row.name'>
-                <TableCell component="th" scope="row">
-                  {eachReward.name}
-              </TableCell>
-                <TableCell align="left" style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
-                <TableCell align="left">
-                <Avatar
-                className={classes.avatar}
-                style={{
-                  color: '#fff',
-                  backgroundColor: `${eachReward.child.color}`,
-                  height: 28,
-                  width: 28,
-                  marginRight: '5px',
-                  display: 'inline-flex',
-                  fontSize: '15px'
-                }}>{eachReward.child.name[0]}</Avatar>
-                </TableCell>
-                </TableRow> )) : null
+              { rewardsArr
+                ? rewardsArr.filter(reward => reward.isClaimed === true).map(eachReward => (
+                  <TableRow key='row.name'>
+                    <TableCell component='th' scope='row'>
+                      {eachReward.name}
+                    </TableCell>
+                    <TableCell align='left' style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
+                    <TableCell align='left'>
+                      <Avatar
+                        className={classes.avatar}
+                        style={{
+                          color: '#fff',
+                          backgroundColor: `${eachReward.child.color}`,
+                          height: 28,
+                          width: 28,
+                          marginRight: '5px',
+                          display: 'inline-flex',
+                          fontSize: '15px'
+                        }}>{eachReward.child.name[0]}</Avatar>
+                    </TableCell>
+                  </TableRow>)) : null
               }
             </TableBody>
-          </Table> 
+          </Table>
         </Grid>
 
       </Paper>

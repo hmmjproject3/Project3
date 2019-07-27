@@ -1,14 +1,13 @@
 const { Child, Chore } = require('../models')
 const passport = require('passport')
 
-
 module.exports = app => {
   // GET all Chores
   app.get('/chores', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.find({})
       // .populate('child')
-      //deep populate ensures that a reference document with references has its references updated whenever an update or delete route is passed
-      //deep populate:
+      // deep populate ensures that a reference document with references has its references updated whenever an update or delete route is passed
+      // deep populate:
       .populate({
         path: 'child',
         populate: { path: 'chores' }
@@ -43,7 +42,7 @@ module.exports = app => {
       .catch(e => console.log(e))
   })
 
-  //PUT a bonus chore
+  // PUT a bonus chore
 
   app.put('/bonuschores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.findByIdAndUpdate(req.params.id, req.body, {
@@ -51,31 +50,30 @@ module.exports = app => {
       upsert: true,
       runValidators: true,
       setDefaultsOnInsert: true,
-      populate: {path: 'child', populate: {path: 'chores'}}
-  })
+      populate: { path: 'child', populate: { path: 'chores' } }
+    })
       // .then(_ => res.sendStatus(200))
       .then(({ _id, child }) => {
         Child.updateOne({ _id: child }, { $push: { chores: _id } })
-          .then( _id => 
+          .then(_id =>
             res.sendStatus(200)
             // console.log(r)
-          
+
           )
           .catch(e => console.log(e))
       })
       .catch(e => console.log(e))
   })
 
-    //PUT a chore
+  // PUT a chore
 
-    app.put('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-      Chore.findByIdAndUpdate(req.params.id, req.body)
-        .then(_ => res.sendStatus(200))
-        .catch(e => console.log(e))
-    })
-  
+  app.put('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Chore.findByIdAndUpdate(req.params.id, req.body)
+      .then(_ => res.sendStatus(200))
+      .catch(e => console.log(e))
+  })
 
-  //DELETE a chore
+  // DELETE a chore
   app.delete('/chores/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Chore.findByIdAndDelete(req.params.id)
       .then(_ => res.sendStatus(200))

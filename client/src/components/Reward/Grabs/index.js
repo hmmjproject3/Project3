@@ -1,1 +1,1 @@
-export {default} from './Grabs.js'
+export { default } from './Grabs.js'

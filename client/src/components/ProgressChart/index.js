@@ -1,1 +1,1 @@
-export {default} from './ProgressChart.js'
+export { default } from './ProgressChart.js'
