@@ -66,7 +66,7 @@ const Claimed = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Claimed</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white', overflowY: 'auto' }}>
+        <Grid item id='claimedChoresBody' xs={12} style={{ height: '305px', backgroundColor: 'white', overflowY: 'auto' }}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>

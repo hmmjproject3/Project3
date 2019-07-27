@@ -39,18 +39,18 @@ const SquadGoals = _ => {
 
   return (
     <div>
-      <Paper style={{ marginTop: '10px' }} className={classes.root}>
-        <Grid item id='bonusChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
-          <p style={{ margin: '0px', padding: '10px' }}>Squad Goals</p>
-        </Grid>
-        <Grid item id='bonusChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>Name</TableCell>
-                <TableCell style={{ color: '#153B69', width: '20px' }} align='left'>Cheddar</TableCell>
-                <TableCell style={{ color: '#153B69', width: '20px' }} align='left'>Ranking</TableCell>
-              </TableRow>
+      <Paper className={classes.root}>
+            <Grid item id='bonusChoresHead' xs={12} style={{height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left'}}>
+                <p style={{margin: '0px', padding: '10px'}}>Squad Goals</p>
+                </Grid>
+            <Grid item id='bonusChoresBody' xs={12} style={{height: '220px', backgroundColor: 'white', overflowY: "auto"}}>
+            <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell style={{color: '#153B69', width: '20px', paddingRight: '10px'}}>Name</TableCell>
+              <TableCell style={{color: '#153B69', width: '20px'}} align="left">Cheddar</TableCell>
+              <TableCell style={{color: '#153B69', width: '20px'}} align="left">Ranking</TableCell>
+            </TableRow>
             </TableHead>
             <TableBody>
               {/* {rows.map(row => ( */}

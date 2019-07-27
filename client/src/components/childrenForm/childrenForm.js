@@ -128,7 +128,7 @@ const ChildrenForm = _ => {
               </Grid>
 
               <Grid item xs={2} sm={2} style={{ paddingTop: '15px' }}>
-                <Fab style={{ height: '30px', width: '30px', color: '#ff0000', fontWeight: 'bold', backgroundColor: '#153B69', marginLeft: '0px' }} aria-label='Delete' onClick={() => handleRemove(idx)}>
+                <Fab style={{ color: '#ff0000', fontWeight: 'bold', backgroundColor: '#153B69', marginLeft: '0px' }} aria-label='Delete' onClick={() => handleRemove(idx)}>
                   <ClearIcon />
                 </Fab>
 

@@ -38,8 +38,7 @@ const ProfilePage = _ => {
           textAlign: 'center',
           width: 'auto',
           marginTop: '40px',
-          marginLeft: '50px',
-          marginRight: '50px',
+
           marginBottom: '20px'
         }}>
         <Grid item xs={12}
