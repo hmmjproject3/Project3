@@ -106,7 +106,7 @@ const AddKidChores = _ => {
 		// 	  </Container>
 		<div style={{backgroundColor: 'white'}}>
 		<Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '330px', width: 'auto', backgroundColor: 'white' }}>
-				<p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69'}}>Assign a New Chore</p>
+				<p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69'}}>Assign a Bonus Chore</p>
 				<TextField
 						id="outlined-name"
 						label="Task Name"

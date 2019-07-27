@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import ChoresContext from '../../utils/ChoresContext'
+import Chores from '../../utils/Chores.js'
 import { makeStyles } from '@material-ui/core/styles';
 import Settings from '@material-ui/icons/Settings';
 import LocalAtm from '@material-ui/icons/LocalAtm';
@@ -41,8 +42,8 @@ const useStyles = makeStyles({
 })
 
 export default function SimpleAppBar() {
-  const { childArr } = useContext(ChoresContext)
-  const classes = useStyles();
+  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
+  const classes = useStyles()
 
   return (
     <div className={classes.root}>
@@ -51,10 +52,11 @@ export default function SimpleAppBar() {
         <Grid container spacing={3}>
 
           <Grid className={classes.left} item xs={8}>
-            {childArr.map(({ name, color }) => {
+            {childArr.map(({ name, color, _id }) => {
               return (
-                <Link className={classes.link} to='/profilepage'>
+                <Link className={classes.link} to='/profilepage' onClick={console.log(child._id)}>
                   <Avatar
+                    id={`${_id}`}
                     className={classes.avatar}
                     style={{
                       color: '#fff',
