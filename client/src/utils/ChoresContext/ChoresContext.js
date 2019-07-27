@@ -29,6 +29,8 @@ const ChoresContext = createContext({
   cheddarReward: Number,
   rewardName: '',
   rewardAmount: Number,
+  bonusChoreName: '',
+  bonusChoreCheddar: Number,
 
   addChildren: _ => {},
   selectChild: _ => {},
