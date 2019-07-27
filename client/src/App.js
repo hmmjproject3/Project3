@@ -161,6 +161,7 @@ const App = _ => {
 
 
   choreState.handleGetProfile = _id => {
+    setChoreState({...choreState, profileArr: {}, kidChoresArr: []})
     const childId = _id
     const profileArr = {}
     const kidChoresArr = []
