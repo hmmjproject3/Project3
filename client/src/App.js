@@ -18,6 +18,8 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
+    profileArr: [],
+    kidChoresArr: [],
     reward: {},
     rewardsArr: [],
     claimedRewardsArr: [],
@@ -125,6 +127,7 @@ const App = _ => {
     }).catch(e => console.log(e));
   };
 
+<<<<<<< HEAD
   choreState.addBonusChore = event => {
     event.preventDefault();
     const chore = {
@@ -156,6 +159,22 @@ const App = _ => {
   };
 
 
+=======
+  choreState.handleGetProfile = _id => {
+    const childId = _id
+    const profileArr = {}
+    const kidChoresArr = []
+    Chores.getOneChild(childId)
+    .then(({ data }) => {
+      // profileArr.push(data)
+      kidChoresArr.push(data.chores)
+      setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
+      // console.log(profileArr)
+      console.log(kidChoresArr)
+    })
+    .catch(e => console.log(e))
+  }
+>>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
 
   choreState.assignBonusChore = event => {
 
@@ -315,6 +334,7 @@ const App = _ => {
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
+<<<<<<< HEAD
 
                 Chores.getAllChores()
                   .then(({ data: allChores}) => {
@@ -325,6 +345,10 @@ const App = _ => {
                   })
                 
        
+=======
+                console.log(data1);
+                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
+>>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
               })
               .catch(e => console.log(e));
           })

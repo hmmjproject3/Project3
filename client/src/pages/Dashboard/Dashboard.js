@@ -47,11 +47,8 @@ export default function Dashboard() {
                         </Grid>
                     </Paper>
                 </Grid>
-                <Grid item id='squadGoalsContainer' xs={12} md={6}>
+                <Grid item id='squadGoalsContainer' xs={12} md={12}>
                     <SquadGoals />
-                </Grid>
-                <Grid item id='bonusChoresContainer' xs={12} md={6}>
-                    <BonusChores />
                 </Grid>
             </Grid>
         </div>
