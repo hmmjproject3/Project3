@@ -9,6 +9,9 @@ module.exports = (Schema, model) => {
     isCompleted: {
       type: Boolean
     },
+    isBonus: {
+      type: Boolean
+    },
     child: {
       type: Schema.Types.ObjectId,
       ref: 'Child'

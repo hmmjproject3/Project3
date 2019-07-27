@@ -115,16 +115,11 @@ const [currentChore, setCurrentChore] = useState({
       isCompleted: _choreComplete.current.value==='Completed' ? true : false
     }
 
-    console.log(updatedChore)
-    console.log(currentChore)
     Chores.updateChore(event.currentTarget.id, updatedChore)
       .then(_ => {
-
-        // console.log(updatedChore.isCompleted)
         if (updatedChore.isCompleted) {
           Chores.getOneChild(childId)
             .then(({ data }) => {
-              // console.log(data.totalPoints)
               Chores.updateChild(childId, {
                 totalPoints: data.totalPoints + updatedChore.points
               }).then(_ => {
@@ -142,20 +137,9 @@ const [currentChore, setCurrentChore] = useState({
     if (!editing[id]) {
 
     const selectedChoreToUpdate = child.chores.filter(chore => chore._id===event.currentTarget.id)[0]
-    console.log(selectedChoreToUpdate)
 
     setCurrentChore({...currentChore, name: selectedChoreToUpdate.name, points: selectedChoreToUpdate.points, isCompleted: selectedChoreToUpdate.isCompleted ? 'Completed' : 'Not Completed'})
-    }
-  //   let chores = []
-  //   chores = JSON.parse(JSON.stringify(child.chores))
-  //   // chores.push({name: chore.name, points: chore.points, isCompleted: chore.isCompleted})
-  //   setCurrentChore({...currentChore,chores})
-
-  //   console.log(chores)
-  // }
-  // console.log(event.currentTarget)
-
- 
+    } 
 
     updateEdits({
       ...editing,
@@ -223,7 +207,7 @@ const [currentChore, setCurrentChore] = useState({
                       child.chores ?
 
 
-                        child.chores.map((chore, i) => {
+                        child.chores.filter(chore => !chore.isBonus).map((chore, i) => {
                           childId = chore.child
                           // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
                           return editing[i] ?
