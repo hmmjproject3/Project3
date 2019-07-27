@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 })
 
 export default function SimpleAppBar() {
-  const { childArr, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
+  const { profileArr, childArr, handleGetProfile, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
   const classes = useStyles()
 
   return (
@@ -54,9 +54,10 @@ export default function SimpleAppBar() {
           <Grid className={classes.left} item xs={8}>
             {childArr.map(({ name, color, _id }) => {
               return (
-                <Link className={classes.link} to='/profilepage' onClick={console.log(child._id)}>
+                <Link className={classes.link} to='/profilepage'>
                   <Avatar
                     id={`${_id}`}
+                    onClick={_ => {handleGetProfile(_id)}}
                     className={classes.avatar}
                     style={{
                       color: '#fff',

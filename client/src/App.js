@@ -18,6 +18,8 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
+    profileArr: [],
+    kidChoresArr: [],
     reward: {},
     rewardsArr: [],
     claimedRewardsArr: [],
@@ -124,7 +126,20 @@ const App = _ => {
     }).catch(e => console.log(e));
   };
 
-
+  choreState.handleGetProfile = _id => {
+    const childId = _id
+    const profileArr = {}
+    const kidChoresArr = []
+    Chores.getOneChild(childId)
+    .then(({ data }) => {
+      // profileArr.push(data)
+      kidChoresArr.push(data.chores)
+      setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
+      // console.log(profileArr)
+      console.log(kidChoresArr)
+    })
+    .catch(e => console.log(e))
+  }
 
   choreState.deleteAChore = data => {
     Chores.deleteChore(data.id)
@@ -250,7 +265,7 @@ const App = _ => {
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
                 console.log(data1);
-                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild });
+                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
               })
               .catch(e => console.log(e));
           })
