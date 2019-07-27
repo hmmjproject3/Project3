@@ -37,7 +37,7 @@ const ProfileComplete = _ => {
 
   return (
     <div>
-      <Paper style={{ marginTop: '10px' }} className={classes.root}>
+      <Paper style={{ marginTop: '20px' }} className={classes.root}>
         <Grid item id='completeChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Completed Chores</p>
         </Grid>
