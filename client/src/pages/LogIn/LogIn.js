@@ -1,18 +1,12 @@
 import React from 'react'
 import LogInForm from '../../components/LogInForm'
 
-
-
-
-
 const LogIn = _ => {
-
-
-    return (
+  return (
         <>
-          <LogInForm/>
+          <LogInForm />
         </>
-    )
+  )
 }
 
 export default LogIn

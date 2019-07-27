@@ -1,1 +1,1 @@
-export {default} from './BonusChores.js'
+export { default } from './BonusChores.js'

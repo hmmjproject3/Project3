@@ -10,19 +10,19 @@ import ActiveChore from '../../components/ActiveChore'
 
 const useStyles = makeStyles({
   mainCon: {
-    backgroundColor: "#E4ECF2",
-    boxShadow: "none",
+    backgroundColor: '#E4ECF2',
+    boxShadow: 'none',
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 50,
     paddingRight: 50,
-    height: 768,
+    height: 768
 
   },
   date: {
-    textAlign: "center",
+    textAlign: 'center'
   }
-});
+})
 
 const ProfilePage = _ => {
   const { profileArr: profile } = useContext(ChoresContext)

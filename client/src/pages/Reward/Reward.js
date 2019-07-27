@@ -10,25 +10,24 @@ import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
 
-
 const useStyles = makeStyles({
   mainCon: {
-    backgroundColor: "#E4ECF2",
-    boxShadow: "none",
+    backgroundColor: '#E4ECF2',
+    boxShadow: 'none',
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 50,
     paddingRight: 50,
-    height: 768,
+    height: 768
 
   },
   date: {
-    textAlign: "center",
+    textAlign: 'center'
   }
-});
+})
 
-export default function Reward() {
-  const classes = useStyles();
+export default function Reward () {
+  const classes = useStyles()
 
   return (
     <div className={classes.mainCon}>
@@ -39,7 +38,7 @@ export default function Reward() {
         style={{
           textAlign: 'center',
           width: 'auto',
-          marginTop: '20px',
+          marginTop: '20px'
         }}>
         <Grid item xs={12}
           id='usersOverviewContainer'

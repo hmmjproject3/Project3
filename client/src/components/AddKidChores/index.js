@@ -1,1 +1,1 @@
-export {default} from './AddKidChores.js'
+export { default } from './AddKidChores.js'

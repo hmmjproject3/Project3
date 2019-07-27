@@ -1,47 +1,47 @@
 import React, { useContext, useState } from 'react'
 import ChoresContext from '../../utils/ChoresContext'
 import Chores from '../../utils/Chores.js'
-import { makeStyles } from '@material-ui/core/styles';
-import Settings from '@material-ui/icons/Settings';
-import LocalAtm from '@material-ui/icons/LocalAtm';
-import Home from '@material-ui/icons/Home';
-import LocalLaundryService from '@material-ui/icons/LocalLaundryService';
+import { makeStyles } from '@material-ui/core/styles'
+import Settings from '@material-ui/icons/Settings'
+import LocalAtm from '@material-ui/icons/LocalAtm'
+import Home from '@material-ui/icons/Home'
+import LocalLaundryService from '@material-ui/icons/LocalLaundryService'
 import People from '@material-ui/icons/People'
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton'
+import Grid from '@material-ui/core/Grid'
+import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 15,
+    marginTop: 15
   },
   con: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   right: {
-    textAlign: "right",
+    textAlign: 'right'
   },
   iconsright: {
-    backgroundColor: "#153B69",
-    color: "#E4ECF2",
+    backgroundColor: '#153B69',
+    color: '#E4ECF2',
     marginRight: 10,
     height: 48,
     width: 48,
-    display: 'inline-flex',
+    display: 'inline-flex'
   },
   link: {
     textDecoration: 'none'
   },
   appBar: {
-    backgroundColor: "#E4ECF2",
-    boxShadow: "none",
-    position: 'initial',
+    backgroundColor: '#E4ECF2',
+    boxShadow: 'none',
+    position: 'initial'
 
   }
 })
 
-export default function SimpleAppBar() {
+export default function SimpleAppBar () {
   const { profileArr, childArr, handleGetProfile, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
   const classes = useStyles()
 
@@ -57,7 +57,7 @@ export default function SimpleAppBar() {
                 <Link className={classes.link} to='/profilepage'>
                   <Avatar
                     id={`${_id}`}
-                    onClick={_ => {handleGetProfile(_id)}}
+                    onClick={_ => { handleGetProfile(_id) }}
                     className={classes.avatar}
                     style={{
                       color: '#fff',
@@ -83,7 +83,6 @@ export default function SimpleAppBar() {
                 <Home />
               </IconButton>
             </Link>
-
 
             <Link className={classes.link} to='/chorespage'>
               <IconButton className={classes.iconsright}>

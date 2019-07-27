@@ -11,7 +11,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
 const FamilyOverview = _ => {
   const { childArr } = useContext(ChoresContext)
   const classes = useStyles()
