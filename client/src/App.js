@@ -248,8 +248,16 @@ const App = _ => {
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
-                console.log(data1);
-                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild });
+
+                Chores.getAllChores()
+                  .then(({ data: allChores}) => {
+
+                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild });
+
+
+                  })
+                
+       
               })
               .catch(e => console.log(e));
           })
