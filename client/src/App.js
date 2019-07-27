@@ -126,9 +126,7 @@ const App = _ => {
         .catch(e => console.log(e));
     }).catch(e => console.log(e));
   };
-
-<<<<<<< HEAD
-  choreState.addBonusChore = event => {
+    choreState.addBonusChore = event => {
     event.preventDefault();
     const chore = {
       name: choreState.choreName,
@@ -159,22 +157,6 @@ const App = _ => {
   };
 
 
-=======
-  choreState.handleGetProfile = _id => {
-    const childId = _id
-    const profileArr = {}
-    const kidChoresArr = []
-    Chores.getOneChild(childId)
-    .then(({ data }) => {
-      // profileArr.push(data)
-      kidChoresArr.push(data.chores)
-      setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
-      // console.log(profileArr)
-      console.log(kidChoresArr)
-    })
-    .catch(e => console.log(e))
-  }
->>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
 
   choreState.assignBonusChore = event => {
 
@@ -187,6 +169,8 @@ const App = _ => {
       isClaimed: true
     }
 
+
+
     Chores.updateChore(event.target.getAttribute('choreid'), updateChoreInfo)
     .then(_ => {
 
@@ -196,7 +180,7 @@ const App = _ => {
 
           Chores.getAllChores()
             .then(({ data: dataChores }) => {
-              console.log(dataChores)
+              // console.log(dataChores)
                 Chores.getAllChildren()
                   .then(({ data: myKids }) => {
                     setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores })
@@ -334,7 +318,6 @@ const App = _ => {
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
-<<<<<<< HEAD
 
                 Chores.getAllChores()
                   .then(({ data: allChores}) => {
@@ -345,10 +328,6 @@ const App = _ => {
                   })
                 
        
-=======
-                console.log(data1);
-                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
->>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
               })
               .catch(e => console.log(e));
           })
