@@ -15,12 +15,13 @@ const ChoresContext = createContext({
 
   handleInputChange: _ => { },
 
-
   //Child and chore variables
   chore: {},
   choresArr: [],
   child: {},
   childArr: [],
+  profileArr: [],
+  kidChoresArr: [],
   reward: {},
   rewardsArr: [],
   claimedRewardsArr: [],
@@ -34,6 +35,7 @@ const ChoresContext = createContext({
   addChore: _ => {},
 
   handleInputChange: _ => {},
+  handleGetProfile: _ => {},
 
   registerUser: _ => {},
   loginUser: _ => {},

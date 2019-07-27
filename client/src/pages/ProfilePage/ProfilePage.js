@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ChoresContext from '../../utils/ChoresContext'
 import MenuBar from '../../components/MenuBar'
 import { makeStyles } from '@material-ui/core/styles'
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 });
 
 const ProfilePage = _ => {
-  const { childArr } = useContext(ChoresContext)
+  const { profileArr: profile } = useContext(ChoresContext)
   const classes = useStyles()
 
   return (
@@ -59,7 +59,7 @@ const ProfilePage = _ => {
                 fontSize: '25px',
                 textAlign: 'left'
               }}>
-              <p style={{ margin: '0px', padding: '10px' }}>Marianna</p>
+              <p style={{ margin: '0px', padding: '10px' }}>{profile.name}</p>
             </Grid>
             <Grid item xs={12}
               id='usersOverviewBody'

@@ -1,4 +1,7 @@
 import React, { useContext, useState } from 'react'
+import Home from '@material-ui/icons/Home';
+import { Link } from 'react-router-dom'
+import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
@@ -13,6 +16,15 @@ import ChoresContext from '../../utils/ChoresContext'
 import randomColor from 'randomcolor'
 
 const useStyles = makeStyles(theme => ({
+
+  iconsright: {
+    backgroundColor: "#153B69",
+    color: "#E4ECF2",
+    marginRight: 10,
+    height: 48,
+    width: 48,
+    display: 'inline-flex',
+  },
 
   // unfocused text field - label text
   cssLabel: {
@@ -69,6 +81,14 @@ const ChildrenForm = _ => {
   }
 
   return (
+    <>
+    <div>
+      <Link className={classes.link} to='/Dashboard'>
+              <IconButton className={classes.iconsright}>
+                <Home />
+              </IconButton>
+            </Link>
+    </div>
 
     <Container style={{ marginTop: '60px', marginLeft: '200px', marginRight: '200px', backgroundColor: '#153B69', width: 'auto', maxWidth: '100%', textAlign: 'center' }} component="main" maxWidth="xs">
       <CssBaseline />
@@ -131,6 +151,7 @@ const ChildrenForm = _ => {
         Submit
           </Button>
     </Container>
+    </>
   );
 }
 

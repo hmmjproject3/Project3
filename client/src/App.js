@@ -18,6 +18,8 @@ const App = _ => {
     choresArr: [],
     child: {},
     childArr: [],
+    profileArr: [],
+    kidChoresArr: [],
     reward: {},
     rewardsArr: [],
     claimedRewardsArr: [],
@@ -103,7 +105,8 @@ const App = _ => {
       points: parseInt(choreState.cheddarReward),
       child: choreState.child._id,
       isCompleted: false,
-      isBonus: false
+      isBonus: false,
+      isClaimed: true,
     };
 
     Chores.addChore(chore).then(_ => {
@@ -124,7 +127,89 @@ const App = _ => {
     }).catch(e => console.log(e));
   };
 
+<<<<<<< HEAD
+  choreState.addBonusChore = event => {
+    event.preventDefault();
+    const chore = {
+      name: choreState.choreName,
+      points: parseInt(choreState.cheddarReward),
+      isCompleted: false,
+      isBonus: true,
+      isClaimed: false
+    };
 
+    Chores.addChore(chore).then(_ => {
+      // Chores.getAllChildren()
+      //   .then(({ data }) => {
+      //     const childUpdate = data.filter(
+      //       child => child._id === chore.child
+      //     )[0];
+      //     setChoreState({
+      //       ...choreState,
+      //       choreName: "",
+      //       cheddarReward: null,
+      //       childArr: data,
+      //       child: childUpdate
+      //     });
+      //   })
+      Chores.getAllChores()
+        .then(({data})=>{ setChoreState({...choreState, choresArr:data})})
+        .catch(e => console.log(e));
+    }).catch(e => console.log(e));
+  };
+
+
+=======
+  choreState.handleGetProfile = _id => {
+    const childId = _id
+    const profileArr = {}
+    const kidChoresArr = []
+    Chores.getOneChild(childId)
+    .then(({ data }) => {
+      // profileArr.push(data)
+      kidChoresArr.push(data.chores)
+      setChoreState({...choreState, profileArr: data, kidChoresArr: data.chores})
+      // console.log(profileArr)
+      console.log(kidChoresArr)
+    })
+    .catch(e => console.log(e))
+  }
+>>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
+
+  choreState.assignBonusChore = event => {
+
+    const choreId = event.target.getAttribute('choreid')
+    const childId = event.target.id
+    // let difference
+
+    const updateChoreInfo = {
+      child: childId,
+      isClaimed: true
+    }
+
+    Chores.updateChore(event.target.getAttribute('choreid'), updateChoreInfo)
+    .then(_ => {
+
+      // Chores.getOneChild(childId)
+      //   .then(({ data }) => {
+
+
+          Chores.getAllChores()
+            .then(({ data: dataChores }) => {
+              console.log(dataChores)
+                Chores.getAllChildren()
+                  .then(({ data: myKids }) => {
+                    setChoreState({ ...choreState, childArr: myKids, choresArr: dataChores })
+                    console.log(myKids)
+                  })
+                  .catch(e => console.log(e));
+              // })
+              //   .catch(e => console.log(e));
+            })
+            .catch(e => console.log(e))
+        // }).catch(e => console.log(e))
+    }).catch(e => console.log(e))
+}
 
   choreState.deleteAChore = data => {
     Chores.deleteChore(data.id)
@@ -249,8 +334,21 @@ const App = _ => {
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {
+<<<<<<< HEAD
+
+                Chores.getAllChores()
+                  .then(({ data: allChores}) => {
+
+                setChoreState({ ...choreState, choresArr: allChores, childArr: data, rewardsArr: data1, child: firstChild });
+
+
+                  })
+                
+       
+=======
                 console.log(data1);
-                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild });
+                setChoreState({ ...choreState, childArr: data, rewardsArr: data1, child: firstChild, profileArr: firstChild });
+>>>>>>> 57dc426edfeba941e6dd57673decebeaf1e579ca
               })
               .catch(e => console.log(e));
           })
