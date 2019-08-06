@@ -1,10 +1,13 @@
 #logo {
     margin: 30px;
+    width: auto;
+    text-align: center;
 }
 
 #signUpCont {
-    margin-top: '100px';
-    text-align: 'center';
+    margin-top: 100px;
+    text-align: center;
+    width: auto;
 }
 
 #formCont {
@@ -21,7 +24,7 @@
         background-image: url('../../assets/noSponge.png')
     }
     #signUpCont {
-        margin-top: 75px;
+        margin-top: 100px;
         text-align: center;
     }
     #logo {
