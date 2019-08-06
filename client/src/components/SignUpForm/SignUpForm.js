@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import './SignUpForm.css'
 import 'typeface-roboto'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
 
   // register and sign-in tabs
@@ -95,13 +96,6 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   },
-
-  container: {
-    // marginTop: 100,
-    // marginBottom: 100,
-    width: 'auto'
-    // backgroundColor: '#153B69',
-  }
 }))
 
 const SignUpForm = _ => {
@@ -131,17 +125,11 @@ const SignUpForm = _ => {
   } = useContext(ChoresContext)
 
   return (
-    <div
-      style={{
-        marginTop: '100px',
-        textAlign: 'center'
-      }}
-    >
-      <img alt='adulting logo' src='logo.png' style={{ margin: 30 }} />
+    <div id='signUpCont'><img alt='adulting logo' src='logo.png' id='logo' />
 
-      <Container component='main' maxWidth='xs' className={classes.container}>
+      <Container component='main' maxWidth='xs' id='formCont'>
         <CssBaseline />
-        <AppBar position='static' color='default'>
+        <AppBar id='swipeBar' position='static' color='default'>
           <Tabs
             className={classes.tabs}
             value={value}
@@ -203,34 +191,6 @@ const SignUpForm = _ => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      autoComplete='userName'
-                      name='userName'
-                      variant='outlined'
-                      required
-                      fullWidth
-                      id='userName'
-                      value={userName}
-                      onChange={handleInputChange}
-                      label='User Name'
-                      autoFocus
-                      InputLabelProps={{
-                        classes: {
-                          root: classes.cssLabel,
-                          focused: classes.cssFocused
-                        }
-                      }}
-                      InputProps={{
-                        classes: {
-                          root: classes.cssOutlinedInput,
-                          focused: classes.cssFocused,
-                          notchedOutline: classes.notchedOutline
-                        },
-                        inputMode: 'numeric'
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
                       variant='outlined'
                       required
                       fullWidth
@@ -258,11 +218,39 @@ const SignUpForm = _ => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      autoComplete='userName'
+                      name='userName'
+                      variant='outlined'
+                      required
+                      fullWidth
+                      id='userName'
+                      value={userName}
+                      onChange={handleInputChange}
+                      label='Create a User Name'
+                      autoFocus
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.cssLabel,
+                          focused: classes.cssFocused
+                        }
+                      }}
+                      InputProps={{
+                        classes: {
+                          root: classes.cssOutlinedInput,
+                          focused: classes.cssFocused,
+                          notchedOutline: classes.notchedOutline
+                        },
+                        inputMode: 'numeric'
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
                       variant='outlined'
                       required
                       fullWidth
                       name='password'
-                      label='Password'
+                      label='Create a Password'
                       type='password'
                       id='password'
                       value={password}
