@@ -50,7 +50,7 @@ export default function Reward () {
             <Grid item xs={12}
               id='usersOverviewHead'
               style={{
-                backgroundColor: '#153B69',
+                backgroundColor: '#24537f',
                 height: '50px',
                 color: 'white',
                 fontFamily: 'roboto',

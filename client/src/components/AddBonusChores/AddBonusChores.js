@@ -20,7 +20,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     padding: theme.spacing(0, 0),
     width: 'auto',
     fontFamily: 'roboto'
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     width: 20
   },
   editBtn: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     minHeight: 0,
     height: 30,
     width: 30
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     width: 20
   },
   delBtn: {
-    backgroundColor: "#60B0F5",
+    backgroundColor: "#c12006",
     minHeight: 0,
     height: 30,
     width: 30
@@ -468,7 +468,7 @@ const AddBonusChores = _ => {
           style={{
             padding: "auto",
             color: "white",
-            backgroundColor: "#153B69",
+            backgroundColor: "#24537f",
             marginTop: "15px",
             marginBottom: "15px",
 

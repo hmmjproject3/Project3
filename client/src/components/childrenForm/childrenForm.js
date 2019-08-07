@@ -18,7 +18,7 @@ import randomColor from 'randomcolor'
 const useStyles = makeStyles(theme => ({
 
   iconsright: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     color: '#E4ECF2',
     marginRight: 10,
     height: 48,
@@ -87,13 +87,13 @@ const ChildrenForm = _ => {
         </Link>
       </div>
 
-      <Container style={{ marginTop: '60px', marginLeft: '200px', marginRight: '200px', backgroundColor: '#153B69', width: 'auto', maxWidth: '100%', textAlign: 'center' }} component='main' maxWidth='xs'>
+      <Container style={{ marginTop: '60px', marginLeft: '200px', marginRight: '200px', backgroundColor: '#24537f', width: 'auto', maxWidth: '100%', textAlign: 'center' }} component='main' maxWidth='xs'>
         <CssBaseline />
         <Typography style={{ fontFamily: 'roboto', fontSize: '25px', fontWeight: 'bold', color: 'white' }}>TELL US ABOUT YOUR SQUAD
         </Typography>
         <Typography style={{ marginTop: '30px', marginBottom: '25px', textAlign: 'center', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '18px' }} variant='h6' gutterBottom>
         Add Children
-          <Fab style={{ minHeight: '0', height: '30px', width: '30px', color: '#153B69', backgroundColor: '#FFBA00', marginLeft: '10px' }} aria-label='Add' onClick={() => handleAdd()}>
+          <Fab style={{ minHeight: '0', height: '30px', width: '30px', color: '#c12006', backgroundColor: '#FFBA00', marginLeft: '10px' }} aria-label='Add' onClick={() => handleAdd()}>
             <AddIcon />
           </Fab>
           <br />
@@ -128,7 +128,7 @@ const ChildrenForm = _ => {
               </Grid>
 
               <Grid item xs={2} sm={2} style={{ paddingTop: '15px' }}>
-                <Fab style={{ color: '#ff0000', fontWeight: 'bold', backgroundColor: '#153B69', marginLeft: '0px' }} aria-label='Delete' onClick={() => handleRemove(idx)}>
+                <Fab style={{ color: '#ff0000', fontWeight: 'bold', backgroundColor: '#24537f', marginLeft: '0px' }} aria-label='Delete' onClick={() => handleRemove(idx)}>
                   <ClearIcon />
                 </Fab>
 

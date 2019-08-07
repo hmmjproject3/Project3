@@ -12,19 +12,21 @@ import ChoresContext from '../../utils/ChoresContext'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     padding: theme.spacing(0, 0),
     width: 'auto'
   },
-  // root: {
-  //     width: '100%',
-  //     marginTop: theme.spacing(3),
-  //     overflowX: 'auto',
-  //   },
   table: {
     width: '100%',
     overflowX: 'auto',
     minWidth: 300
+  }, 
+  points: {
+    color: '#FF9300',
+  },
+  rank: {
+    color: '#68247f',
+    fontWeight: 'bold',
   }
 }))
 
@@ -75,8 +77,8 @@ const SquadGoals = _ => {
                     <TableCell component='th' scope='row'>
                       {child.name}
                     </TableCell>
-                    <TableCell align='left' style={{ color: '#FF9300' }}>{child.totalPoints}</TableCell>
-                    <TableCell align='left' style={{ color: '#60B0F5', fontWeight: 'bold' }}>{ranking[i]}</TableCell>
+                    <TableCell className={classes.points} align='left'>{child.totalPoints}</TableCell>
+                    <TableCell className={classes.rank} align='left'>{ranking[i]}</TableCell>
                   </TableRow>
                   )
                 })

@@ -5,7 +5,7 @@ import ChildrenForm from '../../components/childrenForm'
 
 const childrenFormPage = _ => {
   return (
-    <div className='overlay' id='childrenFormContainer' style={{ height: '100%', width: '100%', backgroundColor: '#153B69' }}>
+    <div className='overlay' id='childrenFormContainer' style={{ height: '100%', width: '100%', backgroundColor: '#24537f' }}>
       <ChildrenForm />
     </div>
   )
