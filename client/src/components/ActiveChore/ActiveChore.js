@@ -28,6 +28,9 @@ const useStyles = makeStyles(theme => ({
   iconLeft: {
     height: 30,
     width: 30
+  },
+  points: {
+    color:'#FF9300'
   }
 }))
 
@@ -57,7 +60,7 @@ const ActiveChore = _ => {
                     <TableCell component='th' scope='row'>
                       {name}
                     </TableCell>
-                    <TableCell align='left' style={{ color: '#FF9300' }}>{points}</TableCell>
+                    <TableCell className={classes.points} align='left'>{points}</TableCell>
                   </TableRow>
                 }
               })}

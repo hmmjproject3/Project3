@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     textAlign: 'right'
   },
   iconsright: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     color: '#E4ECF2',
     marginRight: 10,
     height: 48,
