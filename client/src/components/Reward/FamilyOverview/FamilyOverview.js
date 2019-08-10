@@ -10,8 +10,18 @@ const useStyles = makeStyles(theme => ({
     overflowY: 'scroll',
   },
   member: {
-    textAlign: 'center',
+    margin: 'auto',
     overflowY: 'auto',
+    padding: 10,
+  },
+  avatar: {
+    color: '#fff',
+    height: 48,
+    width: 48,
+    marginRight: 5,
+    marginTop: 10,
+    display: 'inline-flex',
+    fontSize: 25
   }
 }))
 
@@ -23,22 +33,10 @@ const FamilyOverview = _ => {
     <Grid container className={classes.familyGrid}>
       {childArr.map(({ name, color, totalPoints }) => {
         return (
-          // <Grid className={classes.member} item xs={12} md={3}>
-            <Grid className={classes.member} item xs={12} sm={3} md={3} lg={2} style={{ marginTop: '20px' }}>
-              <Avatar
-                className={classes.avatar}
-                style={{
-                  color: '#fff',
-                  backgroundColor: `${color}`,
-                  height: 48,
-                  width: 48,
-                  marginRight: '5px',
-                  display: 'inline-flex',
-                  fontSize: '25px'
-                }}>{name[0]}</Avatar>
-            {/* </Grid> */}
-            <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>{name}</Grid>
-            <Grid item xs={12} md={12} style={{ marginTop: '5px', marginBottom: '10px', fontFamily: 'roboto', fontSize: '35px', color: `${color}`, fontWeight: 'bold' }}>{totalPoints}</Grid>
+            <Grid item className={classes.member}>
+              <Avatar className={classes.avatar} style={{ backgroundColor: `${color}` }}>{name[0]}</Avatar>
+            <Grid item style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>{name}</Grid>
+            <Grid item style={{ marginTop: '5px', marginBottom: '10px', fontFamily: 'roboto', fontSize: '35px', color: `${color}`, fontWeight: 'bold' }}>{totalPoints}</Grid>
           </Grid>
         )
       })}
