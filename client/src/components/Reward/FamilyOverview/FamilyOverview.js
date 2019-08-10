@@ -7,7 +7,11 @@ import Avatar from '@material-ui/core/Avatar'
 
 const useStyles = makeStyles(theme => ({
   familyGrid: {
-    overflow: 'auto'
+    overflowY: 'scroll',
+  },
+  member: {
+    textAlign: 'center',
+    overflowY: 'auto',
   }
 }))
 
@@ -19,8 +23,8 @@ const FamilyOverview = _ => {
     <Grid container className={classes.familyGrid}>
       {childArr.map(({ name, color, totalPoints }) => {
         return (
-          <Grid item xs={12} md={3}>
-            <Grid item xs={12} md={12} style={{ marginTop: '20px', textAlign: '-webkit-center' }}>
+          // <Grid className={classes.member} item xs={12} md={3}>
+            <Grid className={classes.member} item xs={12} sm={3} md={3} lg={2} style={{ marginTop: '20px' }}>
               <Avatar
                 className={classes.avatar}
                 style={{
@@ -32,9 +36,9 @@ const FamilyOverview = _ => {
                   display: 'inline-flex',
                   fontSize: '25px'
                 }}>{name[0]}</Avatar>
-            </Grid>
+            {/* </Grid> */}
             <Grid item xs={12} md={12} style={{ marginTop: '10px', fontFamily: 'roboto', fontSize: '20px' }}>{name}</Grid>
-            <Grid item xs={12} md={12} style={{ marginTop: '5px', fontFamily: 'roboto', fontSize: '35px', color: `${color}`, fontWeight: 'bold' }}>{totalPoints}</Grid>
+            <Grid item xs={12} md={12} style={{ marginTop: '5px', marginBottom: '10px', fontFamily: 'roboto', fontSize: '35px', color: `${color}`, fontWeight: 'bold' }}>{totalPoints}</Grid>
           </Grid>
         )
       })}

@@ -10,21 +10,27 @@ import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   mainCon: {
     backgroundColor: '#E4ECF2',
     boxShadow: 'none',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 50,
-    paddingRight: 50,
-    height: 768
-
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 50,
+    marginRight: 50,
+    height: 768,
+    overflowY: 'scroll',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 10,
+      marginRight: 10,
+    },
   },
   date: {
     textAlign: 'center'
   }
-})
+}))
 
 export default function Reward () {
   const classes = useStyles()
@@ -62,7 +68,7 @@ export default function Reward () {
             <Grid item xs={12}
               id='usersOverviewBody'
               style={{
-                height: '175px',
+                // height: '175px',
                 backgroundColor: 'white'
               }}>
               <FamilyOverview />
