@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'right'
   },
   iconsright: {
-    // backgroundColor: '#24537f',
-    color: '#24537f',
+    backgroundColor: '#24537f',
+    color: '#e4ecf2',
     marginRight: 10,
     height: 48,
     width: 48,
