@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import MobileNav from '../../components/MobileNav'
 import ChoresContext from '../../utils/ChoresContext'
 import MenuBar from '../../components/MenuBar'
 import { makeStyles } from '@material-ui/core/styles'
@@ -25,12 +26,25 @@ const useStyles = makeStyles({
 })
 
 const ProfilePage = _ => {
-  const { profileArr: profile } = useContext(ChoresContext)
   const classes = useStyles()
+  const { profileArr: profile } = useContext(ChoresContext)
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    const menu = width < 1000 ? <MobileNav /> : <MenuBar />
+    document.menu = menu
+    return () => document.menu = ""
+  }, [width])
 
   return (
     <div className={classes.mainCon}>
-      <MenuBar />
+      {document.menu}
       <Grid container
         id='rewardsContainer'
         spacing={3}

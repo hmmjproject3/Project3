@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import MobileNav from '../../components/MobileNav'
 import MenuBar from '../../components/MenuBar'
 import ChildChores from '../../components/ChildChores'
 import { makeStyles } from '@material-ui/core/styles'
@@ -33,10 +34,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function Chores () {
   const classes = useStyles()
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    const menu = width < 1000 ? <MobileNav /> : <MenuBar />
+    document.menu = menu
+    return () => document.menu = ""
+  }, [width])
 
   return (
     <div className={classes.mainCon}>
-      <MenuBar />
+      {document.menu}
       <Typography className={classes.date}>
         {/* <h3> */}
         <img alt='Left Arrow' src={Left} />

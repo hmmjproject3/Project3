@@ -37,7 +37,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    cursor: 'hand'
   },
   appBar: {
     backgroundColor: '#E4ECF2',
@@ -59,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function SimpleAppBar () {
-  const { profileArr, childArr, handleGetProfile, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
+  const { childArr, handleGetProfile } = useContext(ChoresContext)
   const classes = useStyles()
 
   return (

@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import MobileNav from '../../components/MobileNav'
 import MenuBar from '../../components/MenuBar'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import Left from '../../assets/left.png'
-import Right from '../../assets/right.png'
 import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
@@ -32,12 +30,25 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Reward () {
+const Rewards = _ => {
   const classes = useStyles()
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    const menu = width < 1000 ? <MobileNav /> : <MenuBar />
+    document.menu = menu
+    return () => document.menu = ""
+  }, [width])
 
   return (
     <div className={classes.mainCon}>
-      <MenuBar />
+      {document.menu}
       <Grid container
         id='rewardsContainer'
         spacing={3}
@@ -85,3 +96,5 @@ export default function Reward () {
     </div>
   )
 }
+
+export default Rewards
