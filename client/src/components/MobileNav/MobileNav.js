@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'right',
     },
     menuItem: {
+        color: '#24537f',
         '&:hover': {
             backgroundColor: '#24537f',
             color: 'white',
