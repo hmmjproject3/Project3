@@ -1,4 +1,4 @@
-.backgroundImg {
+#backgroundImg {
     background: url('../../assets/sponge.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,8 +15,15 @@
   and (max-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
-    .backgroundImg {
-        background-image: url('../../assets/noSponge.png')
+    #backgroundImg {
+      background: url('../../assets/noSponge.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
     }
 }
 
@@ -87,7 +94,16 @@
   and (max-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1)
   and (orientation: portrait) {
-    
+    #backgroundImg {
+      background: url('../../assets/noSponge.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+    }
 }
 
 @media only screen 
