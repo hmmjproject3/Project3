@@ -9,6 +9,9 @@ module.exports = (Schema, model) => {
     totalPoints: {
       type: Number
     },
+    parent: {
+      type: String
+    },
     chores: [{
       type: Schema.Types.ObjectId,
       ref: 'Chore'

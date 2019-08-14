@@ -170,7 +170,7 @@ const ChildChores = _ => {
                 fontSize: "25px"
               }}
             >
-              {child.name}
+              {child ? child.name : null}
             </p>
           </Grid>
 
@@ -211,11 +211,12 @@ const ChildChores = _ => {
                   <>
 
                     {
-
+                      child ? 
                       child.chores ?
 
-
+                      
                         child.chores.map((chore, i) => {
+                          console.log(child)
                           childId = chore.child
                           // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
                           return editing[i] ?
@@ -306,7 +307,7 @@ const ChildChores = _ => {
 
 
                         : null //null when there are no chores
-
+                        : null //when there are no children
                     }
 
 

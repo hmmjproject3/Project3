@@ -142,13 +142,14 @@ const useStyles = makeStyles(theme => ({
 const ChildrenForm = _ => {
   const classes = useStyles()
   const { childArr, addChildren } = useContext(ChoresContext)
-  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0, color: '' }])
+  const [inputs, setInputs] = useState([{ name: null, totalPoints: 0, color: '', parent: '' }])
 
   const handleChange = (i, event) => {
     const names = [...inputs]
     names[i].name = event.target.value
     names[i].totalPoints = 0
     names[i].color = randomColor({ luminosity: 'dark' })
+    names[i].parent = localStorage.getItem('user')
     setInputs(names)
   }
 
