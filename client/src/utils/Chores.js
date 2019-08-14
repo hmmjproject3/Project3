@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Chores = {
-  getAllChildren: _ => axios.get('/children', {
+  getAllChildren: _ => axios.get(`/${localStorage.getItem('user')}/children`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
   getOneChild: id => axios.get(`/children/${id}`, {
@@ -42,7 +42,7 @@ const Chores = {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
 
-  getAllRewards: _ => axios.get('/rewards', {
+  getAllRewards: _ => axios.get(`/${localStorage.getItem('user')}/rewards`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
   getOneReward: id => axios.get(`/rewards/${id}`, {

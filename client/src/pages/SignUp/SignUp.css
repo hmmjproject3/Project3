@@ -1,0 +1,115 @@
+#backgroundImg {
+    background: url('../../assets/sponge.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+}
+
+/* iPhone 5/SE */
+@media only screen 
+  and (min-width: 320px) 
+  and (max-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    #backgroundImg {
+      background: url('../../assets/noSponge.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+    }
+}
+
+@media only screen 
+  and (min-width: 320px) 
+  and (max-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    
+}
+
+
+/* iPhone 6/7/8 */
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+    
+}
+
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+    
+}
+
+
+/* iPhone 6/7/8 Plus */
+@media only screen 
+  and (min-width: 414px) 
+  and (max-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    
+}
+
+@media only screen 
+  and (min-width: 414px) 
+  and (max-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    
+}
+
+/* iPhone X  */
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    
+}
+
+@media only screen 
+  and (min-width: 375px) 
+  and (max-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    
+}
+
+/* iPad 1/2/Mini/Air */
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1)
+  and (orientation: portrait) {
+    #backgroundImg {
+      background: url('../../assets/noSponge.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: fixed;
+      width:100%;
+      height:100%;
+      top:0px;
+      left:0px;
+    }
+}
+
+@media only screen 
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1)
+  and (orientation: landscape) {
+    
+}

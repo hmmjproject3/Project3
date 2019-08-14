@@ -20,7 +20,7 @@ import ChoresContext from '../../../utils/ChoresContext'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     padding: theme.spacing(0, 0),
     width: 'auto',
     fontFamily: 'roboto'
@@ -53,6 +53,9 @@ const useStyles = makeStyles(theme => ({
       borderColor: `#FFBA00 !important`,
       border: '2px solid'
     }
+  },
+  points: {
+    color: '#FF9300',
   }
 }))
 
@@ -82,7 +85,7 @@ const Claimed = _ => {
                     <TableCell component='th' scope='row'>
                       {eachReward.name}
                     </TableCell>
-                    <TableCell align='left' style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
+                    <TableCell className={classes.points} align='left'>{eachReward.points}</TableCell>
                     <TableCell align='left'>
                       <Avatar
                         className={classes.avatar}

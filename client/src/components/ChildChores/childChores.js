@@ -24,7 +24,7 @@ import Chores from "../../utils/Chores.js";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: "#153B69",
+    backgroundColor: "#24537f",
     padding: theme.spacing(0, 0),
     width: "auto",
     fontFamily: "roboto"
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     width: 20
   },
   editBtn: {
-    backgroundColor: "#153B69",
+    backgroundColor: "#24537f",
     minHeight: 0,
     height: 30,
     width: 30
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     width: 20
   },
   delBtn: {
-    backgroundColor: '#60B0F5',
+    backgroundColor: '#c12006',
     minHeight: 0,
     height: 30,
     width: 30
@@ -170,7 +170,7 @@ const ChildChores = _ => {
                 fontSize: "25px"
               }}
             >
-              {child.name}
+              {child ? child.name : null}
             </p>
           </Grid>
 
@@ -211,11 +211,12 @@ const ChildChores = _ => {
                   <>
 
                     {
-
+                      child ? 
                       child.chores ?
 
-
+                      
                         child.chores.map((chore, i) => {
+                          console.log(child)
                           childId = chore.child
                           // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
                           return editing[i] ?
@@ -306,7 +307,7 @@ const ChildChores = _ => {
 
 
                         : null //null when there are no chores
-
+                        : null //when there are no children
                     }
 
 
@@ -332,7 +333,7 @@ const ChildChores = _ => {
           style={{
             padding: 'auto',
             color: 'white',
-            backgroundColor: '#153B69',
+            backgroundColor: '#24537f',
             marginTop: '15px',
             marginBottom: '15px',
 
@@ -345,4 +346,4 @@ const ChildChores = _ => {
   );
 };
 
-export default ChildChores;
+export default ChildChores

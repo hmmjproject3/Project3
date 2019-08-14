@@ -3,8 +3,8 @@ const passport = require('passport')
 
 module.exports = app => {
   // GET all Rewards
-  app.get('/rewards', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Reward.find({})
+  app.get('/:parent/rewards', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Reward.find({parent: req.params.parent})
       .populate({
         path: 'child',
         populate: { path: 'rewards' }

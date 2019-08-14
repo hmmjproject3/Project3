@@ -19,7 +19,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#153B69',
+    backgroundColor: '#24537f',
     padding: theme.spacing(0, 0),
     width: 'auto',
     fontFamily: 'roboto'
@@ -68,6 +68,9 @@ const useStyles = makeStyles(theme => ({
   // focused input text
   cssFocused: {
     color: '#153B69'
+  },
+  points: {
+    color: '#FF9300',
   }
 }))
 
@@ -121,7 +124,7 @@ const UpForGrabs = _ => {
                       <TableCell component='th' scope='row'>
                         {eachReward.name}
                       </TableCell>
-                      <TableCell align='left' style={{ color: '#FF9300' }}>{eachReward.points}</TableCell>
+                      <TableCell className={classes.points} align='left'>{eachReward.points}</TableCell>
                       <TableCell align='left'>
                         <Button aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick}>
 
@@ -217,7 +220,7 @@ const UpForGrabs = _ => {
         onClick={(event) => toggleThenAddReward(event)}
         style={{
           color: 'white',
-          backgroundColor: '#153B69',
+          backgroundColor: '#24537f',
           marginTop: '15px',
           marginBottom: '15px',
         }}>

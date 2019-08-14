@@ -27,7 +27,7 @@ const App = _ => {
     rewardAmount: null,
     updatingTracker: false,
     bonusChoreName: '',
-    bonusChoreCheddar: null
+    bonusChoreCheddar: null,
   })
 
   choreState.handleInputChange = event => {
@@ -40,7 +40,8 @@ const App = _ => {
     const reward = {
       name: choreState.rewardName,
       points: parseInt(choreState.rewardAmount),
-      isClaimed: false
+      isClaimed: false,
+      parent: localStorage.getItem('user')
     }
     Chores.addReward(reward)
       .then(_ => {
@@ -345,6 +346,8 @@ const App = _ => {
         Chores.getAllChildren()
           .then(({ data }) => {
             const firstChild = data[0]
+            console.log(data)
+            console.log(firstChild)
             // console.log(data);
             Chores.getAllRewards()
               .then(({ data: data1 }) => {

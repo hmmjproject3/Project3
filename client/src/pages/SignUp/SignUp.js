@@ -1,34 +1,32 @@
 import React from 'react'
+import './SignUp.css'
 import { makeStyles } from '@material-ui/core/styles'
 import SignUpForm from '../../components/SignUpForm'
-import Background from '../../assets/sponge.png'
 import Grid from '@material-ui/core/Grid'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   mainCon: {
-    backgroundImage: `url(${Background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    height: 768
   },
   form: {
     boxShadow: 'none',
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 50,
-    paddingRight: 50
+    paddingRight: 50,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    }
   }
-})
+}))
 
 const SignUp = _ => {
   const classes = useStyles()
 
   return (
-    <div className={classes.mainCon}>
-      <Grid container spacing={1}>
-        <Grid item xs={4} />
-        <Grid item xs={8}>
+    <div id='backgroundImg'>
+      <Grid container spacing={1} className={classes.mainCon}>
+        <Grid item xs={12} md={4} className={classes.spongeGrid}/>
+        <Grid item xs={12} md={8} className={classes.formGrid}>
           <SignUpForm />
         </Grid>
       </Grid>

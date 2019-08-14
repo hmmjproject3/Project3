@@ -1,37 +1,54 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import MobileNav from '../../components/MobileNav'
 import MenuBar from '../../components/MenuBar'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import Left from '../../assets/left.png'
-import Right from '../../assets/right.png'
 import FamilyOverview from '../../components/Reward/FamilyOverview'
 import Claimed from '../../components/Reward/Claimed'
 import Grabs from '../../components/Reward/Grabs'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   mainCon: {
     backgroundColor: '#E4ECF2',
     boxShadow: 'none',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 50,
-    paddingRight: 50,
-    height: 768
-
+    marginTop: 20,
+    marginBottom: 20,
+    marginLeft: 50,
+    marginRight: 50,
+    height: 768,
+    overflowY: 'scroll',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 10,
+      marginRight: 10,
+    },
   },
   date: {
     textAlign: 'center'
   }
-})
+}))
 
-export default function Reward () {
+const Rewards = _ => {
   const classes = useStyles()
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    const menu = width < 1000 ? <MobileNav /> : <MenuBar />
+    document.menu = menu
+    return () => document.menu = ""
+  }, [width])
 
   return (
     <div className={classes.mainCon}>
-      <MenuBar />
+      {document.menu}
       <Grid container
         id='rewardsContainer'
         spacing={3}
@@ -50,7 +67,7 @@ export default function Reward () {
             <Grid item xs={12}
               id='usersOverviewHead'
               style={{
-                backgroundColor: '#153B69',
+                backgroundColor: '#24537f',
                 height: '50px',
                 color: 'white',
                 fontFamily: 'roboto',
@@ -62,7 +79,7 @@ export default function Reward () {
             <Grid item xs={12}
               id='usersOverviewBody'
               style={{
-                height: '175px',
+                // height: '175px',
                 backgroundColor: 'white'
               }}>
               <FamilyOverview />
@@ -79,3 +96,5 @@ export default function Reward () {
     </div>
   )
 }
+
+export default Rewards
