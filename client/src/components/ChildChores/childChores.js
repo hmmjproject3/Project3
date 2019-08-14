@@ -345,4 +345,4 @@ const ChildChores = _ => {
   );
 };
 
-export default ChildChores;
+export default ChildChores

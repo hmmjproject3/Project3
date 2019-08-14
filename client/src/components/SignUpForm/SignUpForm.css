@@ -1,18 +1,6 @@
-#logo {
-    margin: 30px;
-    width: auto;
-    text-align: center;
-}
 
-#signUpCont {
-    margin-top: 100px;
-    text-align: center;
-    width: auto;
-}
 
-#formCont {
-    margin: auto;
-}
+
 
 /* iPhone 5/SE */
 @media only screen 

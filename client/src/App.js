@@ -27,7 +27,7 @@ const App = _ => {
     rewardAmount: null,
     updatingTracker: false,
     bonusChoreName: '',
-    bonusChoreCheddar: null
+    bonusChoreCheddar: null,
   })
 
   choreState.handleInputChange = event => {

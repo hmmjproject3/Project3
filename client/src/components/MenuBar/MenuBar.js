@@ -12,37 +12,55 @@ import Grid from '@material-ui/core/Grid'
 import Avatar from '@material-ui/core/Avatar'
 import { Link } from 'react-router-dom'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 15
+    marginTop: 15,
   },
   con: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   right: {
     textAlign: 'right'
   },
   iconsright: {
     backgroundColor: '#24537f',
-    color: '#E4ECF2',
+    color: '#e4ecf2',
     marginRight: 10,
     height: 48,
     width: 48,
-    display: 'inline-flex'
+    display: 'inline-flex',
+    [theme.breakpoints.down('sm')]: {
+
+      height: 30,
+      width: 30,
+      marginBottom: 5,
+    },
   },
   link: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    cursor: 'hand'
   },
   appBar: {
     backgroundColor: '#E4ECF2',
     boxShadow: 'none',
     position: 'initial'
-
+  },
+  avatar: {
+    color: '#fff',
+    height: 48,
+    width: 48,
+    marginRight: '5px',
+    display: 'inline-flex',
+    fontSize: '25px',
+    [theme.breakpoints.down('sm')]: {
+      height: 35,
+      width: 35
+    },
   }
-})
+}))
 
 export default function SimpleAppBar () {
-  const { profileArr, childArr, handleGetProfile, selectChild, child, handleInputChange, addChore, choreName, cheddarReward, deleteAChore } = useContext(ChoresContext)
+  const { childArr, handleGetProfile } = useContext(ChoresContext)
   const classes = useStyles()
 
   return (
@@ -51,7 +69,7 @@ export default function SimpleAppBar () {
       <div className={classes.con}>
         <Grid container spacing={3}>
 
-          <Grid className={classes.left} item xs={8}>
+          <Grid className={classes.left} item xs={6}>
             {childArr.map(({ name, color, _id }) => {
               return (
                 <Link className={classes.link} to='/profilepage'>
@@ -60,13 +78,7 @@ export default function SimpleAppBar () {
                     onClick={_ => { handleGetProfile(_id) }}
                     className={classes.avatar}
                     style={{
-                      color: '#fff',
                       backgroundColor: `${color}`,
-                      height: 48,
-                      width: 48,
-                      marginRight: '5px',
-                      display: 'inline-flex',
-                      fontSize: '25px'
                     }}
                   >{name[0]}
                   </Avatar>
@@ -76,7 +88,7 @@ export default function SimpleAppBar () {
             )}
           </Grid>
 
-          <Grid className={classes.right} item xs={4}>
+          <Grid className={classes.right} item xs={6}>
 
             <Link className={classes.link} to='/Dashboard'>
               <IconButton className={classes.iconsright}>
