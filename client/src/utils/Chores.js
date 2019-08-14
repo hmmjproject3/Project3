@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const Chores = {
-  getAllChildren: _ => axios.get('/children', {
+  getAllChildren: _ => axios.get(`/${localStorage.getItem('user')}/children`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
   getOneChild: id => axios.get(`/children/${id}`, {

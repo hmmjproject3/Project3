@@ -170,7 +170,7 @@ const ChildChores = _ => {
                 fontSize: "25px"
               }}
             >
-              {child.name}
+              {child ? child.name : null}
             </p>
           </Grid>
 
@@ -211,7 +211,7 @@ const ChildChores = _ => {
                   <>
 
                     {
-
+                      child ? 
                       child.chores ?
 
 
@@ -306,7 +306,7 @@ const ChildChores = _ => {
 
 
                         : null //null when there are no chores
-
+                        : null //when there are no children
                     }
 
 

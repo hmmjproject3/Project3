@@ -3,8 +3,8 @@ const passport = require('passport')
 
 module.exports = app => {
   // GET all Children
-  app.get('/children', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Child.find({})
+  app.get('/:parent/children', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Child.find({parent: req.params.parent})
       // .populate('chores')
       // .populate('rewards')
       .populate([{
@@ -53,7 +53,7 @@ module.exports = app => {
       .catch(e => console.log(e))
   })
 
-  // PUT a chore
+  // PUT a child
 
   app.put('/children/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Child.findByIdAndUpdate(req.params.id, req.body)
