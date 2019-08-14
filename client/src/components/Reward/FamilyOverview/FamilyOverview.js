@@ -13,15 +13,16 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     overflowY: 'auto',
     padding: 10,
+    textAlign: 'center',
   },
   avatar: {
     color: '#fff',
     height: 48,
     width: 48,
-    marginRight: 5,
+    textAlign: 'center',
+    margin: 'auto',
     marginTop: 10,
-    display: 'inline-flex',
-    fontSize: 25
+    fontSize: 25,
   }
 }))
 

@@ -16,13 +16,37 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
     fontFamily: 'roboto'
   },
+
+  pageCont: {
+    backgroundColor: 'white',
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+    },
+  },
+
+  formCont: {
+    marginBottom: '50px', 
+    marginTop: '20px', 
+    // marginRight: '50px', 
+    // marginLeft: '50px', 
+    margin: 'auto',
+    height: '330px', 
+    width: '80%', 
+    backgroundColor: 'white',
+  },
+
   formHeader: {
     marginTop: 10,
     width: 'auto'
   },
   textField: {
     backgroundColor: '#dce2e9',
-    width: '350px'
+    marginLeft: '25%',
+    marginRight: '25%',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '10%',
+      marginRight: '10%',
+    },    
   },
   table: {
     width: '100%',
@@ -103,8 +127,8 @@ const AddKidChores = _ => {
   //     </Grid>
   // 	</form>
   // 	  </Container>
-    <div style={{ backgroundColor: 'white' }}>
-      <Form style={{ marginBottom: '50px', marginTop: '20px', marginRight: '50px', marginLeft: '50px', height: '330px', width: 'auto', backgroundColor: 'white' }}>
+    <div className={classes.pageCont}>
+      <Form className={classes.formCont}>
         <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Assign a New Chore</p>
         <TextField
           id='outlined-name'

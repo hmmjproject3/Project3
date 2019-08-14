@@ -19,10 +19,7 @@ const useStyles = makeStyles(theme => ({
     maginRight: 50,
     height: 768,
     [theme.breakpoints.down('sm')]: {
-      marginTop: 10,
-      marginBottom: 10,
-      marginLeft: 10,
-      marginRight: 10,
+      margin: 20,
     },
   },
   date: {
@@ -58,12 +55,11 @@ export default function Chores () {
         <img alt='Left Right' src={Right} />
         {/* </h3> */}
       </Typography>
-      <Grid container spacing={1}>
-
-        <Grid item xs={6}>
+      <Grid className={classes.choresCont} container spacing={1}>
+        <Grid item xs={12} md={6}>
           <ChildChores />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <AddBonusChores />
         </Grid>
       </Grid>

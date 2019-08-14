@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import './SignUpForm.css'
 import 'typeface-roboto'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -34,6 +33,34 @@ TabContainer.propTypes = {
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {}
+  },
+
+  logo: {
+    margin: 30,
+    width: 'auto',
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      
+    },
+  },
+
+  signUpCont: {
+    marginTop: 100,
+    textAlign: 'center',
+    width: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 70,
+    },
+  },
+
+  formCont: {
+    margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      margin: 'auto',
+      paddingLeft: 40,
+      paddingRight: 40,
+      marginTop: 50,
+    },
   },
 
   link: {
@@ -125,11 +152,10 @@ const SignUpForm = _ => {
   } = useContext(ChoresContext)
 
   return (
-    <div id='signUpCont'><img alt='adulting logo' src='logo.png' id='logo' />
-
-      <Container component='main' maxWidth='xs' id='formCont'>
+    <div className={classes.signUpCont}><img alt='adulting logo' src='logo.png' className={classes.logo} />
+      <Container component='main' maxWidth='xs' className={classes.formCont}>
         <CssBaseline />
-        <AppBar id='swipeBar' position='static' color='default'>
+        <AppBar className={classes.swipeBar} position='static' color='default'>
           <Tabs
             className={classes.tabs}
             value={value}

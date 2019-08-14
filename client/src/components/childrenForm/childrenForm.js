@@ -26,6 +26,93 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-flex'
   },
 
+  container: {
+    marginTop: '60px', 
+    marginLeft: '200px', 
+    marginRight: '200px', 
+    backgroundColor: '#24537f', 
+    width: 'auto', 
+    maxWidth: '100%', 
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 20,
+      marginRight: 20,
+      textAlign: 'center',
+    },
+  },
+
+  headline: {
+    fontFamily: 'roboto', 
+    fontSize: '25px', 
+    fontWeight: 'bold', 
+    color: 'white',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 20,
+      textAlign: 'center',
+    },
+  },
+
+  subHead: {
+    marginTop: '30px', 
+    marginBottom: '25px', 
+    textAlign: 'center', 
+    color: 'white', 
+    fontFamily: 'roboto', 
+    fontWeight: 'bold', 
+    fontSize: '18px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 18,
+      textAlign: 'center',
+    },
+  },
+
+  addIcon: {
+    minHeight: '0', 
+    height: '30px', 
+    width: '30px', 
+    color: '#c12006', 
+    backgroundColor: '#FFBA00', 
+    marginLeft: '10px',
+  },
+
+  formContainer: {
+    marginTop: '25px',
+  },
+
+  clearCont: {
+    paddingTop: '15px',
+    [theme.breakpoints.down('sm')]: {
+      writingMode: 'vertical-rl',
+    }
+  },
+
+  clearBtn: {
+    color: '#ff0000', 
+    fontWeight: 'bold', 
+    backgroundColor: '#24537f', 
+    marginLeft: '0px',
+    [theme.breakpoints.down('sm')]: {
+      height: 30,
+      width: 30,
+      padding: 0,
+    },
+  },
+
+  submit: {
+    marginTop: '50px', 
+    marginBottom: '50px', 
+    width: '300px', 
+    margin:'auto',
+    backgroundColor: '#968AF2', 
+    color: 'white', 
+    fontFamily: 'roboto', 
+    fontWeight: 'bold', 
+    fontSize: '20px',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
+  },
+
   // unfocused text field - label text
   cssLabel: {
     color: 'white'
@@ -87,13 +174,13 @@ const ChildrenForm = _ => {
         </Link>
       </div>
 
-      <Container style={{ marginTop: '60px', marginLeft: '200px', marginRight: '200px', backgroundColor: '#24537f', width: 'auto', maxWidth: '100%', textAlign: 'center' }} component='main' maxWidth='xs'>
+      <Container className={classes.container} component='main' maxWidth='xs'>
         <CssBaseline />
-        <Typography style={{ fontFamily: 'roboto', fontSize: '25px', fontWeight: 'bold', color: 'white' }}>TELL US ABOUT YOUR SQUAD
+        <Typography className={classes.headline}>TELL US ABOUT YOUR SQUAD
         </Typography>
-        <Typography style={{ marginTop: '30px', marginBottom: '25px', textAlign: 'center', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '18px' }} variant='h6' gutterBottom>
+        <Typography className={classes.subHead} variant='h6' gutterBottom>
         Add Children
-          <Fab style={{ minHeight: '0', height: '30px', width: '30px', color: '#c12006', backgroundColor: '#FFBA00', marginLeft: '10px' }} aria-label='Add' onClick={() => handleAdd()}>
+          <Fab className={classes.addIcon} aria-label='Add' onClick={() => handleAdd()}>
             <AddIcon />
           </Fab>
           <br />
@@ -101,9 +188,10 @@ const ChildrenForm = _ => {
 
         {inputs.map((input, idx) =>
           (
-            <Grid container style={{ marginTop: '25px' }} spacing={3} key={`${input}-${idx}`}>
+            <Grid container className={classes.formContainer} spacing={3} key={`${input}-${idx}`}>
               <Grid item xs={10} sm={10}>
                 <TextField
+                  className={classes.label}
                   classes={{ label: 'label' }}
                   required
                   id={`${idx}`}
@@ -127,9 +215,9 @@ const ChildrenForm = _ => {
                 />
               </Grid>
 
-              <Grid item xs={2} sm={2} style={{ paddingTop: '15px' }}>
-                <Fab style={{ color: '#ff0000', fontWeight: 'bold', backgroundColor: '#24537f', marginLeft: '0px' }} aria-label='Delete' onClick={() => handleRemove(idx)}>
-                  <ClearIcon />
+              <Grid item xs={2} sm={2} className={classes.clearCont}>
+                <Fab className={classes.clearBtn} aria-label='Delete' onClick={() => handleRemove(idx)}>
+                  <ClearIcon className={classes.clearIcon} />
                 </Fab>
 
               </Grid>
@@ -141,7 +229,6 @@ const ChildrenForm = _ => {
           type='button'
           fullWidth
           variant='contained'
-          style={{ marginTop: '50px', marginBottom: '50px', width: '300px', backgroundColor: '#968AF2', color: 'white', fontFamily: 'roboto', fontWeight: 'bold', fontSize: '20px' }}
           className={classes.submit}
           onClick={_ => addChildren(inputs)}
         >
