@@ -40,7 +40,8 @@ const App = _ => {
     const reward = {
       name: choreState.rewardName,
       points: parseInt(choreState.rewardAmount),
-      isClaimed: false
+      isClaimed: false,
+      parent: localStorage.getItem('user')
     }
     Chores.addReward(reward)
       .then(_ => {

@@ -12,6 +12,9 @@ module.exports = (Schema, model) => {
     child: {
       type: Schema.Types.ObjectId,
       ref: 'Child'
+    },
+    parent: {
+      type: String
     }
   })
 

@@ -42,7 +42,7 @@ const Chores = {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
 
-  getAllRewards: _ => axios.get('/rewards', {
+  getAllRewards: _ => axios.get(`/${localStorage.getItem('user')}/rewards`, {
     headers: { 'Authorization': `bearer ${localStorage.getItem('token')}` }
   }),
   getOneReward: id => axios.get(`/rewards/${id}`, {
