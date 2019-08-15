@@ -13,19 +13,20 @@ const useStyles = makeStyles(theme => ({
   mainCon: {
     backgroundColor: '#E4ECF2',
     boxShadow: 'none',
-    maginTop: 20,
+    maginTop: 100,
     marginBottom: 20,
-    marginLeft: 50,
-    maginRight: 50,
-    height: 768,
+    width: '90%',
+    margin: 'auto',
+    // height: 768,
+    textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       margin: 20,
     },
   },
   date: {
-    maginTop: "30px",
-    textAlign: "center",
-    color: "#153B69",
+    marginTop: '30px',
+    textAlign: 'center',
+    color: '#153B69',
   }
 }))
 
@@ -51,7 +52,7 @@ export default function Chores () {
       <Typography className={classes.date}>
         {/* <h3> */}
         <img alt='Left Arrow' src={Left} />
-          Jan 5 - Jan 12
+          Aug 26 - Sep 1
         <img alt='Left Right' src={Right} />
         {/* </h3> */}
       </Typography>

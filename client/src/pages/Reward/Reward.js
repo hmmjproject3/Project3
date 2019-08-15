@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
   },
   date: {
     textAlign: 'center'
-  }
+  },
+
 }))
 
 const Rewards = _ => {
@@ -89,7 +90,7 @@ const Rewards = _ => {
         <Grid item xs={12} md={6} id='claimedRewardsContainer'>
           <Claimed />
         </Grid>
-        <Grid item id='upForGrabsContainer' xs={12} md={6}>
+        <Grid item className={classes.upForGrabsContainer} xs={12} md={6}>
           <Grabs />
         </Grid>
       </Grid>

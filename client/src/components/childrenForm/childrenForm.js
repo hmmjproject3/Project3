@@ -35,8 +35,14 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%', 
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      marginLeft: 20,
-      marginRight: 20,
+      marginLeft: 15,
+      marginRight: 15,
+      textAlign: 'center',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: 40,
+      marginLeft: 100,
+      marginRight: 100,
       textAlign: 'center',
     },
   },
@@ -76,7 +82,10 @@ const useStyles = makeStyles(theme => ({
   },
 
   formContainer: {
-    marginTop: '25px',
+    marginTop: '50px',
+    width: '75%',
+    margin: 'auto',
+    overflowX: 'scroll',
   },
 
   clearCont: {

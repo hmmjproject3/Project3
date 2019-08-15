@@ -24,6 +24,12 @@ const useStyles = makeStyles(theme => ({
     width: 'auto',
     fontFamily: 'roboto'
   },
+
+  grabsBody: {
+    height: '265px', 
+    backgroundColor: 'white', 
+    overflowY: 'auto',
+  },
   addBtn: {
     backgroundColor: '#FFBA00',
     minHeight: 0,
@@ -35,9 +41,39 @@ const useStyles = makeStyles(theme => ({
     height: 20,
     width: 20
   },
+
+  formCont: {
+    marginBottom: '50px', 
+    marginTop: '20px', 
+    // marginRight: '50px', 
+    // marginLeft: '50px', 
+    margin: 'auto',
+    height: '330px', 
+    width: '80%', 
+    backgroundColor: 'white',
+  },
+
+  formHeader: {
+    width: 'auto',
+    marginTop: '10px', 
+    textAlign: 'center', 
+    fontSize: '20px', 
+    color: '#153B69',
+  },
+
+  
   textField: {
     backgroundColor: '#dce2e9',
     width: '350px'
+  },
+
+  addNewBtn: {
+    color: 'white',
+    backgroundColor: '#24537f',
+    marginTop: '15px',
+    marginBottom: '15px',
+    height: 36,
+    width: 36,
   },
 
   // focused and unfocused text field label
@@ -104,7 +140,7 @@ const UpForGrabs = _ => {
         <Grid item id='claimedChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
           <p style={{ margin: '0px', padding: '10px' }}>Up For Grabs</p>
         </Grid>
-        <Grid item id='claimedChoresBody' xs={12} style={{ height: '220px', backgroundColor: 'white', overflowY: 'auto' }}>
+        <Grid item className={classes.grabsBody} xs={12}>
 
           {!addView
 
@@ -117,7 +153,7 @@ const UpForGrabs = _ => {
                 </TableRow>
               </TableHead>
 
-              <TableBody>
+              <TableBody className={classes.tableBody}>
                 {rewardsArr
                   ? rewardsArr.filter(reward => reward.isClaimed === false).map(eachReward => (
                     <TableRow key='row.name'>
@@ -159,13 +195,13 @@ const UpForGrabs = _ => {
             </Table>
 
             : <div>
-              <Form style={{ marginBottom: '50px', marginRight: '50px', marginLeft: '50px', height: '200px', width: 'auto' }}>
-                <p style={{ textAlign: 'center', fontSize: '20px', color: '#153B69', marginBottom: '10px' }}>Create a Reward</p>
+              <Form className={classes.formCont}>
+                <p className={classes.formHeader}>Create a Reward</p>
                 <TextField
                   id='rewardName'
                   onChange={handleInputChange}
-                  label='Task Name'
-                  className={classes.textField}
+                  label='Reward Name'
+                  className={classes.input}
                   margin='normal'
                   variant='outlined'
                   InputLabelProps={{
@@ -189,7 +225,7 @@ const UpForGrabs = _ => {
                   id='rewardAmount'
                   onChange={handleInputChange}
                   label='Points'
-                  className={classes.textField}
+                  className={classes.input}
                   margin='normal'
                   variant='outlined'
                   InputLabelProps={{
@@ -213,21 +249,18 @@ const UpForGrabs = _ => {
 
         </Grid>
       </Paper>
-      <div style={{ textAlign: "center", backgroundColor: '#F5F5F5' }}>
+      {/* <div style={{ textAlign: "center", backgroundColor: '#F5F5F5' }}> */}
 
       <Fab
-        className={classes.margin}
+        className={classes.addNewBtn}
         onClick={(event) => toggleThenAddReward(event)}
         style={{
-          color: 'white',
-          backgroundColor: '#24537f',
-          marginTop: '15px',
-          marginBottom: '15px',
+          
         }}>
          <AddIcon />
 
           </Fab>
-          </div>
+          {/* </div> */}
     </div>
   )
 }

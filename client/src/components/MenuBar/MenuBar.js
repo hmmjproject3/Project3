@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 15,
+    marginTop: 25,
   },
   con: {
     flexGrow: 1,
@@ -36,6 +36,11 @@ const useStyles = makeStyles(theme => ({
       marginBottom: 5,
     },
   },
+
+  left: {
+    textAlign: 'left',
+  },
+  
   link: {
     textDecoration: 'none',
     cursor: 'hand'

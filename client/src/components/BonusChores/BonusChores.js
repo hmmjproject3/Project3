@@ -13,8 +13,27 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#153B69',
     padding: theme.spacing(0, 0),
-    width: 'auto'
-  }
+    width: 'auto',
+    marginTop: '10px'
+  },
+
+  bonusChoresHead: {
+    height: '50px', 
+    color: 'white',
+    fontFamily: 'roboto', 
+    fontSize: '25px', 
+    textAlign: 'left',
+  },
+
+  bonusChoresBody: {
+    height: '250px', 
+    backgroundColor: 'white',
+  },
+
+  bonusTableCell: {
+    color: '#153B69', 
+    width: '20px',
+  },
 }))
 
 const BonusChores = _ => {
@@ -22,20 +41,19 @@ const BonusChores = _ => {
 
   return (
     <div>
-      <Paper style={{ marginTop: '10px' }} className={classes.root}>
-        <Grid item id='bonusChoresHead' xs={12} style={{ height: '50px', color: 'white', fontFamily: 'roboto', fontSize: '25px', textAlign: 'left' }}>
+      <Paper className={classes.root}>
+        <Grid item className={classes.bonusChoresHead} xs={12}>
           <p style={{ margin: '0px', padding: '10px' }}>Bonus Chores</p>
         </Grid>
-        <Grid item id='bonusChoresBody' xs={12} style={{ height: '250px', backgroundColor: 'white' }}>
+        <Grid item className={classes.bonusChoresBody} xs={12} style={{ }}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px' }}>Task</TableCell>
-                <TableCell style={{ color: '#153B69', width: '20px' }} align='left'>Cheddar</TableCell>
+                <TableCell className={classes.bonusTableCell}>Task</TableCell>
+                <TableCell className={classes.bonusTableCell} align='left'>Cheddar</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {rows.map(row => ( */}
               <TableRow key='row.name'>
                 <TableCell component='th' scope='row'>
                 Wash Car
