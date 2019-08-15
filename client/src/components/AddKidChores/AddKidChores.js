@@ -36,18 +36,13 @@ const useStyles = makeStyles(theme => ({
   },
 
   formHeader: {
-    marginTop: 10,
-    width: 'auto'
+    width: 'auto',
+    marginTop: '30px', 
+    textAlign: 'center', 
+    fontSize: '20px', 
+    color: '#153B69',
   },
-  textField: {
-    backgroundColor: '#dce2e9',
-    marginLeft: '25%',
-    marginRight: '25%',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '10%',
-      marginRight: '10%',
-    },    
-  },
+
   table: {
     width: '100%',
     overflowX: 'auto',
@@ -91,49 +86,13 @@ const AddKidChores = _ => {
   )
 
   return (
-  // <Container component="main" maxWidth="xs">
-  //   <form noValidate>
-  //     <Grid container spacing={2}>
-  //       <Grid item xs={12}>
-  //         <TextField
-  //           autoComplete="name"
-  //           name="Name"
-  //           variant="outlined"
-  //           required
-  //           fullWidth
-  //           id="choreName"
-  //           value={choreName}
-  //           // ref={choreName}
-  //           onChange={handleInputChange}
-  //           label="Name"
-  //           // autoFocus
-  //         />
-  //       </Grid>
-  //       <Grid item xs={12}>
-  //         <TextField
-  //           autoComplete="userName"
-  //           name="userName"
-  //           variant="outlined"
-  //           required
-  //           fullWidth
-  //           id="cheddarReward"
-  //           value={cheddarReward}
-  //           // ref={cheddarReward}
-  //           onChange={handleInputChange}
-  //           label="User Name"
-  //           // autoFocus
-  //         />
-  //       </Grid>
-  //     </Grid>
-  // 	</form>
-  // 	  </Container>
     <div className={classes.pageCont}>
       <Form className={classes.formCont}>
-        <p style={{ marginTop: '30px', textAlign: 'center', fontSize: '20px', color: '#153B69' }}>Assign a New Chore</p>
+        <p className={classes.formHeader}>Assign a New Chore</p>
         <TextField
           id='outlined-name'
           label='Task Name'
-          className={classes.textField}
+          className={classes.input}
           margin='normal'
           variant='outlined'
           id='choreName'
@@ -159,7 +118,7 @@ const AddKidChores = _ => {
 
           id='outlined-name'
           label='Points'
-          className={classes.textField}
+          className={classes.input}
           margin='normal'
           variant='outlined'
           id='cheddarReward'
