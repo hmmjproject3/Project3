@@ -16,12 +16,14 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
         marginRight: 5,
+        textAlign: 'left',
     },
     link: {
         textDecoration: 'none',
         cursor: 'hand'
     },
     toolbar: {
+
         paddingLeft: 0,
         paddingRight: 0,
     },

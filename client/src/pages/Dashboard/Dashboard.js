@@ -64,7 +64,7 @@ export default function Dashboard () {
         <Typography className={classes.date}>
         {/* <h3> */}
           <img alt="Left Arrow" src={Left} />
-          Jan 5 - Jan 12
+          Aug 26 - Sep 1
         <img alt="Left Right" src={Right} />
         {/* </h3> */}
         </Typography>
