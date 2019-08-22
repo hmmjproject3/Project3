@@ -34,6 +34,13 @@ const App = _ => {
     setChoreState({ ...choreState, [event.target.id]: event.target.value })
   }
 
+  choreState.updateChildObject = childId => {
+    Chores.getOneChild(childId)
+      .then(({data}) => {
+        setChoreState({...choreState, child: data})
+      }).catch(e=> console.log(e))
+  }
+
   //Function to add a reward
   choreState.addReward = event => {
     event.preventDefault()
@@ -207,12 +214,18 @@ const App = _ => {
     Chores.deleteChore(data.id)
       .then(_ => {
 
-        window.location.reload()
+        // window.location.reload()
 
-        // Chores.getAllChildren()
-        //   .then(({data}) =>  {
-        //     setChoreState({...choreState, childArr: data, updatingTracker: choreState.updatingTracker ? true : false})
-
+        Chores.getAllChildren()
+          .then(({data : allChildren}) =>  {
+            const childUpdate = allChildren.filter(
+              child => child._id === data.childId
+            )[0]
+            Chores.getAllChores()
+              .then(({data : allChores})=> {
+                setChoreState({...choreState, childArr: allChildren, choresArr: allChores, child: childUpdate})
+              })
+          })
         // Chores.getAllChildren()
         //   .then(({ data }) => {
         //     setChoreState(prev => {
@@ -337,6 +350,7 @@ const App = _ => {
   // https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
   // Verifying if the user was previously logged in
   useEffect(_ => {
+    // console.log(choreState.updatingTracker)
     Chores.verifyUser()
       .then(_ => {
         if (window.location.pathname === '/signin') {
@@ -374,6 +388,12 @@ const App = _ => {
         }
       })
   }, [])
+
+  useEffect ( _ => {
+    
+    setChoreState({...choreState, updatingTracker: false} )
+    console.log(choreState.updatingTracker)
+  }, [choreState.updatingTracker])
 
   return (
     <>
