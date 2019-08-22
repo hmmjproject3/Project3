@@ -64,10 +64,23 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ChildChores = _ => {
-  let childId;
-
-  const { child, addChore, deleteAChore } = useContext(ChoresContext);
+  const { child, addChore, deleteAChore, updateChildObject } = useContext(ChoresContext);
   const classes = useStyles();
+
+  let childId;
+  // let prevPoints
+  // let prevCompletionStatus
+
+  const [prevChoreStats, setPrevChoreStatsState] = useState({
+    prevPoints: null,
+    prevCompletionStatus: ''
+  })
+
+  const getPrevInfo =  chore => {
+
+    setPrevChoreStatsState({...prevChoreStats, prevPoints: chore.points, prevCompletionStatus:  chore.isCompleted ? 'Completed' : 'Not Completed'})
+
+  }
 
   const [addView, toggleAddView] = useState(false);
   const [editing, updateEdits] = useState({
@@ -88,7 +101,8 @@ const ChildChores = _ => {
   const _chorePoints = useRef();
   const _choreComplete = useRef();
 
-  const updateAChore = event => {
+  const updateAChore = (event, childId) => {
+    // console.log(childId)
     const updatedChore = {
       name: _choreName.current.value,
       points: parseInt(_chorePoints.current.value),
@@ -97,20 +111,29 @@ const ChildChores = _ => {
 
     Chores.updateChore(event.currentTarget.id, updatedChore)
       .then(_ => {
-        if (updatedChore.isCompleted) {
+        if (updatedChore.isCompleted && prevChoreStats.prevCompletionStatus==="Not Completed") {
           Chores.getOneChild(childId)
             .then(({ data }) => {
               Chores.updateChild(childId, {
                 totalPoints: data.totalPoints + updatedChore.points
               })
                 .then(_ => {
-                  window.location.reload();
+                  updateChildObject(childId)
                 })
                 .catch(e => console.log(e));
             })
             .catch(e => console.log(e));
+        } else if (!updatedChore.isCompleted && prevChoreStats.prevCompletionStatus==="Completed"){
+          Chores.getOneChild(childId)
+            .then(({ data }) => {
+              Chores.updateChild(childId, {
+                totalPoints: data.totalPoints - prevChoreStats.prevPoints //updatedChore.points
+              })})
+              .then(_=> {
+                updateChildObject(childId)
+              })
         } else {
-          window.location.reload();
+          updateChildObject(childId)
         }
       })
       .catch(e => console.log(e));
@@ -216,10 +239,12 @@ const ChildChores = _ => {
 
                       
                         child.chores.map((chore, i) => {
-                          console.log(child)
+                          // console.log(child)
                           childId = chore.child
                           // setUpdateForm({...updateForm, updateName: chore.name, updatePoints: chore.points, updateIsCompleted: chore.isCompleted.toString()})
                           return editing[i] ?
+                          
+                        
 
                             <TableRow style={{ maxHeight: '100%', overflow: 'hidden' }}>
                               <TableCell style={{ color: '#153B69', width: '20px', paddingRight: '10px'}}>
@@ -234,7 +259,7 @@ const ChildChores = _ => {
                               </TableCell>
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                                <Fab  id={chore._id} assignedTo={chore.child} onClick={(event) => { toggleEdit(event, i); updateAChore(event) }} color="secondary" aria-label="Edit" className={classes.editBtn}>
+                                <Fab  id={chore._id} assignedTo={chore.child} onClick={(event) => { toggleEdit(event, i); updateAChore(event, child._id) }} color="secondary" aria-label="Edit" className={classes.editBtn}>
                                   <Save className={classes.editIcon}>edit_icon</Save>
                                 </Fab>
                               </TableCell>
@@ -258,7 +283,7 @@ const ChildChores = _ => {
                               
 
                               <TableCell style={{ paddingRight: '5px', paddingLeft: '5px' }}>
-                                <Fab id={chore._id} onClick={(event) => toggleEdit(event, i)} color="secondary" aria-label="Edit" className={classes.editBtn}>
+                                <Fab id={chore._id} onClick={(event) => {toggleEdit(event, i); getPrevInfo(chore)}} color="secondary" aria-label="Edit" className={classes.editBtn}>
                                   <Icon className={classes.editIcon}>edit_icon</Icon>
                                 </Fab>
                               </TableCell>
@@ -320,7 +345,12 @@ const ChildChores = _ => {
             </Grid>
 
 
-          ) : <AddKidChores />
+          ) : 
+          (
+            
+         <AddKidChores/>
+
+         )
 
 
         }
